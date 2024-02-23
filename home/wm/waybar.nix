@@ -2,7 +2,7 @@
   programs.waybar = {
     enable = true;
 
-    settings = {
+    settings = [{
       margin = "8 16 0 16";
 
       modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "sway/window"];
@@ -114,7 +114,7 @@
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
       };
-    };
+    }];
 
     style = 
     ''
