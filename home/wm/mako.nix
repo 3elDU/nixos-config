@@ -4,8 +4,8 @@
 
     font = "JetBrainsMono Nerd Font Propo 12";
 
-    margin = 8;
-    padding = 8;
+    margin = "8";
+    padding = "8";
 
     backgroundColor = "#282828BF";
     textColor = "#FBF1C7FF";
