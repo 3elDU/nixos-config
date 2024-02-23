@@ -8,7 +8,7 @@
       mode = "drun,run";
       term = "foot";
       image_size = 24;
-      key_up + "Alt_L-k";
+      key_up = "Alt_L-k";
       key_down = "Alt_L-j";
       key_expand = "Alt_L-l";
     };
