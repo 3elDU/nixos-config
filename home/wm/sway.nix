@@ -40,9 +40,13 @@
       };
 
       gaps = {
-        outer = 6;
-        inner = 8;
+        outer = 4;
+        inner = 6;
       };
+
+      # Disable titlebar for all windows
+      window.titlebar = false;
+      floating.titlebar = false;
 
       input = {
         "type:touchpad" = {
@@ -100,6 +104,11 @@
         "${mod}+${right}" = "focus right";
         "${mod}+${up}" = "focus up";
         "${mod}+${down}" = "focus down";
+        # Move the focused window around
+        "${mod}+Shift+${left}" = "move left";
+        "${mod}+Shift+${right}" = "move right";
+        "${mod}+Shift+${up}" = "move up";
+        "${mod}+Shift+${down}" = "move down";
         
         # Switch to workspace
         "${mod}+1" = "workspace number 1";
