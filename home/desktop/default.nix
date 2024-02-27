@@ -7,5 +7,6 @@
     ./media.nix
     ./gnome-apps.nix
     ./text.nix
+    ./code.nix
   ];
 }
