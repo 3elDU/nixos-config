@@ -74,6 +74,11 @@
         # Start launcher
         "${mod}+x" = "exec ${menu}";
 
+        # Switch to US / UA / RU keyboard layout
+        "Alt+1" = "exec swaymsg input \"type:keyboard\" xkb_switch_layout 0";
+        "Alt+2" = "exec swaymsg input \"type:keyboard\" xkb_switch_layout 1";
+        "Alt+3" = "exec swaymsg input \"type:keyboard\" xkb_switch_layout 2";
+
         # Kill focused window
         "${mod}+Shift+q" = "kill";
 
