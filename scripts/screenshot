@@ -1,0 +1,34 @@
+#! /usr/bin/env nu
+
+def select-area []: nothing -> string {
+	let $area = slurp -b "1d20217f"  -c "#d79921" -B "0000ff" -d -F "JetBrainsMono Nerd Font" | str trim
+	if ($area | is-empty) {
+		exit
+	}
+	$area
+}
+
+def main [
+	--select-area (-a) # Select an area to screenshot with a mouse
+	--copy (-c) # Copy the screenshot into clipboard
+	--save-directory (-d): string = "~/pic/sc" # Override default save directory
+] {
+	mut $area = ''
+	if $select_area {
+		$area = (select-area)
+	}
+
+	let path = $save_directory | path join $"Screenshot_(date now | format date "%Y-%m-%d_%H-%M-%S").png" | path expand
+	print $"Saving to '($path)'"
+
+	if ($area | is-empty) {
+		grim $path
+	} else {
+		grim -g $area $path
+	}
+
+	if $copy {
+		print "Copying screenshot to clipboard"
+		open $path | wl-copy
+	}
+}
