@@ -10,6 +10,10 @@
     htop btop
     # Better cat(1)
     bat
+    # For the 'notify-send' command
+    libnotify
+    # killall, pstree, etc.
+    psmisc
     
     gnupg
   ];
