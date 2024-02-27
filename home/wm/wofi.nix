@@ -2,7 +2,7 @@
   programs.wofi = {
     enable = true;
     settings = {
-      color = config.lib.file.mkOutOfStoreSymlink ../../configs/wofi/colors;
+      color = "${../../configs/wofi/colors}";
       allow_images = true;
       insensitive = true;
       mode = "drun,run";

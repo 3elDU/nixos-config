@@ -58,7 +58,7 @@
       };
       output = {
         "*" = {
-          background = toString (config.lib.file.mkOutOfStoreSymlink ../../wallpapers/anders-jilden-cYrMQA7a3Wc-unsplash.jpg);
+          background = "${../../wallpapers/anders-jilden-cYrMQA7a3Wc-unsplash.jpg}";
         };
       };
 
@@ -74,8 +74,8 @@
         "${mod}+Shift+q" = "kill";
 
         # Screenshots
-        "Print" = "exec ${config.lib.file.mkOutOfStoreSymlink ../../scripts/screenshot} --copy";
-        "${mod}+Print" = "exec ${config.lib.file.mkOutOfStoreSymlink ../../scripts/screenshot} --copy --select-area";
+        "Print" = "exec ${../../scripts/screenshot} --copy";
+        "${mod}+Print" = "exec ${../../scripts/screenshot} --copy --select-area";
 
         # Volume control
         "XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -u up";
