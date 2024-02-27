@@ -96,10 +96,10 @@
         "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
         
         # Move focus around
-        "${left}" = "focus left";
-        "${right}" = "focus right";
-        "${up}" = "focus up";
-        "${down}" = "focus down";
+        "${mod}+${left}" = "focus left";
+        "${mod}+${right}" = "focus right";
+        "${mod}+${up}" = "focus up";
+        "${mod}+${down}" = "focus down";
         
         # Switch to workspace
         "${mod}+1" = "workspace number 1";
@@ -111,7 +111,6 @@
         "${mod}+7" = "workspace number 7";
         "${mod}+8" = "workspace number 8";
         "${mod}+9" = "workspace number 9";
-        "${mod}+0" = "workspace number 0";
         # Move container to workspace
         "${mod}+Shift+1" = "move container to workspace number 1";
         "${mod}+Shift+2" = "move container to workspace number 2";
@@ -122,7 +121,6 @@
         "${mod}+Shift+7" = "move container to workspace number 7";
         "${mod}+Shift+8" = "move container to workspace number 8";
         "${mod}+Shift+9" = "move container to workspace number 9";
-        "${mod}+Shift+0" = "move container to workspace number 0";
 
         # Horizontal and vertical splits
         "${mod}+b" = "splith";
