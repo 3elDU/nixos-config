@@ -58,7 +58,7 @@
       };
       output = {
         "*" = {
-          background = "${../../wallpapers/anders-jilden-cYrMQA7a3Wc-unsplash.jpg}";
+          background = "${../../wallpapers/anders-jilden-cYrMQA7a3Wc-unsplash.jpg} stretch";
         };
       };
 
