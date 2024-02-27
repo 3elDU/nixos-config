@@ -24,6 +24,7 @@
       n = "nvim";
       h = "htop";
       d = "^du -h1 -d1 -c .";
+      t = "touch";
 
       nr = "sudo nixos-rebuild switch";
     };
