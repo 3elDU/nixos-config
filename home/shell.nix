@@ -8,7 +8,7 @@
 
     environmentVariables = {
       EDITOR = "nvim";
-      MANPAGER = "nvim +Man!";
+      MANPAGER = "'nvim +Man!'";
     };
 
     shellAliases = {
@@ -31,7 +31,7 @@
   };
 
   # This file is sourced from config.nu
-  xdg.configFile."nushell/gruvbox-dark-hard.nu".source = ../configs/nushell/gruvbox-dark-hard.nu;
+  xdg.configFile."nushell/scripts/gruvbox-dark-hard.nu".source = ../configs/nushell/gruvbox-dark-hard.nu;
 
   # External command completions used in nushell
   programs.carapace = {
