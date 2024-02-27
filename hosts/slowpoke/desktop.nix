@@ -3,6 +3,7 @@
 
 	hardware.opengl.enable = true;
 
+  environment.systemPackages = [ pkgs.greetd.gtkgreet ];
 	services.greetd = {
 		enable = true;
 		settings = {
