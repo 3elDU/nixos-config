@@ -3,18 +3,14 @@
 
   home.packages = with pkgs; [
     neofetch # Fetch system information
-    tree
-    nmap
-    ripgrep
+    tree # Display directory tree
+    nmap # Scan ports
+    ripgrep # Search file contents
+    # Process management
+    htop btop
+    # Better cat(1)
+    bat
+    
+    gnupg
   ];
-  
-  # Process management
-  programs.htop.enable = true;
-  programs.btop.enable = true;
-
-  # Better cat(1)
-  programs.bat.enable = true;
-
-  # GnuPG
-  programs.gpg.enable = true;
 }
