@@ -1,4 +1,9 @@
 { config, pkgs, ... }: {
+  home.packages = [
+    # Different keyboard layout for each window
+    pkgs.swaykbdd 
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.swayfx;
@@ -182,6 +187,7 @@
       startup = [
         { command = "${pkgs.avizo}/bin/avizo-service"; }
         { command = "${pkgs.mako}/bin/mako"; }
+        { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
       ];
     };
 
