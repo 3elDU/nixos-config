@@ -13,5 +13,6 @@
     ./syncthing.nix
     ./neovim.nix
     ./cli.nix
+    ./xdg.nix
   ];
 }
