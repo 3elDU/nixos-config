@@ -29,6 +29,6 @@ def main [
 
 	if $copy {
 		print "Copying screenshot to clipboard"
-		open $path | wl-copy
+		open $path | wl-copy -t "image/png"
 	}
 }
