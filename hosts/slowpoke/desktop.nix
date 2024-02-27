@@ -22,6 +22,7 @@
 	};
 
 	services.dbus.enable = true;
+  services.dconf.enable = true;
 
 	xdg.portal = {
 		enable = true;
