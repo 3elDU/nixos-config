@@ -1,7 +1,6 @@
-{ config, pkgs, ... }:
-
-{
-  fonts.packages = with pkgs; [
+{ pkgs, ... }: {
+  fonts.fontconfig.enable = true;
+  home.packages = with pkgs; [
     noto-fonts
     noto-fonts-emoji
     liberation_ttf

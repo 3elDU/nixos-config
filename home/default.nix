@@ -7,12 +7,11 @@
   imports = [
     ./wm
     ./desktop
-    ./foot.nix
     ./gtk.nix
     ./git.nix
     ./shell.nix
     ./syncthing.nix
     ./neovim.nix
-    ./misc-cli.nix
+    ./cli.nix
   ];
 }

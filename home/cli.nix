@@ -3,6 +3,9 @@
 
   home.packages = with pkgs; [
     neofetch # Fetch system information
+    tree
+    nmap
+    ripgrep
   ];
   
   # Process management
@@ -11,4 +14,7 @@
 
   # Better cat(1)
   programs.bat.enable = true;
+
+  # GnuPG
+  programs.gpg.enable = true;
 }

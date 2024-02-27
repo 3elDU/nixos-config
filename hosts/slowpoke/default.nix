@@ -12,7 +12,6 @@
       ./locale.nix
       ./bluetooth.nix
       ./desktop.nix
-      ../../programs
     ];
 
   boot.loader.systemd-boot.enable = true;
