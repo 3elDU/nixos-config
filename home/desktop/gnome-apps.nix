@@ -1,5 +1,8 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    # This is required by (almost) all of gnome apps
+    gnome.adwaita-icon-theme
+
     # Image viewer
     gnome.eog
     # File manager
