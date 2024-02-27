@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   programs.wofi = {
     enable = true;
     settings = {
-      color = ../configs/wofi/colors;
+      color = config.lib.file.mkOutOfStoreSymlink ../../configs/wofi/colors;
       allow_images = true;
       insensitive = true;
       mode = "drun,run";
