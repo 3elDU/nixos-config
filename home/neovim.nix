@@ -8,4 +8,9 @@
     # Use neovim as pager
     nvimpager
   ];
+
+  xdg.configFile."nvim" = {
+    source = ../configs/nvim;
+    recursive = true;
+  };
 }
