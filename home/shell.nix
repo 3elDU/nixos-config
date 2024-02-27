@@ -20,6 +20,7 @@
       gd = "git diff";
       gc = "git commit";
       gp = "git push";
+      gl = "git log";
 
       n = "nvim";
       h = "htop";
