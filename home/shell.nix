@@ -9,6 +9,7 @@
     environmentVariables = {
       EDITOR = "nvim";
       MANPAGER = "'nvim +Man!'";
+      PAGER = "nvimpager";
     };
 
     shellAliases = {
