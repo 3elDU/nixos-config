@@ -44,6 +44,7 @@
     extraGroups = [ "networkmanager" "wheel" "video" "audio" "input" ];
     packages = with pkgs; [];
   };
+  security.polkit.enable = true;
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
