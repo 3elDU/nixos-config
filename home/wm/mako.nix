@@ -4,7 +4,7 @@
 
     font = "JetBrainsMono Nerd Font Propo 10";
 
-    defaultTimeout = 5;
+    defaultTimeout = 5000;
 
     anchor = "top-center";
     margin = "6";
