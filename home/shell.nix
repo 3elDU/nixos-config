@@ -53,7 +53,7 @@
     loginExtra = ''
       # Launch sway, if logged in from tty1
       if [[ "$(tty)" == "/dev/tty1" ]]; then
-        sway
+        dbus-run-session sway
       fi
     '';
   };
