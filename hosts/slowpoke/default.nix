@@ -29,6 +29,9 @@
   # Generate manual page index caches to be able to search man pages with apropos(1)
   documentation.man.generateCaches = true;
 
+  # Do not ask for password in sudo
+  security.sudo.wheelNeedsPassword = false;
+
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";
 
