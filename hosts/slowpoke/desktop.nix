@@ -1,7 +1,14 @@
 { pkgs, ... }: {
   # Desktop-related options
 
-	hardware.opengl.enable = true;
+	hardware.opengl = {
+    enable = true;
+    # Enable accelerated video playback
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
+    ];
+  };
 
   # environment.systemPackages = with pkgs; [ greetd.regreet cage ];
 	# services.greetd = {
