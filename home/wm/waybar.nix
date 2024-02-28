@@ -95,6 +95,7 @@
         format-off = "󰂲 Off";
         format-connected = "󰂱 Connected";
         tooltip-format = "Status: {status}";
+        on-click = "${pkgs.blueman}/bin/blueman-manager";
       };
       pulseaudio = {
           format = "{volume}% {icon} {format_source}";
