@@ -9,25 +9,29 @@
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
       };
       extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
-      xdgOpenUsePortal = true;
     };
       
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "inode/directory" = ["org.gnome.nautilus.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "x-terminal-emulator" = ["foot.desktop"];
-        "image/png" = ["org.gnome.eog.desktop"];
-        "image/jpeg" = ["org.gnome.eog.desktop"];
-        "audio/mpeg" = ["mpv.desktop"];
-        "audio/ogg" = ["mpv.desktop"];
-        "video/mp4" = ["mpv.desktop"];
-        "video/mpeg" = ["mpv.desktop"];
-        "video/webm" = ["mpv.desktop"];
-        "application/pdf" = ["org.gnome.evince.desktop"];
+    mime.enable = true;
+    mimeApps = let
+      browser = "firefox.desktop";
+      player = "mpv.desktop";
+      associations = {
+        "inode/directory" = "org.gnome.nautilus.desktop";
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "image/png" = "org.gnome.eog.desktop";
+        "image/jpeg" = "org.gnome.eog.desktop";
+        "audio/mpeg" = player;
+        "audio/ogg" = player;
+        "video/mp4" = player;
+        "video/mpeg" = player;
+        "video/webm" = player;
+        "application/pdf" = "org.gnome.evince.desktop";
       };
+    in {
+      enable = true;
+      associations.added = associations;
+      defaultApplications = associations;
     };
 
     userDirs = {

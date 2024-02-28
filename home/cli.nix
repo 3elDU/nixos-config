@@ -16,5 +16,6 @@
     psmisc
     
     gnupg
+    xdg-utils
   ];
 }

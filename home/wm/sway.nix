@@ -1,8 +1,15 @@
 { config, pkgs, ... }: {
-  home.packages = [
-    # Different keyboard layout for each window
-    pkgs.swaykbdd 
-  ];
+  home = {
+    packages = [
+      # Different keyboard layout for each window
+      pkgs.swaykbdd 
+    ];
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1"; # https://nixos.wiki/wiki/Wayland
+      QT_QPA_PLATFORM = "wayland;xcb";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    };
+  };
 
   wayland.windowManager.sway = {
     enable = true;
@@ -199,6 +206,7 @@
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
 
       startup = [
+        { command = "dbus-sway-environment"; }
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
       ];
