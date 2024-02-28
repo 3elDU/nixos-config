@@ -32,10 +32,10 @@
       workspaceAutoBackAndForth = true;
 
       colors = {
-        focused = { border = "#d79921"; background = "#d79921"; text = "#282828"; indicator = "#d79921"; childBorder = "#d79921"; };
-        urgent = { border = "#d79921"; background = "#cc241d"; text = "#282828"; indicator = "#cc241d"; childBorder = "#cc241d"; };
-        focusedInactive = { border = "#3c3836"; background = "#282828"; text = "#fbf1c7"; indicator = "#282828"; childBorder = "#3c3836"; };
-        unfocused = { border = "#d79921"; background = "#282828"; text = "#fbf1c7"; indicator = "#282828"; childBorder = "#282828"; };
+        focused = { border = "#d79921"; background = "#d79921"; text = "#282828"; indicator = "#458588"; childBorder = "#d79921"; };
+        urgent = { border = "#d79921"; background = "#cc241d"; text = "#282828"; indicator = "#458588"; childBorder = "#cc241d"; };
+        focusedInactive = { border = "#282828"; background = "#282828"; text = "#fbf1c7"; indicator = "#458588"; childBorder = "#282828"; };
+        unfocused = { border = "#282828"; background = "#282828"; text = "#fbf1c7"; indicator = "#458588"; childBorder = "#282828"; };
       };
 
       fonts = {
@@ -48,6 +48,17 @@
         outer = 4;
         inner = 6;
       };
+
+      # Set default borders around windows to 4 pixels
+      window.border = 4;
+      floating.border = 4;
+      # Force all windows to have a border (useful for GTK windows)
+      window.commands = [
+        {
+          command = "border pixel 4";
+          criteria.app_id = ".*";
+        }
+      ];
 
       # Disable titlebar for all windows
       window.titlebar = false;
@@ -68,6 +79,9 @@
       output = {
         "*" = {
           background = "${../../wallpapers/anders-jilden-cYrMQA7a3Wc-unsplash.jpg} stretch";
+        };
+        eDP-1 = {
+          scale = "1.25";
         };
       };
 
@@ -92,17 +106,17 @@
         "${mod}+Print" = "exec ${../../scripts/screenshot} --copy --select-area";
 
         # Volume control
-        "XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -u up";
-        "XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -u down";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -u up";
+        "XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -u down";
         # Volume control for microphone
-        "Shift+XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -m -u up";
-        "Shift+XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -m -u down";
-        "XF86AudioMute" = "exec ${pkgs.avizo}/bin/volumectl toggle-mute";
-        "XF86AudioMicMute" = "exec ${pkgs.avizo}/bin/volumectl -m toggle-mute";
+        "Shift+XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -m -u up";
+        "Shift+XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -m -u down";
+        "XF86AudioMute" = "exec ${pkgs.avizo}/bin/volumectl -d toggle-mute";
+        "XF86AudioMicMute" = "exec ${pkgs.avizo}/bin/volumectl -d -m toggle-mute";
 
         # Brightness control
-        "XF86MonBrightnessUp" = "exec ${pkgs.avizo}/bin/lightctl up";
-        "XF86MonBrightnessDown" = "exec ${pkgs.avizo}/bin/lightctl down";
+        "XF86MonBrightnessUp" = "exec ${pkgs.avizo}/bin/lightctl -d up";
+        "XF86MonBrightnessDown" = "exec ${pkgs.avizo}/bin/lightctl -d down";
 
         # Reload sway configuration file
         "${mod}+Shift+c" = "reload";
@@ -185,16 +199,12 @@
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
 
       startup = [
-        { command = "${pkgs.avizo}/bin/avizo-service"; }
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
       ];
     };
 
     extraConfig = ''
-      # focused_tab_title class is not available in home-manager
-      client.focused_tab_title #7c6f64 #282828 #fbf1c7 #282828 #3c3836
-
       # SwayFX settings
       blur enable
       shadows enable
@@ -204,10 +214,6 @@
       layer_effects "wofi" {
         blur enable
         shadows enable
-      }
-      # Enable background blur for avizo
-      layer_effects "avizo" {
-        blur enable
       }
     '';
   };

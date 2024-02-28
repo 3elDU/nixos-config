@@ -25,7 +25,7 @@
         }
 
         #outer-box {
-          border: 2px solid --wofi-color0;
+          border: 4px solid --wofi-color0;
           border-radius: 8px;
         }
 
