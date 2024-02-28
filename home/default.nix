@@ -9,6 +9,7 @@
     ./desktop
     ./gtk.nix
     ./git.nix
+    ./gpg.nix
     ./shell.nix
     ./syncthing.nix
     ./neovim.nix
