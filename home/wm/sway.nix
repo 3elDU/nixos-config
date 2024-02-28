@@ -206,7 +206,6 @@
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
 
       startup = [
-        { command = "dbus-sway-environment"; }
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
       ];

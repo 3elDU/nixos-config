@@ -1,7 +1,5 @@
 { config, pkgs, ... }: {
   xdg = {
-    enable = true;
-
     portal = {
       enable = true;
       config.common = {
@@ -11,26 +9,24 @@
       extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
     };
       
-    mime.enable = true;
     mimeApps = let
       browser = "firefox.desktop";
       player = "mpv.desktop";
       associations = {
-        "inode/directory" = "org.gnome.nautilus.desktop";
+        "inode/directory" = "org.gnome.Nautilus.desktop";
         "x-scheme-handler/http" = browser;
         "x-scheme-handler/https" = browser;
-        "image/png" = "org.gnome.eog.desktop";
-        "image/jpeg" = "org.gnome.eog.desktop";
+        "image/png" = "org.gnome.Eog.desktop";
+        "image/jpeg" = "org.gnome.Eog.desktop";
         "audio/mpeg" = player;
         "audio/ogg" = player;
         "video/mp4" = player;
         "video/mpeg" = player;
         "video/webm" = player;
-        "application/pdf" = "org.gnome.evince.desktop";
+        "application/pdf" = "org.gnome.Evince.desktop";
       };
     in {
       enable = true;
-      associations.added = associations;
       defaultApplications = associations;
     };
 
