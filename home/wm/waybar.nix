@@ -6,8 +6,8 @@
       margin = "8 16 0 16";
 
       modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "sway/window"];
-      modules-center = ["clock"];
-      modules-right = ["idle_inhibitor" "pulseaudio" "network" "bluetooth" "cpu" "memory" "temperature" "sway/language" "battery" "tray"];
+      modules-center = [];
+      modules-right = ["idle_inhibitor" "pulseaudio" "network" "bluetooth" "cpu" "memory" "temperature" "sway/language" "battery" "clock" "tray"];
 
       keyboard-state = {
         numlock = true;
@@ -41,7 +41,7 @@
       tray = { spacing = 10; };
       clock = {
         interval = 1;
-        format = " {:%H:%M:%S %F}";
+        format = "{:%a, %F, %T}";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         format-alt = "{:%Y-%m-%d}";
       };

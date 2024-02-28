@@ -1,11 +1,11 @@
 * {
   all: unset;
-  min-height: 32px;
+  min-height: 28px;
   font-family: JetBrainsMono Nerd Font Propo;
 }
 
 window#waybar {
-  min-height: 24px;
+  min-height: 28px;
 
   border: none;
   border-radius: 0;
@@ -14,8 +14,7 @@ window#waybar {
   color: #fbf1c7;
 }
 
-#scratchpad, #mode, #idle_inhibitor, #pulseaudio, #network, #bluetooth, #cpu, #memory, #temperature, #keyboard_state, #language, #battery, #tray {
-  min-width: 32px;
+#scratchpad, #mode, #idle_inhibitor, #pulseaudio, #network, #bluetooth, #cpu, #memory, #temperature, #keyboard_state, #language, #battery, #clock, #tray {
   background-color: #282828;
   padding: 0 8px;
   margin: 0 4px;
@@ -35,9 +34,9 @@ tooltip {
   background: #282828;
 }
 #workspaces button {
-  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out, min-width 150ms ease-in-out;
 
-  min-width: 48px;
+  min-width: 32px;
   border-radius: 4px;
   
   margin-right: 4px;
@@ -49,10 +48,10 @@ tooltip {
   color: #928374;
 }
 #workspaces button.focused {
+  min-width: 48px;
   background: #d79921;
   color: #282828;
   font-weight: bold;
-
 }
 #workspaces button.urgent {
   color: #fbf1c7;
@@ -75,14 +74,6 @@ tooltip {
 #window {
   margin-left: 16px;
   text-shadow: 0px 0px 4px black;
-}
-
-#clock {
-  margin: 0 64px;
-  padding: 0 16px;
-  background: #282828;
-  border-radius: 8px;
-  font-weight: 500;
 }
 
 #network {
@@ -116,6 +107,10 @@ tooltip {
 #temperature.critical {
   background: #cc241d;
   font-weight: bold;
+}
+
+#language {
+  min-width: 48px;
 }
 
 #battery.Charging {
