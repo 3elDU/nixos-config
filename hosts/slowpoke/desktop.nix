@@ -3,17 +3,17 @@
 
 	hardware.opengl.enable = true;
 
-  environment.systemPackages = with pkgs; [ greetd.gtkgreet cage ];
-	services.greetd = {
-		enable = true;
-		settings = {
-			terminal.vt = 1;
-			default_session = {
-				command = "cage -s -- gtkgreet";
-				user = "greeter";
-			};
-		};
-	};
+  # environment.systemPackages = with pkgs; [ greetd.regreet cage ];
+	# services.greetd = {
+	# 	enable = true;
+	# 	settings = {
+	# 		terminal.vt = 1;
+	# 		default_session = {
+	# 			command = "cage -s -- regreet";
+	# 			user = "greeter";
+	# 		};
+	# 	};
+	# };
 	
 	services.pipewire = {
 		enable = true;
@@ -23,13 +23,4 @@
 
 	services.dbus.enable = true;
   programs.dconf.enable = true;
-
-	xdg.portal = {
-		enable = true;
-		wlr.enable = true;
-		config.common.default = "gtk";
-	};
-
-  # Enable GNOME keyring for storing secrets
-  services.gnome.gnome-keyring.enable = true;
 }
