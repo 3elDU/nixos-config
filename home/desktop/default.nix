@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   imports = [
+    ./cursor.nix
     ./browsers.nix
     ./fonts.nix
     ./foot.nix
