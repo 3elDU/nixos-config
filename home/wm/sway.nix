@@ -52,9 +52,9 @@
       # Set default borders around windows to 4 pixels
       window.border = 4;
       floating.border = 4;
-      # Force all windows to have a border (useful for GTK windows)
       window.commands = [
         {
+          # Force border for all windows. Especially useful for apps with CSD
           command = "border pixel 4";
           criteria.app_id = ".*";
         }
@@ -207,9 +207,12 @@
     extraConfig = ''
       # SwayFX settings
       blur enable
+      
       shadows enable
+      shadow_color #000000C0
+
       corner_radius 8
-      smart_corner_radius enable
+
       # Enable background blur for wofi
       layer_effects "wofi" {
         blur enable
