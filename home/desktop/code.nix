@@ -5,6 +5,7 @@ in {
     enable = true;
     extensions = with extensions.vscode-marketplace; [
       vue.volar vue.vscode-typescript-vue-plugin
+      dbaeumer.vscode-eslint esbenp.prettier-vscode
       golang.go
       bradlc.vscode-tailwindcss
 
