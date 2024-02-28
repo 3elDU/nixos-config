@@ -50,10 +50,10 @@
       plugins = [ "git" ];
     };
 
-    loginExtra = ''
+    profileExtra = ''
       # Launch sway, if logged in from tty1
       if [[ "$(tty)" == "/dev/tty1" ]]; then
-        dbus-run-session sway
+        exec sway
       fi
     '';
   };
