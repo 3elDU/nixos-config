@@ -32,6 +32,32 @@
     };
   };
 
+  # Those only get sourced by zsh
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
+    PAGER = "nvimpager";
+  };
+
+  # Also keep ZSH as a default shell for tasks where POSIX shell is required,
+  # e.g. login shell
+  programs.zsh = {
+    enable = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "sammy";
+      plugins = [ "git" ];
+    };
+
+    loginExtra = ''
+      # Launch sway, if logged in from tty1
+      if [[ "$(tty)" == "/dev/tty1" ]]; then
+        sway
+      fi
+    '';
+  };
+
   # External command completions used in nushell
   programs.carapace = {
     enable = true;

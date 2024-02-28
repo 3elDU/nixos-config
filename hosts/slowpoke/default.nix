@@ -38,11 +38,12 @@
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";
 
+  programs.zsh.enable = true;
   users.users.ptflp = {
     isNormalUser = true;
     description = "Zakhar Voloshchuk";
     extraGroups = [ "networkmanager" "wheel" "video" "audio" "input" ];
-    packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
   security.polkit.enable = true;
   home-manager = {
