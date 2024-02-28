@@ -26,6 +26,9 @@
     mountOnMedia = true;
   };
 
+  # Enable periodic SSD TRIM
+  services.fstrim.enable = true;
+
   # Generate manual page index caches to be able to search man pages with apropos(1)
   documentation.man.generateCaches = true;
 
