@@ -13,8 +13,6 @@
     gnome.file-roller
     # Integrate compresssed files management with GNOME
     gnome.gnome-autoar
-    # Mail client
-    gnome.geary
     # System resource monitor
     gnome-usage
     # Taking photos and videos with webcam
@@ -29,5 +27,7 @@
     gnome.gnome-disk-utility
     # Calculator
     gnome.gnome-calculator
+    # PDF viewer
+    evince
   ];
 }
