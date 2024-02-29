@@ -13,6 +13,7 @@
     };
 
     shellAliases = {
+      cl = "clear";
       ll = "^ls -lAh";
 
       gcn = "git clone";
