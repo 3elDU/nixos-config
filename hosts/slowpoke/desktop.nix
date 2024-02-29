@@ -30,4 +30,8 @@
 
 	services.dbus.enable = true;
   programs.dconf.enable = true;
+
+  # Allow user to access /dev/input and /dev/uinput, required for xremap to work
+  hardware.uinput.enable = true;
+  users.groups.uinput.members = [ "ptflp" ];
 }

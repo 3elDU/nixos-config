@@ -10,5 +10,6 @@
     ./gnome-apps.nix
     ./text.nix
     ./code.nix
+    ./xremap.nix
   ];
 }

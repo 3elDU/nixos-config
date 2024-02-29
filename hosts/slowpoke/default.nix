@@ -50,7 +50,8 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit input; };
-    users.ptflp = import ../../home;	
+    sharedModules = [ input.xremap.homeManagerModules.default ];
+    users.ptflp = ../../home;	
   };
 
   # Allow unfree packages
