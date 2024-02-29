@@ -77,6 +77,7 @@
           tap = "enabled";
           click_method = "clickfinger";
           pointer_accel = "0.4";
+          scroll_factor = "0.3";
         };
         "type:keyboard" = {
           xkb_layout = "us,ua,ru";
