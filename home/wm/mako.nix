@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ colorscheme, ... }: {
   services.mako = {
     enable = true;
 
@@ -7,13 +7,13 @@
     defaultTimeout = 5000;
 
     anchor = "top-center";
-    margin = "6";
-    padding = "8";
+    margin = "8";
+    padding = "12";
 
-    backgroundColor = "#282828FF";
-    textColor = "#FBF1C7FF";
-    progressColor = "#D79921FF";
-    borderColor = "#D79921FF";
+    backgroundColor = colorscheme.base.hex;
+    textColor = colorscheme.text.hex;
+    progressColor = colorscheme.secondary.hex;
+    borderColor = colorscheme.secondary.hex;
 
     borderRadius = 8;
     borderSize = 4;
