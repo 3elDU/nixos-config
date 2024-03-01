@@ -6,7 +6,10 @@
 
     defaultTimeout = 5000;
 
-    anchor = "top-center";
+    # This is the *maximum* height
+    height = 192;
+
+    anchor = "top-right";
     margin = "8";
     padding = "12";
 
