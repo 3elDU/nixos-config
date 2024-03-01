@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, input, ... }:
+{ input, pkgs, ... }:
 
 {
   imports =
@@ -53,6 +53,9 @@
     sharedModules = [ input.xremap.homeManagerModules.default ];
     users.ptflp = ../../home;	
   };
+
+  # Allow running unpatched binaries
+  programs.nix-ld.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
