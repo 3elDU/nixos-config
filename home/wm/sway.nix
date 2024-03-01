@@ -245,7 +245,11 @@
     extraConfig = ''
       # SwayFX settings
       blur enable
-      
+
+      # Move between workspaces with 3-finger swipes
+      bindgesture swipe:3:left workspace prev
+      bindgesture swipe:3:right workspace next
+
       shadows enable
       shadow_color #000000C0
 
