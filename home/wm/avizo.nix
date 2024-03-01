@@ -7,9 +7,9 @@
 
         width = 240;
         height = 172;
-        padding = 16;
+        padding = 12;
 
-        border-radius = 8;
+        border-radius = 12;
         border-width = 4;
 
         block-height = 10;
