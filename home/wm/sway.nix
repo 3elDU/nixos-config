@@ -142,6 +142,7 @@
         # Screenshots
         "Print" = "exec ${../../scripts/screenshot} --copy";
         "${mod}+Print" = "exec ${../../scripts/screenshot} --copy --select-area";
+        "${mod}+Shift+s" = "exec ${../../scripts/screenshot} --copy --select-area";
 
         # Volume control
         "XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -u up";
