@@ -17,7 +17,7 @@
       nodePackages.typescript-language-server # JavaScript / TypeScript
       tailwindcss-language-server # TailwindCSS
       gopls # Go
-      nodePackages.vscode-json-languageserver # JSON
+      vscode-langservers-extracted # HTML, JSON, CSS
     ];
   };
   home.packages = with pkgs; [

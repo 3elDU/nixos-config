@@ -23,6 +23,9 @@ require "lazy".setup({
   { import = "plugins.treesitter" },
   { import = "plugins.sleuth" },
   { import = "plugins.comment" },
+  { import = "plugins.telescope" },
+  { import = "plugins.gitsigns" },
+  { import = "plugins.barbar" },
 }, {
   defaults = {
     version = false,

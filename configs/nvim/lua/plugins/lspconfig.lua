@@ -75,6 +75,9 @@ return {
     }
     lspconfig.gopls.setup { capabilities = capabilities }
     lspconfig.jsonls.setup { capabilities = capabilities }
+    lspconfig.cssls.setup { capabilities = capabilities }
+    lspconfig.html.setup { capabilities = capabilities }
+    lspconfig.eslint.setup { capabilities = capabilities }
 
   end
 }
