@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
   home.username = "ptflp";
   home.homeDirectory = "/home/ptflp";
 
@@ -8,6 +8,7 @@
     ./wm
     ./desktop
     ./gtk.nix
+    ./qt.nix
     ./git.nix
     ./gpg.nix
     ./shell.nix
