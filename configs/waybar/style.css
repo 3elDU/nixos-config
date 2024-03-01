@@ -1,3 +1,5 @@
+/* Colors are specified externally via Nix */
+
 * {
   all: unset;
   min-height: 28px;
@@ -11,19 +13,20 @@ window#waybar {
   border-radius: 0;
 
   background: transparent;
-  color: #fbf1c7;
+  color: @text;
 }
 
 #scratchpad, #mode, #idle_inhibitor, #pulseaudio, #network, #bluetooth, #cpu, #memory, #temperature, #keyboard_state, #language, #battery, #clock, #tray {
-  background-color: #282828;
+  background-color: @base;
   padding: 0 8px;
   margin: 0 4px;
   border-radius: 8px;
+  min-width: 24px;
 }
 
 tooltip {
-  background: #282828;
-  border: 2px solid #d79921;
+  background: @base;
+  border: 2px solid @secondary;
   border-radius: 8px;
 }
 
@@ -31,7 +34,7 @@ tooltip {
   padding: 4px;
   margin-right: 4px;
   border-radius: 8px;
-  background: #282828;
+  background: @base;
 }
 #workspaces button {
   transition: background-color 150ms ease-in-out, color 150ms ease-in-out, min-width 150ms ease-in-out;
@@ -45,30 +48,31 @@ tooltip {
   margin-right: 0;
 }
 #workspaces button:not(.focused) {
-  color: #928374;
+  color: @subtext0;
 }
 #workspaces button.focused {
   min-width: 48px;
-  background: #d79921;
-  color: #282828;
+  background: @primary;
+  color: @base;
   font-weight: bold;
 }
 #workspaces button.urgent {
-  color: #fbf1c7;
-  background: #cc241d;
+  color: @base;
+  background: @red;
   font-weight: bold;
 }
 
 #mode {
-  background: #cc241d;
-  color: #fbf1c7;
+  background: @red;
+  color: @base;
   font-weight: bold;
 }
 
 #scratchpad {
   padding: 0 16px;
   border-radius: 8px;
-  background: #d65d0e;
+  background: @secondary;
+  color: @base;
 }
 
 #window {
@@ -79,7 +83,7 @@ tooltip {
 #network {
   border-radius: 8px 0 0 8px;
   margin-right: 0;
-  border-right: 1px solid #504945;
+  border-right: 1px solid @overlay0;
 }
 #bluetooth {
   border-radius: 0 8px 8px 0;
@@ -95,7 +99,7 @@ tooltip {
   margin: 0;
   padding: 0 12px;
   border-radius: 0;
-  border: 1px solid #504945;
+  border: 1px solid @overlay0;
   border-top: none;
   border-bottom: none;
 }
@@ -105,7 +109,7 @@ tooltip {
   border-radius: 0 8px 8px 0;
 }
 #temperature.critical {
-  background: #cc241d;
+  background: @red;
   font-weight: bold;
 }
 
@@ -114,29 +118,29 @@ tooltip {
 }
 
 #battery.Charging {
-  background: #98971a;
+  background: @green;
   font-weight: bold;
 }
 #battery.warning {
-  background: #d79921;
+  background: @yellow;
   font-weight: bold;
 }
 #battery.critical {
-  background: #cc241d;
+  background: @red;
   font-weight: bold;
 }
 
 #tray menu {
-  background: #282828;
-  border: 2px solid #d79921;
+  background: @base;
+  border: 2px solid @secondary;
   border-radius: 8px;
 }
 #tray menu > * {
   padding: 0 16px;
 }
 #tray menu > :hover {
-  background: #d79921;
-  color: #282828;
+  background: @secondary;
+  color: @base;
   font-weight: bold;
 }
 /* Round the corners for first and last item in the menu, so that it won't visually overflow the menu window */

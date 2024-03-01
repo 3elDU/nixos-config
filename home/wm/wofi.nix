@@ -1,8 +1,15 @@
-{ pkgs, config, ... }: {
+{ config, colorscheme, ... }: {
+  # Main wofi color is secondary, since wofi itself is an overlay window
+  xdg.configFile."wofi/colors".text = ''
+    ${colorscheme.secondary.hex}
+    ${colorscheme.text.hex}
+    ${colorscheme.base.hex}
+  '';
+
   programs.wofi = {
     enable = true;
     settings = {
-      color = "${../../configs/wofi/colors}";
+      color = config.xdg.configFile."wofi/colors".source;
       allow_images = true;
       insensitive = true;
       mode = "drun,run";

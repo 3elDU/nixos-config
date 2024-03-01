@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ input, colorscheme, palette, pkgs, ... }:
+{ input, colorscheme, palette, flavour, pkgs, ... }:
 
 {
   imports =
@@ -49,7 +49,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit input colorscheme palette; };
+    extraSpecialArgs = { inherit input colorscheme palette flavour; };
     sharedModules = [ input.xremap.homeManagerModules.default ];
     users.ptflp = ../../home;	
   };

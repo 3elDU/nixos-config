@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ colorscheme, lib, pkgs, ... }: {
   programs.waybar = {
     enable = true;
 
@@ -117,6 +117,13 @@
       };
     }];
 
-    style = ../../configs/waybar/style.css;
+
+    style =
+      # Convert the colorscheme attribute set to GTK color declarations
+      lib.strings.concatStrings(builtins.attrValues(
+        builtins.mapAttrs (name: value: "@define-color ${name} ${value.hex};\n") colorscheme
+      ))
+      +
+      (builtins.readFile ../../configs/waybar/style.css);
   };
 }

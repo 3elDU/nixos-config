@@ -23,13 +23,26 @@
 
   outputs = { nixpkgs, home-manager, xremap, nix-vscode-extensions, ... }@input: let
     palette = builtins.fromJSON (builtins.readFile ./catppuccin/palette.json);
-    colorscheme = builtins.trace palette palette.macchiato;
+    flavourName = "macchiato";
+
+    # Information about the current flavour
+    flavour = {
+      name = palette.${flavourName}.name;
+      dark = palette.${flavourName}.dark;
+    };
+    colorscheme = with palette.${flavourName}; 
+      colors // {
+        # Currently active window, buttons, active elements, etc.
+        primary = colors.mauve;
+        # Notifications, overlay windows, modals
+        secondary = colors.lavender;
+      };
   in {
     nixosConfigurations.slowpoke = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit input palette colorscheme; };
+      specialArgs = { inherit input palette flavour colorscheme; };
       modules = [
-      	./hosts/slowpoke
+        ./hosts/slowpoke
         home-manager.nixosModules.home-manager
       ];
     };

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, colorscheme, ... }: {
   home = {
     packages = [
       # Different keyboard layout for each window
@@ -38,11 +38,41 @@
       terminal = term;
       workspaceAutoBackAndForth = true;
 
-      colors = {
-        focused = { border = "#d79921"; background = "#d79921"; text = "#282828"; indicator = "#458588"; childBorder = "#d79921"; };
-        urgent = { border = "#d79921"; background = "#cc241d"; text = "#282828"; indicator = "#458588"; childBorder = "#cc241d"; };
-        focusedInactive = { border = "#282828"; background = "#282828"; text = "#fbf1c7"; indicator = "#458588"; childBorder = "#282828"; };
-        unfocused = { border = "#282828"; background = "#282828"; text = "#fbf1c7"; indicator = "#458588"; childBorder = "#282828"; };
+      colors = let 
+        primary = colorscheme.primary.hex;
+        secondary = colorscheme.secondary.hex;
+        text = colorscheme.text.hex;
+        bg = colorscheme.base.hex;
+        urgent = colorscheme.red.hex;
+        inactive = colorscheme.surface0.hex;
+      in {
+        focused = { 
+          border = primary;
+          background = primary;
+          text = bg;
+          indicator = secondary;
+          childBorder = primary;
+        };
+        urgent = {
+          border = primary;
+          background = urgent;
+          text = text;
+          indicator = secondary;
+          childBorder = urgent;
+        };
+        focusedInactive = {
+          border = inactive;
+          background = inactive;
+          text = text;
+          indicator = secondary;
+          childBorder = inactive;
+        };
+        unfocused = {
+          border = inactive;
+          background = inactive;
+          text = text;
+          indicator = secondary;
+          childBorder = inactive; };
       };
 
       fonts = {
@@ -86,7 +116,7 @@
       };
       output = {
         "*" = {
-          background = "${../../wallpapers/anders-jilden-cYrMQA7a3Wc-unsplash.jpg} stretch";
+          background = "${colorscheme.surface2.hex} solid_color";
         };
         eDP-1 = {
           scale = "1.25";
@@ -219,7 +249,7 @@
       shadows enable
       shadow_color #000000C0
 
-      corner_radius 8
+      corner_radius 12
 
       # Enable background blur for wofi
       layer_effects "wofi" {
