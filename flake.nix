@@ -21,10 +21,13 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, xremap, nix-vscode-extensions, ... }@input: {
+  outputs = { nixpkgs, home-manager, xremap, nix-vscode-extensions, ... }@input: let
+    palette = builtins.fromJSON (builtins.readFile ./catppuccin/palette.json);
+    colorscheme = builtins.trace palette palette.macchiato;
+  in {
     nixosConfigurations.slowpoke = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit input; };
+      specialArgs = { inherit input palette colorscheme; };
       modules = [
       	./hosts/slowpoke
         home-manager.nixosModules.home-manager
