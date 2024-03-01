@@ -1,4 +1,4 @@
-{ nixpkgs, pkgs, ... }: 
+{ pkgs, ... }: 
 let
   obsidian = pkgs.obsidian.override {
     electron = pkgs.electron_25.overrideAttrs(_: {
