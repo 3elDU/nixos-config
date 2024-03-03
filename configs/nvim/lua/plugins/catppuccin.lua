@@ -7,6 +7,8 @@ return {
       flavour = "macchiato",
       highlight_overrides = { all = function(colors)
         return {
+          NormalFloat = { bg = colors.crust },
+
           -- Telescope
           TelescopePromptNormal = { bg = colors.lavender, fg = colors.base },
           TelescopePromptBorder = { bg = colors.lavender, fg = colors.base },
@@ -14,13 +16,13 @@ return {
           TelescopePromptPrefix = { fg = colors.crust },
           TelescopePromptTitle = { fg = colors.crust, style = {"italic"} },
 
-          TelescopeResultsBorder = { bg = colors.mantle },
+          TelescopeResultsNormal = { bg = colors.crust, fg = colors.overlay0  },
+          TelescopeResultsBorder = { bg = colors.crust },
           TelescopeResultsTitle = { fg = colors.lavender, style = {"italic"} },
-          TelescopeResultsNormal = { bg = colors.mantle, fg = colors.overlay0 },
           TelescopeMatching = { fg = colors.text, style = {"bold"} },
 
-          TelescopePreviewNormal = { bg = colors.crust },
-          TelescopePreviewBorder = { bg = colors.crust },
+          TelescopePreviewNormal = { bg = colors.mantle },
+          TelescopePreviewBorder = { bg = colors.mantle },
           TelescopePreviewTitle = { fg = colors.lavender, style = {"italic"} },
 
           -- Neotree
