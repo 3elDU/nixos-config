@@ -7,8 +7,6 @@ return {
       flavour = "macchiato",
       highlight_overrides = { all = function(colors)
         return {
-          NormalFloat = { bg = colors.crust },
-
           -- Telescope
           TelescopePromptNormal = { bg = colors.lavender, fg = colors.base },
           TelescopePromptBorder = { bg = colors.lavender, fg = colors.base },

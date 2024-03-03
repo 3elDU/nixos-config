@@ -42,18 +42,18 @@ return {
     }
 
     cmp.setup({
+      formatting = {
+        fields = {"abbr", "kind", "menu"},
+        expandable_indicator = true,
+        format = function(_, vim_item)
+          vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
+          return vim_item
+        end,
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end
-      },
-      formatting = {
-        fields = {"kind", "abbr"},
-        expandable_indicator = false,
-        format = function(_, vim_item)
-          vim_item.kind = (cmp_kinds[vim_item.kind] or '')
-          return vim_item
-        end,
       },
       completion = { completeopt = "menu,menuone,noinsert" },
       sources = cmp.config.sources{
