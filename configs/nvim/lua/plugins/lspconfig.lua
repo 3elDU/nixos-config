@@ -79,5 +79,37 @@ return {
     lspconfig.html.setup { capabilities = capabilities }
     lspconfig.eslint.setup { capabilities = capabilities }
 
+    -- LSP ui configuration
+    local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = '',
+        format = function(diagnostic)
+          local icon = ''
+
+          if diagnostic.severity == vim.diagnostic.severity.ERROR then
+            icon = signs.Error
+          elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+            icon = signs.Warn
+          elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+            icon = signs.Info
+          elseif diagnostic.severity == vim.diagnostic.severity.HINT then
+            icon = signs.Hint
+          end
+
+          return icon .. ' ' .. diagnostic.message
+        end
+      },
+      signs = false,
+      underline = true,
+      update_in_insert = true,
+      severity_sort = true,
+    })
+
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
   end
 }

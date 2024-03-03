@@ -6,6 +6,11 @@ return {
     current_line_blame_opts = {
       delay = 250,
     },
+    signs = {
+      add     = { text = '│' },
+      change  = { text = '│' },
+      delete  = { text = '│' },
+    },
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns;
 

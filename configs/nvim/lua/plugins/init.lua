@@ -27,7 +27,8 @@ require "lazy".setup({
   { import = "plugins.gitsigns" },
   { import = "plugins.barbar" },
   { import = "plugins.neotree" },
-  { import = "plugins.lualine" }
+  { import = "plugins.lualine" },
+  { import = "plugins.barbecue" },
 }, {
   defaults = {
     version = false,
