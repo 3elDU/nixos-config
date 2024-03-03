@@ -5,21 +5,34 @@ return {
     "lewis6991/gitsigns.nvim",
   },
   init = function() vim.g.barbar_auto_setup = false end,
-  opts = {
-    animation = true,
-    tabpages = true,
-    clickable = true,
-    auto_hide = true,
-    icons = {
-      button = '',
-      gitsigns = {
-        added = { enabled = true, icon = '+' },
-        changed = { enabled = true, icon = '~' },
-        deleted = { enabled = true, icon = '-' },
-      }
-    },
-  },
   config = function ()
+    require"barbar".setup {
+      animation = true,
+      tabpages = true,
+      clickable = true,
+      focus_on_close = 'previous',
+      icons = {
+        buffer_index = true,
+        button = '',
+        separator = {
+          left = '',
+          right = '',
+        },
+        separator_at_end = false,
+        modified = { button = '' },
+        inactive = {
+          separator = {
+            left = '',
+          }
+        },
+        gitsigns = {
+          added = { enabled = true, icon = '+' },
+          changed = { enabled = true, icon = '~' },
+          deleted = { enabled = true, icon = '-' },
+        }
+      },
+    }
+
     local map = vim.keymap.set
 
     -- Previous / Next tab
@@ -44,7 +57,7 @@ return {
     -- Close buffer
     map('n', '<leader>c', '<Cmd>BufferClose<CR>')
     -- Enter buffer-picking mode
-    map('n', '<leader>tp', '<Cmd>BufferPick<CR>')
+    map('n', '<leader>tj', '<Cmd>BufferPick<CR>')
     -- Sort tabs by
     map('n', '<leader>tsn', '<Cmd>BufferOrderByBufferNumber<CR>')
     map('n', '<leader>tsd', '<Cmd>BufferOrderByDirectory<CR>')

@@ -1,16 +1,22 @@
+-- Set leader to space
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Enable truecolor support
 vim.opt.termguicolors = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
+-- Put windows on the right when splitting
+vim.opt.splitright = true
+
+-- Save undo history of each file
 vim.opt.undofile = true
 
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+-- Disable swap files
+vim.opt.swapfile = false
 
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }

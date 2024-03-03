@@ -26,6 +26,7 @@ require "lazy".setup({
   { import = "plugins.telescope" },
   { import = "plugins.gitsigns" },
   { import = "plugins.barbar" },
+  { import = "plugins.neotree" },
 }, {
   defaults = {
     version = false,
