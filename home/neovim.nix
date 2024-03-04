@@ -18,6 +18,7 @@
       tailwindcss-language-server # TailwindCSS
       gopls # Go
       vscode-langservers-extracted # HTML, JSON, CSS
+      texlab # LaTeX
     ];
   };
   home.packages = with pkgs; [

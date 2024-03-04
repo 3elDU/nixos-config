@@ -78,6 +78,10 @@ return {
     lspconfig.cssls.setup { capabilities = capabilities }
     lspconfig.html.setup { capabilities = capabilities }
     lspconfig.eslint.setup { capabilities = capabilities }
+    lspconfig.texlab.setup {
+      capabilities = capabilities,
+      filetypes = { "tex", "plaintex", "bib" },
+    }
 
     -- LSP ui configuration
     local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
