@@ -15,7 +15,7 @@ return {
       }
     },
     -- status updates for lsp
-    { "j-hui/fidget.nvim", opts = {}},
+    { "j-hui/fidget.nvim", opts = {} },
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -23,27 +23,27 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
       callback = function(ev)
-        local opts = { buffer = ev.buf }
+        local function map(mode, key, action, description)
+          vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = description })
+        end
 
-        vim.keymap.set('i', '<C-x>', vim.lsp.omnifunc, opts)
-
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-        vim.keymap.set('n', '<space>wl', function()
+        map('n', 'gD', vim.lsp.buf.declaration, "Go to declaration")
+        map('n', 'gd', vim.lsp.buf.definition, "Go to definition")
+        map('n', 'K', vim.lsp.buf.hover, "Display hover information about the symbol")
+        map('n', 'gi', vim.lsp.buf.implementation, "Go to implementation")
+        map('n', '<C-k>', vim.lsp.buf.signature_help, "Show symbol signature")
+        map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, "Add path to workspace folders")
+        map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, "Remove path from workspace folders")
+        map('n', '<space>wl', function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, opts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function()
+        end, "List workspace folders")
+        map('n', '<space>D', vim.lsp.buf.type_definition, "Go to type definition")
+        map('n', '<space>rn', vim.lsp.buf.rename, "Rename symbol")
+        map({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, "Select code actions")
+        map('n', 'gr', vim.lsp.buf.references, "Find references")
+        map('n', '<space>f', function()
           vim.lsp.buf.format { async = true }
-        end, opts)
+        end, "Format buffer")
       end
     })
 

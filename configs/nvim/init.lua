@@ -3,6 +3,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Decrease update time
+vim.opt.timeoutlen = 500
 vim.opt.updatetime = 200
 
 -- Enable truecolor support
@@ -34,7 +35,7 @@ vim.opt.sidescrolloff = 10
 vim.opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode
 
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', {desc = "Disable search highlighting"})
 -- ignore case when searching
 vim.o.ignorecase = true
 

@@ -29,6 +29,7 @@ require "lazy".setup({
   { import = "plugins.neotree" },
   { import = "plugins.lualine" },
   { import = "plugins.barbecue" },
+  { import = "plugins.whichkey" },
 }, {
   defaults = {
     version = false,
