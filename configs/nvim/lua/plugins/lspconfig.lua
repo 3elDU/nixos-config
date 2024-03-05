@@ -82,6 +82,7 @@ return {
       capabilities = capabilities,
       filetypes = { "tex", "plaintex", "bib" },
     }
+    lspconfig.rust_analyzer.setup { capabilities = capabilities }
 
     -- LSP ui configuration
     local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }

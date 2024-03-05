@@ -12,6 +12,7 @@
       nil # Nix
       lua-language-server # Lua
       clang-tools # clangd, C/C++
+      rust-analyzer # Rust
       nodePackages.volar # Vuejs
       nodePackages.intelephense # PHP
       nodePackages.typescript-language-server # JavaScript / TypeScript
