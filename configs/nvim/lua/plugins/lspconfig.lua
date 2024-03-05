@@ -48,6 +48,8 @@ return {
     })
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    -- Enable snippet support
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     lspconfig.lua_ls.setup({
       capabilities = capabilities,

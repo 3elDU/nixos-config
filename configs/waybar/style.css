@@ -123,10 +123,12 @@ tooltip {
 }
 #battery.warning {
   background: @yellow;
+  color: @base;
   font-weight: bold;
 }
 #battery.critical {
   background: @red;
+  color: @base;
   font-weight: bold;
 }
 
