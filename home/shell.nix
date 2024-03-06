@@ -30,6 +30,10 @@
       t = "touch";
 
       nr = "sudo nixos-rebuild switch";
+      # Keep the nixpkgs revision for 'nix run'
+      # the same, as in the system itself.
+      # This also avoids constant repository downloads. 
+      nrun = "nix run --inputs-from ${../.}";
     };
   };
 
