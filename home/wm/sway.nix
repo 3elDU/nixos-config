@@ -1,5 +1,5 @@
-{ pkgs, colorscheme, ... }: {
-  home = {
+{ enableSway, pkgs, colorscheme, ... }: {
+  home = if enableSway then {
     packages = [
       # Different keyboard layout for each window
       pkgs.swaykbdd 
@@ -9,10 +9,10 @@
       QT_QPA_PLATFORM = "wayland;xcb";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     };
-  };
+  } else {};
 
   wayland.windowManager.sway = {
-    enable = true;
+    enable = enableSway;
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
 

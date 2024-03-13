@@ -1,4 +1,4 @@
-{ config, colorscheme, ... }: {
+{ enableSway, config, colorscheme, ... }: {
   # Main wofi color is secondary, since wofi itself is an overlay window
   xdg.configFile."wofi/colors".text = ''
     ${colorscheme.secondary.hex}
@@ -7,7 +7,7 @@
   '';
 
   programs.wofi = {
-    enable = true;
+    enable = enableSway;
     settings = {
       color = config.xdg.configFile."wofi/colors".source;
       allow_images = true;

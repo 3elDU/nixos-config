@@ -1,6 +1,7 @@
-{ config, lib, pkgs, colorscheme, flavour, ... }: {
+{ catppuccinGtkTheme, config, lib, pkgs, colorscheme, flavour, ... }: {
   gtk = {
-    enable = true;
+    # Enable gtk configuration only for laptop
+    enable = catppuccinGtkTheme;
     theme = {
       name = "Catppuccin-${flavour.name}-Standard-${colorscheme.primary.name}-${if flavour.dark then "Dark" else "Light"}";
       package = pkgs.catppuccin-gtk.override {
@@ -14,9 +15,9 @@
   };
 
   # Also apply the theme to GTK4
-  xdg.configFile = {
+  xdg.configFile = if catppuccinGtkTheme then {
     "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-  };
+  } else {};
 }

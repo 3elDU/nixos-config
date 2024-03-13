@@ -40,11 +40,30 @@
   in {
     nixosConfigurations.slowpoke = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit input palette flavour colorscheme; };
+      specialArgs = { 
+        inherit input palette flavour colorscheme;
+	# Enable Sway, Waybar, and related packages, with their configurations
+	enableSway = true;
+	catppuccinGtkTheme = true;
+	installGNOMEApps = true;
+      };
       modules = [
         ./hosts/slowpoke
         home-manager.nixosModules.home-manager
       ];
+    };
+    nixosConfigurations.heater = nixpkgs.lib.nixosSystem {
+	system = "x86_64-linux";
+	specialArgs = {
+	  inherit input palette flavour colorscheme;
+	  enableSway = false;
+	  catppuccinGtkTheme = false;
+	  installGNOMEApps = false;
+	};
+	modules = [
+		 ./hosts/heater
+		home-manager.nixosModules.home-manager
+	];
     };
   };
 }

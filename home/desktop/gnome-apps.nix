@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
+{ installGNOMEApps, pkgs, config, ... }: {
+  home.packages = if installGNOMEApps then with pkgs; [
     # This is required by (almost) all of gnome apps
     gnome.adwaita-icon-theme
 
@@ -29,5 +29,5 @@
     gnome.gnome-calculator
     # PDF viewer
     evince
-  ];
+  ] else [];
 }

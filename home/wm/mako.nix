@@ -1,6 +1,6 @@
-{ colorscheme, ... }: {
+{ enableSway, colorscheme, ... }: {
   services.mako = {
-    enable = true;
+    enable = enableSway;
 
     font = "JetBrainsMono Nerd Font Propo 10";
 

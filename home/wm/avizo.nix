@@ -1,6 +1,6 @@
-{ colorscheme, ... }: {
+{ enableSway, colorscheme, ... }: {
   services.avizo = {
-    enable = true;
+    enable = enableSway;
     settings = {
       default = {
         time = 3.0;

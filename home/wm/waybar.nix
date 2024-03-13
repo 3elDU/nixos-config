@@ -1,6 +1,6 @@
-{ colorscheme, lib, pkgs, ... }: {
+{ enableSway, colorscheme, lib, pkgs, ... }: {
   programs.waybar = {
-    enable = true;
+    enable = enableSway;
 
     settings = [{
       margin = "8 16 0 16";
