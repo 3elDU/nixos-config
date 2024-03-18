@@ -23,6 +23,12 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
       callback = function(ev)
+        -- Enable inlay hints support, if the server supports them
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(ev.buf, true)
+        end
+
         local function map(mode, key, action, description)
           vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = description })
         end
@@ -39,7 +45,7 @@ return {
         end, "List workspace folders")
         map('n', '<space>D', vim.lsp.buf.type_definition, "Go to type definition")
         map('n', '<space>rn', vim.lsp.buf.rename, "Rename symbol")
-        map({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, "Select code actions")
+        map({ 'n', 'v' }, '<space>a', vim.lsp.buf.code_action, "Select code actions")
         map('n', 'gr', vim.lsp.buf.references, "Find references")
         map('n', '<space>f', function()
           vim.lsp.buf.format { async = true }
