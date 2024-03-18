@@ -16,5 +16,6 @@
     ./neovim.nix
     ./cli.nix
     ./xdg.nix
+    ./tmux.nix
   ];
 }
