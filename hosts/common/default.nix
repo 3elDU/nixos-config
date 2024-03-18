@@ -1,16 +1,16 @@
 { enableSway, catppuccinGtkTheme, installGNOMEApps, input, colorscheme, palette, flavour, pkgs, ... }: {
   imports = [
-		./nix.nix
-		./locale.nix
-	];
+    ./nix.nix
+      ./locale.nix
+  ];
 
-	# Generate manual page index caches to be able to search man pages with apropos(1)
-	documentation.man.generateCaches = true;
+  # Generate manual page index caches to be able to search man pages with apropos(1)
+  documentation.man.generateCaches = true;
 
-	# Do not ask for password in sudo
-	security.sudo.wheelNeedsPassword = false;
+  # Do not ask for password in sudo
+  security.sudo.wheelNeedsPassword = false;
 
-	programs.zsh.enable = true;
+  programs.zsh.enable = true;
   users.users.ptflp = {
     isNormalUser = true;
     description = "Zakhar Voloshchuk";

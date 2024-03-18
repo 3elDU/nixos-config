@@ -8,7 +8,7 @@
       };
       extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
     };
-      
+
     mimeApps = let
       browser = "firefox.desktop";
       player = "mpv.desktop";
