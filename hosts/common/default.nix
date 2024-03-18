@@ -1,7 +1,7 @@
 { enableSway, catppuccinGtkTheme, installGNOMEApps, input, colorscheme, palette, flavour, pkgs, ... }: {
   imports = [
     ./nix.nix
-      ./locale.nix
+    ./locale.nix
   ];
 
   # Generate manual page index caches to be able to search man pages with apropos(1)

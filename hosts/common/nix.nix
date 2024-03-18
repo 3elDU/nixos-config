@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   nix = {
-    gc.automatic = true;
     settings = {
       # Don't warn about dirty Git tree when building flakes
       warn-dirty = false;
