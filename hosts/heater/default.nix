@@ -18,6 +18,9 @@
   };
   services.xserver.videoDrivers = ["nvidia"];
 
+  # For ntfsfix and other utilities
+  environment.systemPackages = [ pkgs.ntfs3g ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
