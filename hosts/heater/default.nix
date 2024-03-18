@@ -21,9 +21,21 @@
   # For ntfsfix and other utilities
   environment.systemPackages = [ pkgs.ntfs3g ];
 
+  # Enable zram
+  zramSwap.enable = true;
+
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    devices = [ "nodev" ];
+    efiSupport = true;
+    useOSProber = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Keep system clock in local time.
+  # For dual booting with Windows
+  time.hardwareClockInLocalTime = true;
 
   networking.hostName = "heater"; # Define your hostname.
 
