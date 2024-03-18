@@ -1,5 +1,8 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   programs.neovim = {
+    # Use nightly neovim from overlay
+    package = pkgs.neovim-nightly;
+
     enable = true;
     viAlias = true;
     vimAlias = true;
@@ -20,12 +23,12 @@
       gopls # Go
       vscode-langservers-extracted # HTML, JSON, CSS
       texlab # LaTeX
+
+      # --- Debug tools ---
+      gdb # C/C++/Rust
+      delve # Go
     ];
   };
-  home.packages = with pkgs; [
-    # Use neovim as pager
-    nvimpager
-  ];
 
   xdg.configFile."nvim" = {
     source = ../configs/nvim;

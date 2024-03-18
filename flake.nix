@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, xremap, nix-vscode-extensions, ... }@input: let
@@ -37,15 +42,19 @@
         # Notifications, overlay windows, modals
         secondary = colors.lavender;
       };
+
+    overlays = [
+      input.neovim-nightly-overlay.overlay
+    ];
   in {
     nixosConfigurations.slowpoke = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { 
-        inherit input palette flavour colorscheme;
-	# Enable Sway, Waybar, and related packages, with their configurations
-	enableSway = true;
-	catppuccinGtkTheme = true;
-	installGNOMEApps = true;
+      specialArgs = {
+        inherit overlays input palette flavour colorscheme;
+        # Enable Sway, Waybar, and related packages, with their configurations
+        enableSway = true;
+        catppuccinGtkTheme = true;
+        installGNOMEApps = true;
       };
       modules = [
         ./hosts/slowpoke
@@ -53,17 +62,17 @@
       ];
     };
     nixosConfigurations.heater = nixpkgs.lib.nixosSystem {
-	system = "x86_64-linux";
-	specialArgs = {
-	  inherit input palette flavour colorscheme;
-	  enableSway = false;
-	  catppuccinGtkTheme = false;
-	  installGNOMEApps = false;
-	};
-	modules = [
-		 ./hosts/heater
-		home-manager.nixosModules.home-manager
-	];
+      system = "x86_64-linux";
+      specialArgs = {
+        inherit overlays input palette flavour colorscheme;
+        enableSway = false;
+        catppuccinGtkTheme = false;
+        installGNOMEApps = false;
+      };
+      modules = [
+        ./hosts/heater
+        home-manager.nixosModules.home-manager
+      ];
     };
   };
 }

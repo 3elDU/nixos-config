@@ -1,8 +1,15 @@
-{ enableSway, catppuccinGtkTheme, installGNOMEApps, input, colorscheme, palette, flavour, pkgs, ... }: {
+{ enableSway, catppuccinGtkTheme, installGNOMEApps, 
+  input,
+  colorscheme, palette, flavour, 
+  pkgs, overlays,
+  ...
+}: {
   imports = [
     ./nix.nix
     ./locale.nix
   ];
+
+  nixpkgs.overlays = overlays;
 
   # Generate manual page index caches to be able to search man pages with apropos(1)
   documentation.man.generateCaches = true;
@@ -25,9 +32,10 @@
       inherit input colorscheme palette flavour;
       # Per-host variables to disable specific features
       inherit enableSway catppuccinGtkTheme installGNOMEApps;
+      inherit overlays;
     };
     sharedModules = [ input.xremap.homeManagerModules.default ];
-    users.ptflp = ../../home;   
+    users.ptflp = ../../home;
   };
 
   # Allow running unpatched binaries
