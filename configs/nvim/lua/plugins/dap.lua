@@ -56,8 +56,8 @@ return {
       end, { desc = "Evaluate the expression and display the result in a floating window" })
 
       vim.keymap.set('n', '<leader>ss', dap.step_over, { desc = "Debug: Step over" })
-      vim.keymap.set('n', '<leader>si', dap.step_over, { desc = "Debug: Step into" })
-      vim.keymap.set('n', '<leader>so', dap.step_over, { desc = "Debug: Step out" })
+      vim.keymap.set('n', '<leader>si', dap.step_into, { desc = "Debug: Step into" })
+      vim.keymap.set('n', '<leader>so', dap.step_out, { desc = "Debug: Step out" })
       vim.keymap.set('n', '<leader>su', dap.pause, { desc = "Go up in current stacktrace without stepping" })
       vim.keymap.set('n', '<leader>sd', dap.pause, { desc = "Go down in current stacktrace without stepping" })
       vim.keymap.set('n', '<leader>sd', dap.pause, { desc = "Go down in current stacktrace without stepping" })
