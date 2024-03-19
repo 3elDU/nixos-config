@@ -18,7 +18,7 @@ require "lazy".setup({
   { import = "plugins.catppuccin" },
   { import = "plugins.mini" },
   { import = "plugins.autopairs" },
-  { import = "plugins.lspconfig" },
+  { import = "plugins.lsp" },
   { import = "plugins.cmp" },
   { import = "plugins.treesitter" },
   { import = "plugins.sleuth" },
@@ -31,6 +31,7 @@ require "lazy".setup({
   { import = "plugins.barbecue" },
   { import = "plugins.whichkey" },
   { import = "plugins.markdown"},
+  { import = "plugins.dap" },
 }, {
   defaults = {
     version = false,

@@ -16,6 +16,11 @@ return {
     },
     -- status updates for lsp
     { "j-hui/fidget.nvim", opts = {} },
+    -- Rust support
+    { "mrcjkb/rustaceanvim",
+      version = '^4',
+      ft = { 'rust' },
+    },
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -90,7 +95,6 @@ return {
       capabilities = capabilities,
       filetypes = { "tex", "plaintex", "bib" },
     }
-    lspconfig.rust_analyzer.setup { capabilities = capabilities }
 
     -- LSP ui configuration
     local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }

@@ -26,6 +26,7 @@
 
       # --- Debug tools ---
       gdb # C/C++/Rust
+      vscode-extensions.vadimcn.vscode-lldb.adapter # C/C++/Rust
       delve # Go
     ];
   };
