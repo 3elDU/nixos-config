@@ -9,7 +9,6 @@
     environmentVariables = {
       EDITOR = "nvim";
       MANPAGER = "'nvim +Man!'";
-      PAGER = "nvimpager";
     };
 
     shellAliases = {
@@ -41,7 +40,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";
-    PAGER = "nvimpager";
   };
 
   # Also keep ZSH as a default shell for tasks where POSIX shell is required,
