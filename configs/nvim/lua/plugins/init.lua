@@ -32,6 +32,7 @@ require "lazy".setup({
   { import = "plugins.whichkey" },
   { import = "plugins.markdown"},
   { import = "plugins.dap" },
+  { import = "plugins.notify" },
 }, {
   defaults = {
     version = false,

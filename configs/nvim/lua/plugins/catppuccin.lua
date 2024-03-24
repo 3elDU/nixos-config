@@ -28,6 +28,9 @@ return {
           NeoTreeNormalNC = { link = "NeoTreeNormal" },
           NeoTreeWinSeparator = { bg = colors.base, fg = colors.base },
           NeoTreeIndentMarker = { fg = colors.surface0 },
+
+          -- Barbar
+          BufferCurrentIndex = { fg = colors.text, bg = colors.surface1 }
         }
       end },
     }
