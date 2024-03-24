@@ -9,7 +9,7 @@ return {
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
           -- Do not show statusline for neotree
-          statusline = {'neo-tree'}
+          statusline = {'neo-tree', 'Trouble'}
         }
       },
       sections = {

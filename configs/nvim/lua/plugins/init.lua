@@ -33,6 +33,7 @@ require "lazy".setup({
   { import = "plugins.markdown"},
   { import = "plugins.dap" },
   { import = "plugins.notify" },
+  { import = "plugins.trouble" },
 }, {
   defaults = {
     version = false,
