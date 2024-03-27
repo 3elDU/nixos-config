@@ -7,6 +7,7 @@
   imports = [
     ./nix.nix
     ./locale.nix
+    ./services.nix
   ];
 
   nixpkgs.overlays = overlays;
