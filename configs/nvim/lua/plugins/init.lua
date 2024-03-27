@@ -34,6 +34,7 @@ require "lazy".setup({
   { import = "plugins.dap" },
   { import = "plugins.notify" },
   { import = "plugins.trouble" },
+  { import = "plugins.noice" },
 }, {
   defaults = {
     version = false,

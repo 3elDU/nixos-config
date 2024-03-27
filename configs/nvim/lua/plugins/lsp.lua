@@ -95,6 +95,7 @@ return {
       capabilities = capabilities,
       filetypes = { "tex", "plaintex", "bib" },
     }
+    lspconfig.intelephense.setup { capabilities = capabilities }
 
     -- LSP ui configuration
     local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
