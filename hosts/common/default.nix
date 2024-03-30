@@ -22,7 +22,10 @@
   users.users.ptflp = {
     isNormalUser = true;
     description = "Zakhar Voloshchuk";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "input" ];
+    extraGroups = [
+      "networkmanager" "wheel" "video" "audio" "input"
+      "render"
+    ];
     shell = pkgs.zsh;
   };
   security.polkit.enable = true;
