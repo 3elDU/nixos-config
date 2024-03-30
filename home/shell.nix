@@ -28,6 +28,7 @@
       d = "^du -h1 -d1 -c .";
       t = "touch";
       tm = "tmux";
+      tma = "tmux attach -t";
 
       nr = "sudo nixos-rebuild switch";
       # Keep the nixpkgs revision for 'nix run'
