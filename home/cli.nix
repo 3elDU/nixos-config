@@ -14,8 +14,11 @@
     libnotify
     # killall, pstree, etc.
     psmisc
-    
+
     gnupg
     xdg-utils
+
+    # dig
+    dnsutils
   ];
 }
