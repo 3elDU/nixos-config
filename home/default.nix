@@ -17,5 +17,6 @@
     ./cli.nix
     ./xdg.nix
     ./tmux.nix
+    ./udiskie.nix
   ];
 }
