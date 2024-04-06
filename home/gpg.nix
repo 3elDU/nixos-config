@@ -2,6 +2,6 @@
   services.gpg-agent = {
     enable = true;
     enableNushellIntegration = true;
-    pinentryFlavor = "gtk2";
+    pinentryPackage = pkgs.pinentry-gtk2;
   };
 }
