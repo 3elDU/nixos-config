@@ -12,4 +12,9 @@ in {
       eamodio.gitlens
     ];
   };
+
+  home.packages = with pkgs; [
+    godot3
+    godot_4
+  ];
 }
