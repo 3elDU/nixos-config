@@ -18,6 +18,11 @@
   # Do not ask for password in sudo
   security.sudo.wheelNeedsPassword = false;
 
+  security.pam.loginLimits = [
+    # Taken from https://nixos.wiki/wiki/Sway
+    { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
+  ];
+
   programs.zsh.enable = true;
   users.users.ptflp = {
     isNormalUser = true;
