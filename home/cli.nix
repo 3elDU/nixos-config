@@ -20,5 +20,8 @@
 
     # dig
     dnsutils
+
+    # archive tools
+    p7zip unrar
   ];
 }
