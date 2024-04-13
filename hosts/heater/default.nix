@@ -30,6 +30,8 @@
     devices = [ "nodev" ];
     efiSupport = true;
     useOSProber = true;
+    # By default boot from the previously selected system
+    default = "saved";
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
