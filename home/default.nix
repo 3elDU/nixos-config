@@ -18,5 +18,6 @@
     ./xdg.nix
     ./tmux.nix
     ./udiskie.nix
+    ./dev.nix
   ];
 }
