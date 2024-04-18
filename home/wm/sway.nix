@@ -119,7 +119,7 @@
           background = "${colorscheme.surface2.hex} solid_color";
         };
         eDP-1 = {
-          scale = "1.25";
+          # scale = "1.25";
         };
       };
 
