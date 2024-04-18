@@ -5,5 +5,6 @@
     gcc
     cargo rustc
     go
+    python3
   ];
 }
