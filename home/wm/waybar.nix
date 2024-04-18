@@ -7,22 +7,10 @@
 
       modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "sway/window"];
       modules-center = [];
-      modules-right = ["idle_inhibitor" "pulseaudio" "network" "bluetooth" "cpu" "memory" "temperature" "sway/language" "battery" "clock" "tray"];
+      modules-right = ["privacy" "pulseaudio" "network" "bluetooth" "cpu" "memory" "temperature" "sway/language" "battery" "clock" "tray"];
 
-      keyboard-state = {
-        numlock = true;
-        capslock = true;
-        format = "{name} {icon}";
-        format-icons = {
-          locked = "";
-          unlocked = "";
-        };
-      };
       "sway/mode" = {
         format = "󰖲 {}";
-      };
-      "sway/language" = {
-        format = "󰌌 {short}";
       };
       "sway/scratchpad" = {
           format = "{icon} {count}";
@@ -31,71 +19,11 @@
           tooltip = true;
           tooltip-format = "Scratchpad\n{app}: {title}";
       };
-      idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-              activated = "";
-              deactivated = "";
-          };
-      };
-      tray = { spacing = 10; };
-      clock = {
-        interval = 1;
-        format = "{:%a, %F, %T}";
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format-alt = "{:%Y-%m-%d}";
-      };
-      cpu = {
-          format = "{usage}% 󰍛";
-      };
-      memory = {
-          format = "{}% 󰘚";
-          tooltip-format = "Used: {used}GiB\nSwap used: {swapUsed}GiB\n\nAvailable: {avail}GiB\nTotal: {total}GiB";
-      };
-      temperature = {
-          critical-threshold = 80;
-          format = "{temperatureC}°C {icon}";
-          format-icons = ["" "" ""];
-      };
-      backlight = {
-          format = "{percent}% {icon}";
-          format-icons = ["" "" "" "" "" "" "" "" ""];
-      };
-      battery = {
-        states = {
-          warning = 30;
-          critical = 15;
-        };
-        tooltip-format = "{capacity}%\n{power}W power draw\n{timeTo}";
-        format = "{capacity}% {icon}";
-        format-full = "{capacity}% {icon}";
-        format-charging = "{capacity}% 󰂄";
-        format-plugged = "{capacity}% 󰚥";
-        format-alt = "{time} {icon}";
-        format-icons = ["" "" "" "" ""];
-      };
-      network = {
-        format-wifi = "{icon}";
-        tooltip-format-wifi = "{ipaddr} on {essid}, {signalStrength}% strength";
-        format-icons = [
-          "󰤟"
-          "󰤢"
-          "󰤥"
-          "󰤨"
+      privacy = {
+        modules = [
+          { type = "screenshare"; }
+          { type = "audio-in"; }
         ];
-        format-ethernet = "{ipaddr}/{cidr} ";
-        tooltip-format = "{ifname} via {gwaddr} ";
-        format-linked = "{ifname} (No IP) ";
-        format-disconnected = "Disconnected ⚠";
-        format-alt = "{ifname}: {ipaddr}/{cidr}";
-      };
-      bluetooth = {
-        format = "󰂯";
-        format-disabled = "󰂲 Disabled";
-        format-off = "󰂲 Off";
-        format-connected = "󰂱 Connected";
-        tooltip-format = "Status: {status}";
-        on-click = "${pkgs.blueman}/bin/blueman-manager";
       };
       pulseaudio = {
           format = "{volume}% {icon} {format_source}";
@@ -115,6 +43,71 @@
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
       };
+      network = {
+        format-wifi = "{icon}";
+        tooltip-format-wifi = "{ipaddr} on {essid}, {signalStrength}% strength";
+        format-icons = [
+          "󰤟"
+          "󰤢"
+          "󰤥"
+          "󰤨"
+        ];
+        format-ethernet = "";
+        tooltip-format = "{ifname} via {gwaddr} ";
+        format-linked = "{ifname} (No IP) ";
+        format-disconnected = "󰀝";
+        format-alt = "{ifname}: {ipaddr}/{cidr}";
+      };
+      bluetooth = {
+        format = "󰂯";
+        format-disabled = "󰂲";
+        format-off = "󰂲";
+        format-connected = "󰂱";
+        tooltip-format = ''
+          Status: {status}
+          Connected devices:
+          {device_enumerate}
+        '';
+        on-click = "${pkgs.blueman}/bin/blueman-manager";
+      };
+      cpu = {
+          format = "{usage}% 󰍛";
+          interval = 1;
+      };
+      memory = {
+          format = "{}% 󰘚";
+          tooltip-format = "Used: {used}GiB\nSwap used: {swapUsed}GiB\n\nAvailable: {avail}GiB\nTotal: {total}GiB";
+          interval = 5;
+      };
+      temperature = {
+          critical-threshold = 80;
+          format = "{temperatureC}°C {icon}";
+          format-icons = ["" "" ""];
+          interval = 5;
+      };
+      "sway/language" = {
+        format = "󰌌 {short}";
+      };
+      battery = {
+        states = {
+          warning = 30;
+          critical = 15;
+        };
+        tooltip-format = "{capacity}%\n{power}W power draw\n{timeTo}";
+        format = "{capacity}% {icon}";
+        format-full = "{capacity}% {icon}";
+        format-charging = "{capacity}% 󰂄";
+        format-plugged = "{capacity}% 󰚥";
+        format-alt = "{time} {icon}";
+        format-icons = ["" "" "" "" ""];
+      };
+      clock = {
+        interval = 60;
+        format = "{:%a %d.%m, %H:%M}";
+        format-alt = "{:%a, %F, %T}";
+        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+      };
+      tray = { spacing = 10; };
     }];
 
 
