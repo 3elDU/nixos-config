@@ -46,4 +46,8 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.shiftround = true
 
+vim.keymap.set({'n', 'v', 'i'}, '<C-S>', function()
+  vim.api.nvim_command(':update')
+end)
+
 require("plugins")
