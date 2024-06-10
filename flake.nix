@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { nixpkgs, home-manager, xremap, nix-vscode-extensions, ... }@input: let
@@ -44,7 +39,7 @@
       };
 
     overlays = [
-      input.neovim-nightly-overlay.overlay
+      # input.neovim-nightly-overlay.overlay
     ];
   in {
     nixosConfigurations.slowpoke = nixpkgs.lib.nixosSystem {

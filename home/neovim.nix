@@ -1,8 +1,5 @@
 { pkgs, ... }: {
   programs.neovim = {
-    # Use nightly neovim from overlay
-    package = pkgs.neovim-nightly;
-
     enable = true;
     viAlias = true;
     vimAlias = true;
