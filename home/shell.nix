@@ -30,7 +30,7 @@
       tm = "tmux";
       tma = "tmux attach -t";
 
-      nr = "sudo nixos-rebuild switch";
+      nr = "sudo nixos-rebuild switch --show-trace";
       # Keep the nixpkgs revision for 'nix run'
       # the same, as in the system itself.
       # This also avoids constant repository downloads. 
