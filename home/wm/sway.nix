@@ -38,41 +38,42 @@
       terminal = term;
       workspaceAutoBackAndForth = true;
 
-      colors = let 
+      colors = let
+        darkbg = colorscheme.crust.hex;
         primary = colorscheme.primary.hex;
         secondary = colorscheme.secondary.hex;
         text = colorscheme.text.hex;
         bg = colorscheme.base.hex;
         urgent = colorscheme.red.hex;
-        inactive = colorscheme.surface0.hex;
       in {
         focused = { 
-          border = primary;
-          background = primary;
-          text = bg;
+          border = bg;
+          background = bg;
+          text = primary;
           indicator = secondary;
-          childBorder = primary;
+          childBorder = bg;
         };
         urgent = {
-          border = primary;
+          border = urgent;
           background = urgent;
           text = text;
           indicator = secondary;
           childBorder = urgent;
         };
         focusedInactive = {
-          border = inactive;
-          background = inactive;
+          border = bg;
+          background = darkbg;
           text = text;
-          indicator = secondary;
-          childBorder = inactive;
+          indicator = bg;
+          childBorder = bg;
         };
         unfocused = {
-          border = inactive;
-          background = inactive;
+          border = bg;
+          background = darkbg;
           text = text;
-          indicator = secondary;
-          childBorder = inactive; };
+          indicator = bg;
+          childBorder = bg;
+        };
       };
 
       fonts = {
@@ -82,20 +83,20 @@
       };
 
       gaps = {
-        outer = 4;
-        inner = 6;
+        outer = 6;
+        inner = 4;
       };
 
-      # Set default borders around windows to 4 pixels
-      window.border = 4;
-      floating.border = 4;
-      window.commands = [
-        {
-          # Force border for all windows. Especially useful for apps with CSD
-          command = "border pixel 4";
-          criteria.app_id = ".*";
-        }
-      ];
+      # I decided it's better off without the borders
+      window.border = 0;
+      floating.border = 0;
+      # window.commands = [
+      #   {
+      #     # Force border for all windows. Especially useful for apps with CSD
+      #     command = "border pixel 4";
+      #     criteria.app_id = ".*";
+      #   }
+      # ];
 
       # Disable titlebar for all windows
       window.titlebar = false;
@@ -119,7 +120,7 @@
           background = "${colorscheme.surface2.hex} solid_color";
         };
         eDP-1 = {
-          # scale = "1.25";
+          scale = "1.25";
         };
       };
 
@@ -245,22 +246,20 @@
 
     extraConfig = ''
       # SwayFX settings
-      blur enable
+      # blur enable
 
       # Move between workspaces with 3-finger swipes
       bindgesture swipe:3:left workspace prev
       bindgesture swipe:3:right workspace next
 
-      shadows enable
-      shadow_color #000000C0
+      # shadows enable
+      # shadow_color #000000C0
 
-      corner_radius 12
+      # corner_radius 12
+      # corner_radius 8
 
-      # Enable background blur for wofi
-      layer_effects "wofi" {
-        blur enable
-        shadows enable
-      }
+      # Dim inactive windows a bit
+      default_dim_inactive 0.25
     '';
   };
 
