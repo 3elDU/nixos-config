@@ -4,6 +4,10 @@
 
   home.stateVersion = "23.11";
 
+  # Generate manual page index, so the manpages for programs installed
+  # by home manager could be searched with apropos
+  programs.man.generateCaches = true;
+
   imports = [
     ./wm
     ./desktop
