@@ -23,5 +23,10 @@
 
     # archive tools
     p7zip unrar
+
+    # image utilities
+    imagemagick
+    # video utilities
+    ffmpeg_7
   ];
 }
