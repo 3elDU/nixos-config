@@ -2,50 +2,37 @@
 
 * {
   all: unset;
-  min-height: 28px;
-  font-family: JetBrainsMono Nerd Font Propo;
+  min-height: 32px;
+  font-family: Rec Mono Duotone Nerd Font;
 }
 
 window#waybar {
-  min-height: 28px;
+  min-height: 32px;
 
   border: none;
-  border-radius: 0;
 
-  background: transparent;
+  background: @crust;
   color: @text;
 }
 
 #scratchpad, #mode, #idle_inhibitor, #pulseaudio, #network, #bluetooth, #cpu, #memory, #temperature, #keyboard_state, #language, #battery, #clock, #tray {
-  background-color: @base;
   padding: 0 8px;
   margin: 0 4px;
-  border-radius: 8px;
   min-width: 24px;
 }
 
 tooltip {
-  background: @base;
+  background: @mantle;
   border: 2px solid @secondary;
-  border-radius: 8px;
 }
 
 #workspaces {
-  padding: 4px;
   margin-right: 4px;
-  border-radius: 8px;
-  background: @base;
 }
 #workspaces button {
   transition: background-color 150ms ease-in-out, color 150ms ease-in-out, min-width 150ms ease-in-out;
 
   min-width: 32px;
-  border-radius: 4px;
-  
-  margin-right: 4px;
-}
-#workspaces button:last-child {
-  margin-right: 0;
 }
 #workspaces button:not(.focused) {
   color: @subtext0;
@@ -70,45 +57,38 @@ tooltip {
 
 #scratchpad {
   padding: 0 16px;
-  border-radius: 8px;
   background: @secondary;
   color: @base;
 }
 
 #window {
   margin-left: 16px;
-  text-shadow: 0px 0px 4px black;
 }
 
 #network {
-  border-radius: 8px 0 0 8px;
   margin-right: 0;
-  border-right: 1px solid @overlay0;
+  border-right: 1px solid @base;
 }
 #bluetooth {
-  border-radius: 0 8px 8px 0;
   margin-left: 0;
 }
 
 #cpu {
   min-width: 48px;
   margin-right: 0;
-  border-radius: 8px 0 0 8px;
   padding-right: 12px;
 }
 #memory {
   min-width: 48px;
   margin: 0;
   padding: 0 12px;
-  border-radius: 0;
-  border: 1px solid @overlay0;
+  border: 1px solid @base;
   border-top: none;
   border-bottom: none;
 }
 #temperature {
   padding-left: 12px;
   margin-left: 0;
-  border-radius: 0 8px 8px 0;
 }
 #temperature.critical {
   background: @red;
@@ -138,7 +118,6 @@ tooltip {
 #tray menu {
   background: @base;
   border: 2px solid @secondary;
-  border-radius: 8px;
 }
 #tray menu > * {
   padding: 0 16px;
@@ -147,11 +126,4 @@ tooltip {
   background: @secondary;
   color: @base;
   font-weight: bold;
-}
-/* Round the corners for first and last item in the menu, so that it won't visually overflow the menu window */
-#tray menu > :first-child:hover {
-  border-radius: 8px 8px 0 0;
-}
-#tray menu > :last-child:hover {
-  border-radius: 0 0 8px 8px;
 }
