@@ -4,7 +4,7 @@
     settings = {
       main = {
         shell = "nu";
-        font = "JetBrainsMono Nerd Font:size=10";
+        font = "RecMonoDuotone Nerd Font:size=10";
         pad = "8x4";
       }; 
       colors = let 

@@ -7,6 +7,7 @@
     fira-code
     fira-code-symbols
     font-awesome
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+    recursive
+    (nerdfonts.override { fonts = [ "Recursive" "FiraCode" "JetBrainsMono" ]; })
   ];
 }

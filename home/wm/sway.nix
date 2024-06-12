@@ -1,4 +1,23 @@
-{ enableSway, pkgs, colorscheme, ... }: {
+{ enableSway, pkgs, colorscheme, ... }: let
+  left = "h";
+  right = "l";
+  up = "k";
+  down = "j";
+
+  mod = "Mod4";
+  menu = "${pkgs.wofi}/bin/wofi";
+  term = "${pkgs.foot}/bin/foot";
+
+  colors = {
+    darkbg = colorscheme.crust.hex;
+    primary = colorscheme.primary.hex;
+    secondary = colorscheme.secondary.hex;
+    text = colorscheme.text.hex;
+    bg = colorscheme.base.hex;
+    urgent = colorscheme.red.hex;
+    surface0 = colorscheme.surface0.hex;
+  };
+in {
   home = if enableSway then {
     packages = [
       # Different keyboard layout for each window
@@ -14,18 +33,15 @@
   wayland.windowManager.sway = {
     enable = enableSway;
     package = pkgs.swayfx;
+
     wrapperFeatures.gtk = true;
+    xwayland = true;
+    systemd.xdgAutostart = true;
 
-    config = let
-      left = "h";
-      right = "l";
-      up = "k";
-      down = "j";
+    # A temporary fix for https://github.com/nix-community/home-manager/issues/5379
+    checkConfig = false;
 
-      mod = "Mod4";
-      menu = "${pkgs.wofi}/bin/wofi";
-      term = "${pkgs.foot}/bin/foot";
-    in {
+    config = {
       # Use --to-code with all keybindings, so that
       # They could be activated on any keyboard layout, not only on latin.
       bindkeysToCode = true;
@@ -36,67 +52,50 @@
       modifier = mod;
       menu = menu;
       terminal = term;
-      workspaceAutoBackAndForth = true;
 
-      colors = let
-        darkbg = colorscheme.crust.hex;
-        primary = colorscheme.primary.hex;
-        secondary = colorscheme.secondary.hex;
-        text = colorscheme.text.hex;
-        bg = colorscheme.base.hex;
-        urgent = colorscheme.red.hex;
-      in {
+      workspaceAutoBackAndForth = true;
+      # Wrap around focus in the workspace
+      focus.wrapping = "yes";
+
+      colors = {
         focused = { 
-          border = bg;
-          background = bg;
-          text = primary;
-          indicator = secondary;
-          childBorder = bg;
+          border = colors.primary;
+          background = colors.primary;
+          text = colors.bg;
+          indicator = colors.secondary;
+          childBorder = colors.primary;
         };
         urgent = {
-          border = urgent;
-          background = urgent;
-          text = text;
-          indicator = secondary;
-          childBorder = urgent;
+          border = colors.urgent;
+          background = colors.urgent;
+          text = colors.bg;
+          indicator = colors.secondary;
+          childBorder = colors.urgent;
         };
         focusedInactive = {
-          border = bg;
-          background = darkbg;
-          text = text;
-          indicator = bg;
-          childBorder = bg;
+          border = colors.bg;
+          background = colors.bg;
+          text = colors.text;
+          indicator = colors.secondary;
+          childBorder = colors.surface0;
         };
         unfocused = {
-          border = bg;
-          background = darkbg;
-          text = text;
-          indicator = bg;
-          childBorder = bg;
+          border = colors.darkbg;
+          background = colors.darkbg;
+          text = colors.text;
+          indicator = colors.secondary;
+          childBorder = colors.bg;
         };
       };
 
       fonts = {
-        names = ["JetBrainsMono Nerd Font"];
+        names = ["RecMonoDuotone Nerd Font"];
         style = "Regular";
-        size = 10.0;
+        size = 12.0;
       };
 
-      gaps = {
-        outer = 6;
-        inner = 4;
-      };
-
-      # I decided it's better off without the borders
       window.border = 0;
-      floating.border = 0;
-      # window.commands = [
-      #   {
-      #     # Force border for all windows. Especially useful for apps with CSD
-      #     command = "border pixel 4";
-      #     criteria.app_id = ".*";
-      #   }
-      # ];
+      floating.border = 2;
 
       # Disable titlebar for all windows
       window.titlebar = false;
@@ -117,12 +116,20 @@
       };
       output = {
         "*" = {
-          background = "${colorscheme.surface2.hex} solid_color";
+          background = "${colorscheme.base.hex} solid_color";
         };
         eDP-1 = {
           scale = "1.25";
         };
       };
+      window.commands = [
+        {
+          command = "border pixel 2";
+          criteria = {
+            floating = true;
+          };
+        }
+      ];
 
       keybindings = {
         # Start terminal
@@ -248,9 +255,12 @@
       # SwayFX settings
       # blur enable
 
-      # Move between workspaces with 3-finger swipes
+      # Move between workspaces with left-right 3-finger swipes
       bindgesture swipe:3:left workspace prev
       bindgesture swipe:3:right workspace next
+      # Move between windows with up-down 3-finter swipes
+      bindgesture swipe:3:up focus left
+      bindgesture swipe:3:down focus right
 
       # shadows enable
       # shadow_color #000000C0

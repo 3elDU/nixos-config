@@ -3,8 +3,6 @@
     enable = enableSway;
 
     settings = [{
-      margin = "8 16 0 16";
-
       modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "sway/window"];
       modules-center = [];
       modules-right = ["privacy" "pulseaudio" "network" "bluetooth" "cpu" "memory" "temperature" "sway/language" "battery" "clock" "tray"];
@@ -109,7 +107,6 @@
       };
       tray = { spacing = 10; };
     }];
-
 
     style =
       # Convert the colorscheme attribute set to GTK color declarations
