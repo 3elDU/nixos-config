@@ -10,12 +10,12 @@ return {
         WARN = "󰀦"
       },
       background_colour = "NotifyBackground",
-      fps = 30,
+      fps = 20,
       level = 2,
-      minimum_width = 50,
-      max_width = 50,
+      minimum_width = 16,
+      max_width = 64,
       max_height = 50,
-      render = "wrapped-compact",
+      render = "minimal",
       stages = "fade_in_slide_out",
       time_formats = {
         notification = "%T",

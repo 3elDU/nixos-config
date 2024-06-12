@@ -17,9 +17,10 @@ return {
     -- status updates for lsp
     { "j-hui/fidget.nvim", opts = {} },
     -- Rust support
-    { "mrcjkb/rustaceanvim",
+    {
+      "mrcjkb/rustaceanvim",
       version = '^4',
-      ft = { 'rust' },
+      lazy = false,
     },
   },
   config = function()
@@ -28,12 +29,6 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
       callback = function(ev)
-        -- Enable inlay hints support, if the server supports them
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client and client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(ev.buf, true)
-        end
-
         local function map(mode, key, action, description)
           vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = description })
         end
@@ -59,8 +54,6 @@ return {
     })
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    -- Enable snippet support
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
@@ -73,18 +66,27 @@ return {
       }
     })
 
-    lspconfig.nil_ls.setup {}
+    lspconfig.nil_ls.setup { capabilities = capabilities }
     lspconfig.clangd.setup { capabilities = capabilities }
     lspconfig.tailwindcss.setup { capabilities = capabilities }
     lspconfig.tsserver.setup { capabilities = capabilities }
+
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#volar
+    local typescript_lsp = vim.fs.dirname(vim.system({ "which", "typescript-language-server" }):wait().stdout)
+    -- Very hacky, very ugly. I know
+    local typescript_lib_path = vim.fs.normalize(vim.fs.joinpath(typescript_lsp, "..", "lib", "node_modules",
+      "typescript", "lib"))
+
     lspconfig.volar.setup {
       capabilities = capabilities,
       filetypes = {
-        'typescript',
-        'javascript',
         'vue',
-        'json'
       },
+      init_options = {
+        typescript = {
+          tsdk = typescript_lib_path,
+        }
+      }
     }
     lspconfig.gopls.setup { capabilities = capabilities }
     lspconfig.jsonls.setup { capabilities = capabilities }
@@ -121,7 +123,7 @@ return {
       },
       signs = false,
       underline = true,
-      update_in_insert = true,
+      -- update_in_insert = true,
       severity_sort = true,
     })
 
