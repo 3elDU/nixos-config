@@ -1,7 +1,6 @@
-{ pkgs, ... }: {
+{ ... }: {
   programs.nushell = {
     enable = true;
-    package = pkgs.nushellFull;
 
     configFile.source = ../configs/nushell/config.nu;
     envFile.source = ../configs/nushell/env.nu;
@@ -31,6 +30,7 @@
       tma = "tmux attach -t";
 
       nr = "sudo nixos-rebuild switch --show-trace";
+      nrb = "sudo nixos-rebuild boot --show-trace";
       # Keep the nixpkgs revision for 'nix run'
       # the same, as in the system itself.
       # This also avoids constant repository downloads. 
