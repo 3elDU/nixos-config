@@ -502,6 +502,26 @@
         "type": "github"
       }
     },
+    "minimal-tmux-status": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1717503597,
+        "narHash": "sha256-qX+8pJlPPfTxhsRbvRyeT6wASeVjg03DC5UfD9oEqnk=",
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "rev": "d2e0b19b7c014272b3ece94508d676c5a4a82dc1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "type": "github"
+      }
+    },
     "nix-vscode-extensions": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -605,6 +625,7 @@
         "base16": "base16",
         "cattpuccin-base16": "cattpuccin-base16",
         "home-manager": "home-manager",
+        "minimal-tmux-status": "minimal-tmux-status",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",
