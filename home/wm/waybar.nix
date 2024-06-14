@@ -1,6 +1,6 @@
-{ enableSway, colorscheme, lib, pkgs, ... }: {
+{ _prefs, colorscheme, lib, pkgs, ... }: {
   programs.waybar = {
-    enable = enableSway;
+    enable = _prefs.enableSway;
 
     settings = [{
       modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "sway/window"];

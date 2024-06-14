@@ -8,10 +8,10 @@ return {
     "3rd/image.nvim",
   },
   config = function()
-    require"neo-tree".setup({
+    require "neo-tree".setup({
       window = {
         mappings = {
-          ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true }},
+          ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
         }
       },
       filesystem = {
@@ -40,7 +40,7 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<space>e', "<cmd>Neotree reveal<cr>", {desc = "Reveal neotree"})
-    vim.keymap.set('n', '<space>E', "<cmd>Neotree close<cr>", {desc = "Hide neotree"})
+    vim.keymap.set('n', '<space>e', "<cmd>Neotree reveal<cr>", { desc = "Reveal neotree" })
+    vim.keymap.set('n', '<space>E', "<cmd>Neotree close<cr>", { desc = "Hide neotree" })
   end
 }

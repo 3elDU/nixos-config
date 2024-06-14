@@ -1,4 +1,4 @@
-{ enableSway, pkgs, colorscheme, ... }: let
+{ _prefs, pkgs, colorscheme, ... }: let
   left = "h";
   right = "l";
   up = "k";
@@ -18,7 +18,7 @@
     surface0 = colorscheme.surface0.hex;
   };
 in {
-  home = if enableSway then {
+  home = if _prefs.enableSway then {
     packages = [
       # Different keyboard layout for each window
       pkgs.swaykbdd 
@@ -31,7 +31,7 @@ in {
   } else {};
 
   wayland.windowManager.sway = {
-    enable = enableSway;
+    enable = _prefs.enableSway;
     package = pkgs.swayfx;
 
     wrapperFeatures.gtk = true;

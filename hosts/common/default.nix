@@ -1,5 +1,5 @@
-{ enableSway, catppuccinGtkTheme, installGNOMEApps, 
-  input,
+{
+  inputs, _prefs,
   colorscheme, palette, flavour, 
   pkgs, overlays,
   ...
@@ -8,6 +8,7 @@
     ./nix.nix
     ./locale.nix
     ./services.nix
+    ./stylix.nix
   ];
 
   nixpkgs.overlays = overlays;
@@ -37,13 +38,12 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { 
-      inherit input colorscheme palette flavour;
+    extraSpecialArgs = {
+      inherit inputs _prefs colorscheme palette flavour;
       # Per-host variables to disable specific features
-      inherit enableSway catppuccinGtkTheme installGNOMEApps;
       inherit overlays;
     };
-    sharedModules = [ input.xremap.homeManagerModules.default ];
+    sharedModules = [ inputs.xremap.homeManagerModules.default ];
     users.ptflp = ../../home;
   };
 

@@ -1,6 +1,6 @@
-{ enableSway, colorscheme, ... }: {
+{ _prefs, colorscheme, ... }: {
   services.mako = {
-    enable = enableSway;
+    enable = _prefs.enableSway;
 
     font = "RecMonoDuotone Nerd Font 12";
 

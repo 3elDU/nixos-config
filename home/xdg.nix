@@ -1,7 +1,7 @@
-{ enableSway, config, pkgs, ... }: {
+{ _prefs, config, pkgs, ... }: {
   xdg = {
     portal = {
-      enable = enableSway;
+      enable = _prefs.enableSway;
       config.common = {
         default = [ "wlr" "gtk" ];
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
@@ -26,7 +26,7 @@
         "application/pdf" = "org.gnome.Evince.desktop";
       };
     in {
-      enable = enableSway;
+      enable = _prefs.enableSway;
       defaultApplications = associations;
     };
 

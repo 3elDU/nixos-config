@@ -1,6 +1,6 @@
-{ enableSway, config, ... }: {
+{ _prefs, ... }: {
   qt = {
-    enable = enableSway;
+    enable = _prefs.enableSway;
     platformTheme.name = "gtk3";
   };
 }

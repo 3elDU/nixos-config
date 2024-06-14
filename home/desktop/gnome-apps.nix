@@ -1,5 +1,5 @@
-{ installGNOMEApps, pkgs, config, ... }: {
-  home.packages = if installGNOMEApps then with pkgs; [
+{ _prefs, pkgs, ... }: {
+  home.packages = if _prefs.installGNOMEApps then with pkgs; [
     # This is required by (almost) all of gnome apps
     gnome.adwaita-icon-theme
 

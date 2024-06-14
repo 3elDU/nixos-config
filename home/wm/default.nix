@@ -1,4 +1,4 @@
-{ enableSway, pkgs, ... }: {
+{ pkgs, ... }: {
   # Window-manager-related configuration
 
   # WM-related utilities

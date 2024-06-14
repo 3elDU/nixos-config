@@ -1,5 +1,5 @@
-{ pkgs, input, ... }: let
-  extensions = input.nix-vscode-extensions.extensions.x86_64-linux;
+{ pkgs, inputs, ... }: let
+  extensions = inputs.nix-vscode-extensions.extensions.x86_64-linux;
 in {
   programs.vscode = {
     enable = true;

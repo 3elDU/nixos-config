@@ -19,9 +19,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    base16 = {
+      url = "github:SenchoPens/base16.nix";
+    };
+    cattpuccin-base16 = {
+      url = "github:catppuccin/base16";
+      flake = false;
+    };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, xremap, nix-vscode-extensions, ... }@input: let
+  outputs = { nixpkgs, home-manager, stylix, xremap, nix-vscode-extensions, ... }@inputs: let
     palette = builtins.fromJSON (builtins.readFile ./catppuccin/palette.json);
     flavourName = "macchiato";
 
@@ -39,35 +51,44 @@
       };
 
     overlays = [
-      # input.neovim-nightly-overlay.overlay
+      # Neovim unstable overlay was here, but since 0.10 is stable, now the list is empty
+    ];
+
+    systems = [
+      {
+        name = "slowpoke";
+        system = "x86_64-linux";
+        _prefs = {
+          enableSway = true;
+          catppuccinGtkTheme = true;
+          installGNOMEApps = true;
+        };
+      }
+      {
+        name = "heater";
+        system = "x86_64-linux";
+        _prefs = {
+          enableSway = false;
+          catppuccinGtkTheme = false;
+          installGNOMEApps = false;
+        };
+      }
     ];
   in {
-    nixosConfigurations.slowpoke = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit overlays input palette flavour colorscheme;
-        # Enable Sway, Waybar, and related packages, with their configurations
-        enableSway = true;
-        catppuccinGtkTheme = true;
-        installGNOMEApps = true;
+    nixosConfigurations = builtins.listToAttrs (builtins.map (system: {
+      name = system.name;
+      value = nixpkgs.lib.nixosSystem {
+        system = system.system;
+        specialArgs = {
+          inherit inputs overlays palette flavour colorscheme;
+          _prefs = system._prefs;
+        };
+        modules = [
+          ./hosts/${system.name}
+          home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
+        ];
       };
-      modules = [
-        ./hosts/slowpoke
-        home-manager.nixosModules.home-manager
-      ];
-    };
-    nixosConfigurations.heater = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit overlays input palette flavour colorscheme;
-        enableSway = false;
-        catppuccinGtkTheme = false;
-        installGNOMEApps = false;
-      };
-      modules = [
-        ./hosts/heater
-        home-manager.nixosModules.home-manager
-      ];
-    };
+    }) systems);
   };
 }
