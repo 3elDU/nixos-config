@@ -2,7 +2,7 @@
   services.mako = {
     enable = enableSway;
 
-    font = "JetBrainsMono Nerd Font Propo 10";
+    font = "RecMonoDuotone Nerd Font 12";
 
     defaultTimeout = 5000;
 
@@ -13,12 +13,11 @@
     margin = "8";
     padding = "12";
 
-    backgroundColor = colorscheme.base.hex;
-    textColor = colorscheme.text.hex;
-    progressColor = colorscheme.secondary.hex;
-    borderColor = colorscheme.secondary.hex;
+    borderSize = 2;
 
-    borderRadius = 8;
-    borderSize = 4;
+    backgroundColor = colorscheme.crust.hex;
+    textColor = colorscheme.text.hex;
+    progressColor = "over ${colorscheme.secondary.hex}";
+    borderColor = colorscheme.secondary.hex;
   };
 }

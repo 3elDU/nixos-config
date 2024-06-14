@@ -28,5 +28,8 @@
     imagemagick
     # video utilities
     ffmpeg_7
+
+    # Images and videos in the terminal!
+    timg swayimg
   ];
 }

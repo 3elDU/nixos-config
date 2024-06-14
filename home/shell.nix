@@ -26,8 +26,10 @@
       h = "htop";
       d = "^du -h1 -d1 -c .";
       t = "touch";
+
       tm = "tmux";
       tma = "tmux attach -t";
+      tmn = "tmux new -t";
 
       nr = "sudo nixos-rebuild switch --show-trace";
       nrb = "sudo nixos-rebuild boot --show-trace";

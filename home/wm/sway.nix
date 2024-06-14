@@ -6,7 +6,7 @@
 
   mod = "Mod4";
   menu = "${pkgs.wofi}/bin/wofi";
-  term = "${pkgs.foot}/bin/foot";
+  term = "${pkgs.kitty}/bin/kitty";
 
   colors = {
     darkbg = colorscheme.crust.hex;
@@ -124,10 +124,12 @@ in {
       };
       window.commands = [
         {
-          command = "border pixel 2";
-          criteria = {
-            floating = true;
-          };
+          command = "shadows enable";
+          criteria = { floating = true; };
+        }
+        {
+          command = "shadows disable";
+          criteria = { tiling = true; };
         }
       ];
 
@@ -252,8 +254,10 @@ in {
     };
 
     extraConfig = ''
-      # SwayFX settings
-      # blur enable
+      # SwayFX-specific settings
+
+      # Enable shadows for various top-level programs
+      layer_effects wofi shadows enable
 
       # Move between workspaces with left-right 3-finger swipes
       bindgesture swipe:3:left workspace prev

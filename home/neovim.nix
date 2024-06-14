@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  # Also install nvimpager
+  home.packages = with pkgs; [
+    nvimpager
+  ];
+
   programs.neovim = {
     enable = true;
     viAlias = true;
