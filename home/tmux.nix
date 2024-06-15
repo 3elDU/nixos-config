@@ -32,7 +32,7 @@
         '';
       }
     ];
-    extraConfig = ''
+    extraConfig = with config.lib.stylix.colors.withHashtag; ''
       # Override the emacs key mode set by sensible tmux
       set-option -g status-keys vi
       set-window-option -g mode-keys vi
@@ -52,6 +52,11 @@
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
+
+      # Set active pane border color
+      set-option -wg pane-border-lines heavy
+      set-option -wg pane-border-style fg=${base01},bg=${base01}
+      set-option -wg pane-active-border-style fg=${base07},bg=${base01}
     '';
   };
 }
