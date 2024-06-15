@@ -11,8 +11,6 @@
   imports = [
     ./wm
     ./desktop
-    ./gtk.nix
-    ./qt.nix
     ./git.nix
     ./gpg.nix
     ./shell.nix

@@ -1,8 +1,6 @@
-{ _prefs, colorscheme, ... }: {
+{ _prefs, ... }: {
   services.mako = {
     enable = _prefs.enableSway;
-
-    font = "RecMonoDuotone Nerd Font 12";
 
     defaultTimeout = 5000;
 
@@ -13,11 +11,6 @@
     margin = "8";
     padding = "12";
 
-    borderSize = 2;
-
-    backgroundColor = colorscheme.crust.hex;
-    textColor = colorscheme.text.hex;
-    progressColor = "over ${colorscheme.secondary.hex}";
-    borderColor = colorscheme.secondary.hex;
+    borderSize = 3;
   };
 }

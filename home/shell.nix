@@ -1,18 +1,7 @@
-{ ... }: {
-  programs.nushell = {
-    enable = true;
-
-    configFile.source = ../configs/nushell/config.nu;
-    envFile.source = ../configs/nushell/env.nu;
-
-    environmentVariables = {
-      EDITOR = "nvim";
-      MANPAGER = "'nvim +Man!'";
-    };
-
-    shellAliases = {
+{ ... }: let
+  # Universal shell alises for both nushell and zsh
+  aliases = {
       cl = "clear";
-      ll = "^ls -lAh";
 
       gcn = "git clone";
       gs = "git status";
@@ -24,27 +13,44 @@
 
       n = "nvim";
       h = "htop";
-      d = "^du -h1 -d1 -c .";
       t = "touch";
 
       tm = "tmux";
       tma = "tmux attach -t";
       tmn = "tmux new -t";
 
-      nr = "sudo nixos-rebuild switch --show-trace";
-      nrb = "sudo nixos-rebuild boot --show-trace";
+      nr = "nh os switch";
+      nrb = "nh os boot";
+      nra = "nh oh switch --ask";
       # Keep the nixpkgs revision for 'nix run'
       # the same, as in the system itself.
       # This also avoids constant repository downloads. 
       nrun = "nix run --inputs-from ${../.}";
+  };
+  environment = {
+    FLAKE = "/home/ptflp/dev/nixos";
+    EDITOR = "nvim";
+    PAGER = "nvimpager";
+  };
+in {
+  programs.nushell = {
+    enable = true;
+
+    configFile.source = ../configs/nushell/config.nu;
+    envFile.source = ../configs/nushell/env.nu;
+
+    environmentVariables = environment // {
+      MANPAGER = "'nvim +Man!'";
+    };
+
+    shellAliases = aliases // {
+      ll = "^ls -lAh";
+      d = "du --all --max-depth 0";
     };
   };
 
   # Those only get sourced by zsh
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    MANPAGER = "nvim +Man!";
-  };
+  home.sessionVariables = environment;
 
   # Also keep ZSH as a default shell for tasks where POSIX shell is required,
   # e.g. login shell
@@ -56,6 +62,8 @@
       theme = "sammy";
       plugins = [ "git" ];
     };
+
+    shellAliases = aliases;
 
     profileExtra = ''
       # Launch sway, if logged in from tty1

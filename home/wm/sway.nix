@@ -1,4 +1,4 @@
-{ _prefs, pkgs, colorscheme, ... }: let
+{ _prefs, pkgs, config, ... }: let
   left = "h";
   right = "l";
   up = "k";
@@ -7,16 +7,6 @@
   mod = "Mod4";
   menu = "${pkgs.wofi}/bin/wofi";
   term = "${pkgs.kitty}/bin/kitty";
-
-  colors = {
-    darkbg = colorscheme.crust.hex;
-    primary = colorscheme.primary.hex;
-    secondary = colorscheme.secondary.hex;
-    text = colorscheme.text.hex;
-    bg = colorscheme.base.hex;
-    urgent = colorscheme.red.hex;
-    surface0 = colorscheme.surface0.hex;
-  };
 in {
   home = if _prefs.enableSway then {
     packages = [
@@ -57,43 +47,6 @@ in {
       # Wrap around focus in the workspace
       focus.wrapping = "yes";
 
-      colors = {
-        focused = { 
-          border = colors.primary;
-          background = colors.primary;
-          text = colors.bg;
-          indicator = colors.secondary;
-          childBorder = colors.primary;
-        };
-        urgent = {
-          border = colors.urgent;
-          background = colors.urgent;
-          text = colors.bg;
-          indicator = colors.secondary;
-          childBorder = colors.urgent;
-        };
-        focusedInactive = {
-          border = colors.bg;
-          background = colors.bg;
-          text = colors.text;
-          indicator = colors.secondary;
-          childBorder = colors.surface0;
-        };
-        unfocused = {
-          border = colors.darkbg;
-          background = colors.darkbg;
-          text = colors.text;
-          indicator = colors.secondary;
-          childBorder = colors.bg;
-        };
-      };
-
-      fonts = {
-        names = ["RecMonoDuotone Nerd Font"];
-        style = "Regular";
-        size = 12.0;
-      };
-
       window.border = 0;
       floating.border = 2;
 
@@ -116,22 +69,12 @@ in {
       };
       output = {
         "*" = {
-          background = "${colorscheme.base.hex} solid_color";
+          background = "${config.lib.stylix.colors.withHashtag.base00} solid_color";
         };
         eDP-1 = {
           scale = "1.25";
         };
       };
-      window.commands = [
-        {
-          command = "shadows enable";
-          criteria = { floating = true; };
-        }
-        {
-          command = "shadows disable";
-          criteria = { tiling = true; };
-        }
-      ];
 
       keybindings = {
         # Start terminal
@@ -171,7 +114,7 @@ in {
         "${mod}+Shift+c" = "reload";
         # Exit sway
         "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
-        
+
         # Move focus around
         "${mod}+${left}" = "focus left";
         "${mod}+${right}" = "focus right";
@@ -182,7 +125,7 @@ in {
         "${mod}+Shift+${right}" = "move right";
         "${mod}+Shift+${up}" = "move up";
         "${mod}+Shift+${down}" = "move down";
-        
+
         # Switch to workspace
         "${mod}+1" = "workspace number 1";
         "${mod}+2" = "workspace number 2";
@@ -265,12 +208,6 @@ in {
       # Move between windows with up-down 3-finter swipes
       bindgesture swipe:3:up focus left
       bindgesture swipe:3:down focus right
-
-      # shadows enable
-      # shadow_color #000000C0
-
-      # corner_radius 12
-      # corner_radius 8
 
       # Dim inactive windows a bit
       default_dim_inactive 0.25

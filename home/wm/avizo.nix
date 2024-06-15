@@ -16,11 +16,6 @@
         block-spacing = 1;
 
         fade-out = 0.5;
-
-        background = colorscheme.crust.hex;
-        border-color = colorscheme.secondary.hex;
-        bar-fg-color = colorscheme.secondary.hex;
-        bar-bg-color = colorscheme.surface0.hex;
       };
     };
   };

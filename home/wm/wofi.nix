@@ -1,10 +1,12 @@
-{ _prefs, config, colorscheme, ... }: {
+{ _prefs, config, ... }: let 
+  colors = config.lib.stylix.colors.withHashtag;
+in {
   # Main wofi color is secondary, since wofi itself is an overlay window
   xdg.configFile."wofi/colors".text = ''
-    ${colorscheme.secondary.hex}
-    ${colorscheme.text.hex}
-    ${colorscheme.crust.hex}
-    ${colorscheme.surface0.hex}
+    ${colors.base07}
+    ${colors.base05}
+    ${colors.base01}
+    ${colors.base02}
   '';
 
   programs.wofi = {

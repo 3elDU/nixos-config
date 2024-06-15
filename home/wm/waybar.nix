@@ -1,6 +1,40 @@
-{ _prefs, colorscheme, lib, pkgs, ... }: {
+{ _prefs, config, lib, pkgs, ... }: let
+  colorNames = [
+    "base00" "base01" "base02" "base03" "base04"
+    "base05" "base06" "base07" "base08" "base09"
+    "base0A" "base0B" "base0C" "base0D" "base0E" "base0F"
+  ];
+
+  # Colors used in the markup
+  secondary = config.lib.stylix.colors.withHashtag.base07;
+  yellow = config.lib.stylix.colors.withHashtag.base0A;
+  peach = config.lib.stylix.colors.withHashtag.base09;
+  red = config.lib.stylix.colors.withHashtag.base08;
+  green = config.lib.stylix.colors.withHashtag.base0B;
+
+  markup = color: text: "<span color=\"${color}\" style=\"oblique\">${text}</span>";
+in {
+  # Stylix injects CSS that I do not want,
+  # so we style waybar for ourselves
+  stylix.targets.waybar.enable = false;
+
   programs.waybar = {
     enable = _prefs.enableSway;
+
+    style =
+      # Convert the colorscheme attribute set to GTK color declarations
+      lib.strings.concatStrings(builtins.map (color: 
+        "@define-color ${color} ${config.lib.stylix.colors.withHashtag.${color}};\n"
+      ) colorNames)
+      +
+      (builtins.readFile ../../configs/waybar/style.css)
+      +
+      ''
+      /* Font family injected by Nix */
+      * {
+        font-family: ${config.stylix.fonts.monospace.name};
+      }
+      '';
 
     settings = [{
       modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "sway/window"];
@@ -8,10 +42,10 @@
       modules-right = ["privacy" "pulseaudio" "network" "bluetooth" "cpu" "memory" "temperature" "sway/language" "battery" "clock" "tray"];
 
       "sway/mode" = {
-        format = "󰖲 {}";
+        format = "mode {}";
       };
       "sway/scratchpad" = {
-          format = "{icon} {count}";
+          format = "scratchpad {count}";
           show-empty = false;
           format-icons = ["" ""];
           tooltip = true;
@@ -24,43 +58,37 @@
         ];
       };
       pulseaudio = {
-          format = "{volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " {format_source}";
-          format-source = "{volume}% ";
-          format-source-muted = "";
+          format = "{icon} {volume}% {format_source}";
+          format-bluetooth = "${markup secondary "vol bt"} {format_source}";
+          format-bluetooth-muted = "${markup red "muted bt"} {format_source}";
+          format-muted = "${markup red "muted"} {format_source}";
+          format-source = "${markup secondary "mic"} {volume}%";
+          format-source-muted = markup red "mic";
           format-icons = {
-              headphone = "";
-              hands-free = "";
-              headset = "";
-              phone = "";
-              portable = "";
-              car = "";
-              default = ["" "" ""];
+              headphone = "${markup secondary "vol"}";
+              hands-free = "${markup secondary "handsfree"}";
+              headset = "${markup secondary "headset"}";
+              phone = "${markup secondary "phone"}";
+              portable = "${markup secondary "portable"}";
+              car = "${markup secondary "car"}";
+              default = "${markup secondary "vol"}";
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
       };
       network = {
-        format-wifi = "{icon}";
+        format-wifi = "${markup secondary "wlan"} {signalStrength}%";
         tooltip-format-wifi = "{ipaddr} on {essid}, {signalStrength}% strength";
-        format-icons = [
-          "󰤟"
-          "󰤢"
-          "󰤥"
-          "󰤨"
-        ];
-        format-ethernet = "";
-        tooltip-format = "{ifname} via {gwaddr} ";
-        format-linked = "{ifname} (No IP) ";
-        format-disconnected = "󰀝";
-        format-alt = "{ifname}: {ipaddr}/{cidr}";
+        format-ethernet = "${markup secondary "eth"} conn";
+        tooltip-format = "{ifname} via {gwaddr}";
+        format-linked = markup red "eth no ip";
+        format-disconnected = markup red "no internet";
+        format-alt = "${markup secondary "{ifname}"}: {ipaddr}/{cidr}";
       };
       bluetooth = {
-        format = "󰂯";
-        format-disabled = "󰂲";
-        format-off = "󰂲";
-        format-connected = "󰂱";
+        format = "${markup secondary "bt"} on";
+        format-disabled = "${markup secondary "bt"} off";
+        format-off = "${markup secondary "bt"} off";
+        format-connected = "${markup secondary "bt"} connected";
         tooltip-format = ''
           Status: {status}
           Connected devices:
@@ -69,22 +97,38 @@
         on-click = "${pkgs.blueman}/bin/blueman-manager";
       };
       cpu = {
-          format = "{usage}% 󰍛";
+          format = "{icon} {usage}%";
+          format-icons = [
+            (markup secondary "cpu")
+          ];
           interval = 1;
       };
       memory = {
-          format = "{}% 󰘚";
+          format = "${markup secondary "mem"} {}%";
+          format-icons = [
+            (markup secondary "temp")
+            (markup secondary "temp")
+            (markup yellow "temp")
+            (markup peach "temp")
+            (markup red "temp")
+          ];
           tooltip-format = "Used: {used}GiB\nSwap used: {swapUsed}GiB\n\nAvailable: {avail}GiB\nTotal: {total}GiB";
           interval = 5;
       };
       temperature = {
           critical-threshold = 80;
-          format = "{temperatureC}°C {icon}";
-          format-icons = ["" "" ""];
+          format = "{icon} {temperatureC}°C";
+          format-icons = [
+            (markup secondary "temp") # 0-16
+            (markup secondary "temp") # 16-32
+            (markup secondary "temp") # 32-48
+            (markup yellow "temp") # 48-64
+            (markup red "temp") # 64-80
+          ];
           interval = 5;
       };
       "sway/language" = {
-        format = "󰌌 {short}";
+        format = "${markup secondary "kbd"} {short}";
       };
       battery = {
         states = {
@@ -92,28 +136,26 @@
           critical = 15;
         };
         tooltip-format = "{capacity}%\n{power}W power draw\n{timeTo}";
-        format = "{capacity}% {icon}";
-        format-full = "{capacity}% {icon}";
-        format-charging = "{capacity}% 󰂄";
-        format-plugged = "{capacity}% 󰚥";
+        format = "{icon} {capacity}%";
+        format-full = "{icon} {capacity}%";
+        format-charging = "${markup green "charging"} {capacity}%";
+        format-plugged = "{icon} {capacity}%";
         format-alt = "{time} {icon}";
-        format-icons = ["" "" "" "" ""];
+        format-icons = [
+          (markup red "bat") # 0-20%
+          (markup peach "bat") # 20-40%
+          (markup yellow "bat") # 40-60%
+          (markup secondary "bat") # 60-80%
+          (markup secondary "bat") # 80-100%
+        ];
       };
       clock = {
         interval = 60;
-        format = "{:%a %d.%m, %H:%M}";
+        format = "${markup secondary "date"} {:%a %d.%m, %H:%M}";
         format-alt = "{:%a, %F, %T}";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
       tray = { spacing = 10; };
     }];
-
-    style =
-      # Convert the colorscheme attribute set to GTK color declarations
-      lib.strings.concatStrings(builtins.attrValues(
-        builtins.mapAttrs (name: value: "@define-color ${name} ${value.hex};\n") colorscheme
-      ))
-      +
-      (builtins.readFile ../../configs/waybar/style.css);
   };
 }

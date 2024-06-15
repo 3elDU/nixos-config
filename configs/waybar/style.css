@@ -1,9 +1,9 @@
 /* Colors are specified externally via Nix */
 
+
 * {
   all: unset;
   min-height: 32px;
-  font-family: Rec Mono Duotone Nerd Font;
 }
 
 window#waybar {
@@ -11,19 +11,19 @@ window#waybar {
 
   border: none;
 
-  background: @crust;
-  color: @text;
+  background: @base01;
+  color: @base05;
 }
 
 #scratchpad, #mode, #idle_inhibitor, #pulseaudio, #network, #bluetooth, #cpu, #memory, #temperature, #keyboard_state, #language, #battery, #clock, #tray {
   padding: 0 8px;
-  margin: 0 4px;
+  margin: 0 2px;
   min-width: 24px;
 }
 
 tooltip {
-  background: @mantle;
-  border: 2px solid @secondary;
+  background: @base01;
+  border: 3px solid @base07;
 }
 
 #workspaces {
@@ -35,95 +35,83 @@ tooltip {
   min-width: 32px;
 }
 #workspaces button:not(.focused) {
-  color: @subtext0;
+  color: @base05;
 }
 #workspaces button.focused {
   min-width: 48px;
-  background: @primary;
-  color: @base;
+  background: @base0E;
+  color: @base00;
   font-weight: bold;
 }
 #workspaces button.urgent {
-  color: @base;
+  color: @base00;
   background: @red;
   font-weight: bold;
 }
 
 #mode {
-  background: @red;
-  color: @base;
+  /* Red */
+  background: @base08;
+  color: @base00;
   font-weight: bold;
 }
 
 #scratchpad {
   padding: 0 16px;
-  background: @secondary;
-  color: @base;
+  background: @base07;
+  color: @base00;
 }
 
 #window {
   margin-left: 16px;
-}
-
-#network {
-  margin-right: 0;
-  border-right: 1px solid @base;
-}
-#bluetooth {
-  margin-left: 0;
+  margin-right: 16px;
 }
 
 #cpu {
-  min-width: 48px;
-  margin-right: 0;
+  min-width: 64px;
   padding-right: 12px;
 }
 #memory {
-  min-width: 48px;
-  margin: 0;
+  min-width: 64px;
   padding: 0 12px;
-  border: 1px solid @base;
-  border-top: none;
-  border-bottom: none;
 }
 #temperature {
-  padding-left: 12px;
-  margin-left: 0;
+  min-width: 64px;
 }
 #temperature.critical {
-  background: @red;
-  color: @base;
+  background: @base08;
+  color: @base00;
   font-weight: bold;
 }
 
 #language {
-  min-width: 48px;
+  min-width: 64px;
 }
 
 #battery.Charging {
-  background: @green;
+  background: @green0B;
   font-weight: bold;
 }
 #battery.warning {
-  background: @yellow;
-  color: @base;
+  background: @base0A;
+  color: @base00;
   font-weight: bold;
 }
 #battery.critical {
-  background: @red;
-  color: @base;
+  background: @base08;
+  color: @base00;
   font-weight: bold;
 }
 
 #tray menu {
-  background: @base;
-  border: 2px solid @secondary;
+  background: @base00;
+  border: 3px solid @base07;
 }
 #tray menu > * {
   padding: 0 16px;
 }
 #tray menu > :hover {
-  background: @secondary;
-  color: @base;
+  background: @base07;
+  color: @base00;
   font-weight: bold;
 }

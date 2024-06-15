@@ -31,5 +31,15 @@
 
     # Images and videos in the terminal!
     timg swayimg
+
+    # Make nix better!
+    # https://github.com/viperML/nh
+    nh
+    # https://github.com/maralorn/nix-output-monitor
+    nix-output-monitor
+    # https://gitlab.com/khumba/nvd
+    nvd
+    # Inspect nix system configuration
+    nix-inspect
   ];
 }
