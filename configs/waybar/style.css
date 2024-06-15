@@ -45,7 +45,7 @@ tooltip {
 }
 #workspaces button.urgent {
   color: @base00;
-  background: @red;
+  background: @base08;
   font-weight: bold;
 }
 
@@ -78,29 +78,9 @@ tooltip {
 #temperature {
   min-width: 64px;
 }
-#temperature.critical {
-  background: @base08;
-  color: @base00;
-  font-weight: bold;
-}
 
 #language {
   min-width: 64px;
-}
-
-#battery.Charging {
-  background: @green0B;
-  font-weight: bold;
-}
-#battery.warning {
-  background: @base0A;
-  color: @base00;
-  font-weight: bold;
-}
-#battery.critical {
-  background: @base08;
-  color: @base00;
-  font-weight: bold;
 }
 
 #tray menu {
