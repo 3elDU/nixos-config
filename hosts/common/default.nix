@@ -47,6 +47,12 @@
     users.ptflp = ../../home;
   };
 
+  # Taken from home-configuration.nix(5) xdg.portal.enable
+  environment.pathsToLink = [
+    "/share/xdg-desktop-portal"
+    "/share/applications"
+  ];
+
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
 

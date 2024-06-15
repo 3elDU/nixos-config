@@ -2,11 +2,10 @@
   xdg = {
     portal = {
       enable = _prefs.enableSway;
-      config.common = {
-        default = [ "wlr" "gtk" ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-      };
-      extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [ 
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
     };
 
     mimeApps = let
