@@ -8,10 +8,6 @@
     mouse = true;
     prefix = "C-Space";
 
-    # Spawn a new session when running 'tmux attach'
-    # and no sessions are running
-    newSession = true;
-
     shell = "${pkgs.nushell}/bin/nu";
     plugins = with pkgs.tmuxPlugins; [
       {
@@ -57,6 +53,12 @@
       set-option -wg pane-border-lines heavy
       set-option -wg pane-border-style fg=${base01},bg=${base01}
       set-option -wg pane-active-border-style fg=${base07},bg=${base01}
+
+      # Resize panes with Ctrl+hjkl
+      bind-key -r C-h resize-pane -L
+      bind-key -r C-j resize-pane -D
+      bind-key -r C-k resize-pane -U
+      bind-key -r C-l resize-pane -R
     '';
   };
 }
