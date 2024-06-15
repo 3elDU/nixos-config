@@ -44,9 +44,13 @@ in {
     };
 
     shellAliases = aliases // {
+      # Those are shell aliases specific for nushell
+
       ll = "^ls -lAh";
       d = "du --all --max-depth 0";
     };
+
+    extraConfig = builtins.readFile ../configs/nushell/extras.nu;
   };
 
   # Those only get sourced by zsh
