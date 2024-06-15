@@ -84,6 +84,8 @@ in {
         # Start launcher
         "${mod}+x" = "exec ${menu}";
 
+        "${mod}+Shift+v" = "exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
+
         # Switch to US / UA / RU keyboard layout
         "Alt+1" = "exec swaymsg input \"type:keyboard\" xkb_switch_layout 0";
         "Alt+2" = "exec swaymsg input \"type:keyboard\" xkb_switch_layout 1";

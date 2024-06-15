@@ -15,5 +15,6 @@
     ./waybar.nix
     ./mako.nix
     ./wob.nix
+    ./clipboard.nix
   ];
 }
