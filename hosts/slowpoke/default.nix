@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports =
     [
       ./hardware-configuration.nix
@@ -24,6 +24,18 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";
+
+  # Taken from https://nixos.wiki/wiki/Accelerated_Video_Playback
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
+    ];
+  };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
   system.stateVersion = "23.11";
 }
