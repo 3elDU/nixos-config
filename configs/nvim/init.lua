@@ -46,6 +46,11 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.shiftround = true
 
+-- continue wrapped line on the same identation level
+vim.opt.breakindent = true
+vim.opt.wrapmargin = 2
+
+-- save on Ctrl+S
 vim.keymap.set({'n', 'v', 'i'}, '<C-S>', function()
   vim.api.nvim_command(':update')
 end)
