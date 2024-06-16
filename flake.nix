@@ -91,7 +91,10 @@
         system = system.system;
         specialArgs = {
           inherit inputs overlays palette flavour colorscheme;
-          _prefs = system._prefs;
+          _prefs = system._prefs // { 
+            # Extend _prefs with current system
+            system = system.system;
+          };
         };
         modules = [
           ./hosts/${system.name}
