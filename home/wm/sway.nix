@@ -55,6 +55,10 @@ in {
       floating.titlebar = false;
 
       input = {
+        "type:pointer" = {
+          # Disable pointer acceleration for mouse
+          accel_profile = "flat";
+        };
         "type:touchpad" = {
           dwt = "disabled";
           tap = "enabled";
