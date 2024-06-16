@@ -12,12 +12,14 @@
     plugins = with pkgs.tmuxPlugins; [
       {
         plugin = resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        extraConfig = ''
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-capture-pane-contents 'on'
+        '';
       }
       {
         plugin = continuum;
         extraConfig = ''
-          set -g @continuum-restore 'on'
           set -g @continuum-save-interval '1'
         '';
       }
@@ -29,6 +31,10 @@
       }
     ];
     extraConfig = with config.lib.stylix.colors.withHashtag; ''
+      # Override default "screen" terminal type
+      # Among other things, now tmux will support italics
+      set-option -g default-terminal "tmux-256color"
+
       # Override the emacs key mode set by sensible tmux
       set-option -g status-keys vi
       set-window-option -g mode-keys vi
