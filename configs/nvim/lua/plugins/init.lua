@@ -35,6 +35,7 @@ require "lazy".setup({
   { import = "plugins.notify" },
   { import = "plugins.trouble" },
   { import = "plugins.noice" },
+  { import = "plugins.wakatime" },
 }, {
   defaults = {
     version = false,

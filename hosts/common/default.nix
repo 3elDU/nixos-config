@@ -9,6 +9,7 @@
     ./locale.nix
     ./services.nix
     ./stylix.nix
+    ./sops.nix
   ];
 
   nixpkgs.overlays = overlays;

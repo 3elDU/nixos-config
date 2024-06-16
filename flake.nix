@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +43,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, stylix, xremap, nix-vscode-extensions, ... }@inputs: let
+  outputs = { nixpkgs, home-manager, sops-nix, stylix, xremap, nix-vscode-extensions, ... }@inputs: let
     palette = builtins.fromJSON (builtins.readFile ./catppuccin/palette.json);
     flavourName = "macchiato";
 
@@ -92,6 +97,7 @@
           ./hosts/${system.name}
           home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
+          sops-nix.nixosModules.sops
         ];
       };
     }) systems);
