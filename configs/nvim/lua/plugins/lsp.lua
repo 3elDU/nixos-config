@@ -68,7 +68,7 @@ return {
 
     lspconfig.nil_ls.setup { capabilities = capabilities }
     lspconfig.clangd.setup { capabilities = capabilities }
-    lspconfig.tailwindcss.setup { capabilities = capabilities }
+    -- lspconfig.tailwindcss.setup { capabilities = capabilities }
     lspconfig.tsserver.setup { capabilities = capabilities }
 
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#volar
