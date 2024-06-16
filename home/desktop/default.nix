@@ -11,5 +11,6 @@
     ./text.nix
     ./code.nix
     ./xremap.nix
+    ./games.nix
   ];
 }
