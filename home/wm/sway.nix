@@ -1,4 +1,4 @@
-{ _prefs, pkgs, config, ... }: let
+{ _prefs, pkgs, config, lib, ... }: let
   left = "h";
   right = "l";
   up = "k";
@@ -69,7 +69,7 @@ in {
       };
       output = {
         "*" = {
-          background = "${config.lib.stylix.colors.withHashtag.base00} solid_color";
+          bg = lib.mkForce "${config.lib.stylix.colors.withHashtag.base02} solid_color";
         };
         eDP-1 = {
           scale = "1.25";
