@@ -21,5 +21,6 @@
     ./tmux.nix
     ./udiskie.nix
     ./dev.nix
+    ./qt.nix
   ];
 }
