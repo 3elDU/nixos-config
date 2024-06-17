@@ -54,6 +54,45 @@ in {
       window.titlebar = false;
       floating.titlebar = false;
 
+      colors = let 
+        colorscheme = config.lib.stylix.colors.withHashtag;
+        primary = colorscheme.base0E;
+        secondary = colorscheme.base07;
+        bg = colorscheme.base01;
+        urgent = colorscheme.base08;
+        text = colorscheme.base05;
+        surface0 = colorscheme.base02;
+      in lib.mkForce {
+        focused = { 
+          border = primary;
+          background = primary;
+          text = bg;
+          indicator = secondary;
+          childBorder = primary;
+        };
+        urgent = {
+          border = urgent;
+          background = urgent;
+          text = bg;
+          indicator = secondary;
+          childBorder = urgent;
+        };
+        focusedInactive = {
+          border = bg;
+          background = bg;
+          text = text;
+          indicator = secondary;
+          childBorder = surface0;
+        };
+        unfocused = {
+          border = bg;
+          background = bg;
+          text = text;
+          indicator = secondary;
+          childBorder = bg;
+        };
+      };
+
       input = {
         "type:pointer" = {
           # Disable pointer acceleration for mouse
