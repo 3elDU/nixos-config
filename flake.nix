@@ -91,9 +91,11 @@
         system = system.system;
         specialArgs = {
           inherit inputs overlays palette flavour colorscheme;
-          _prefs = system._prefs // { 
-            # Extend _prefs with current system
+          _prefs = system._prefs // {
+            # Extend _prefs with info about the running system
+            name = system.name;
             system = system.system;
+            flakePath = toString ./.;
           };
         };
         modules = [

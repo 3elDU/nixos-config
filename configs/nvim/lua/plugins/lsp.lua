@@ -66,7 +66,32 @@ return {
       }
     })
 
-    lspconfig.nil_ls.setup { capabilities = capabilities }
+    --- @type { name: string, system: string, flakePath: string }
+    local sysinfo = require("sysinfo")
+    local flake_expr = "(builtins.getFlake \"" .. sysinfo.flakePath .. "\")"
+
+    lspconfig.nixd.setup {
+      capabilities = capabilities,
+      settings = {
+        nixd = {
+          nixpkgs = {
+            expr = "import" .. flake_expr .. ".inputs.nixpkgs {}"
+          },
+          formatting = {
+            command = { "nixpkgs-fmt" }
+          },
+          options = {
+            nixos = {
+              expr = flake_expr .. ".nixosConfigurations." .. sysinfo.name .. ".options"
+            },
+            home_manager = {
+              expr = flake_expr .. ".nixosConfigurations." .. sysinfo.name .. ".options.home-manager.users.value.ptflp"
+            },
+          },
+        }
+      }
+    }
+
     lspconfig.clangd.setup { capabilities = capabilities }
     -- lspconfig.tailwindcss.setup { capabilities = capabilities }
     lspconfig.tsserver.setup { capabilities = capabilities }
@@ -131,5 +156,8 @@ return {
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
+
+    -- Turn off logging because nixd writes WAY too much logs
+    vim.lsp.set_log_level("OFF")
   end
 }
