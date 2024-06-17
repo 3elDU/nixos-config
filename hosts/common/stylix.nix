@@ -47,6 +47,7 @@ in {
     monospace = font;
 
     sizes = {
+      desktop = 12;
       popups = 12;
     };
   };
