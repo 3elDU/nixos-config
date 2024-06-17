@@ -1,6 +1,8 @@
-{ _prefs, config, ... }: let 
+{ _prefs, config, ... }:
+let
   colors = config.lib.stylix.colors.withHashtag;
-in {
+in
+{
   # Main wofi color is secondary, since wofi itself is an overlay window
   xdg.configFile."wofi/colors".text = builtins.concatStringsSep "\n" [
     colors.${_prefs.secondaryColor}

@@ -1,38 +1,40 @@
-{ ... }: let
+{ ... }:
+let
   # Universal shell alises for both nushell and zsh
   aliases = {
-      cl = "clear";
+    cl = "clear";
 
-      gcn = "git clone";
-      gs = "git status";
-      ga = "git add";
-      gd = "git diff";
-      gc = "git commit";
-      gp = "git push";
-      gl = "git log";
+    gcn = "git clone";
+    gs = "git status";
+    ga = "git add";
+    gd = "git diff";
+    gc = "git commit";
+    gp = "git push";
+    gl = "git log";
 
-      n = "nvim";
-      h = "htop";
-      t = "touch";
+    n = "nvim";
+    h = "htop";
+    t = "touch";
 
-      tm = "tmux";
-      tma = "tmux attach -t";
-      tmn = "tmux new -t";
+    tm = "tmux";
+    tma = "tmux attach -t";
+    tmn = "tmux new -t";
 
-      nr = "nh os switch";
-      nrb = "nh os boot";
-      nra = "nh oh switch --ask";
-      # Keep the nixpkgs revision for 'nix run'
-      # the same, as in the system itself.
-      # This also avoids constant repository downloads. 
-      nrun = "nix run --inputs-from ${../.}";
+    nr = "nh os switch";
+    nrb = "nh os boot";
+    nra = "nh oh switch --ask";
+    # Keep the nixpkgs revision for 'nix run'
+    # the same, as in the system itself.
+    # This also avoids constant repository downloads. 
+    nrun = "nix run --inputs-from ${../.}";
   };
   environment = {
     FLAKE = "/home/ptflp/dev/nixos";
     EDITOR = "nvim";
     PAGER = "nvimpager";
   };
-in {
+in
+{
   programs.nushell = {
     enable = true;
 

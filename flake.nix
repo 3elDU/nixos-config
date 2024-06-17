@@ -43,56 +43,60 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, sops-nix, stylix, ... }@inputs: let
-    overlays = [
-      # Neovim unstable overlay was here, but since 0.10 is stable, now the list is empty
-    ];
+  outputs = { nixpkgs, home-manager, sops-nix, stylix, ... }@inputs:
+    let
+      overlays = [
+        # Neovim unstable overlay was here, but since 0.10 is stable, now the list is empty
+      ];
 
-    primaryColor = "base0E"; # Mauve in catppuccin
-    secondaryColor = "base07"; # Lavender in catppuccin
+      primaryColor = "base0E"; # Mauve in catppuccin
+      secondaryColor = "base07"; # Lavender in catppuccin
 
-    systems = [
-      {
-        name = "slowpoke";
-        system = "x86_64-linux";
-        _prefs = {
-          enableSway = true;
-          catppuccinGtkTheme = true;
-          installGNOMEApps = true;
-        };
-      }
-      {
-        name = "heater";
-        system = "x86_64-linux";
-        _prefs = {
-          enableSway = false;
-          catppuccinGtkTheme = false;
-          installGNOMEApps = false;
-        };
-      }
-    ];
-  in {
-    nixosConfigurations = builtins.listToAttrs (builtins.map (system: {
-      name = system.name;
-      value = nixpkgs.lib.nixosSystem {
-        system = system.system;
-        specialArgs = {
-          inherit inputs overlays;
-          _prefs = system._prefs // {
-            # Extend _prefs with info about the running system
-            name = system.name;
-            system = system.system;
-            flakePath = toString ./.;
-            inherit primaryColor secondaryColor;
+      systems = [
+        {
+          name = "slowpoke";
+          system = "x86_64-linux";
+          _prefs = {
+            enableSway = true;
+            catppuccinGtkTheme = true;
+            installGNOMEApps = true;
           };
-        };
-        modules = [
-          ./hosts/${system.name}
-          home-manager.nixosModules.home-manager
-          stylix.nixosModules.stylix
-          sops-nix.nixosModules.sops
-        ];
-      };
-    }) systems);
-  };
+        }
+        {
+          name = "heater";
+          system = "x86_64-linux";
+          _prefs = {
+            enableSway = false;
+            catppuccinGtkTheme = false;
+            installGNOMEApps = false;
+          };
+        }
+      ];
+    in
+    {
+      nixosConfigurations = builtins.listToAttrs (builtins.map
+        (system: {
+          name = system.name;
+          value = nixpkgs.lib.nixosSystem {
+            system = system.system;
+            specialArgs = {
+              inherit inputs overlays;
+              _prefs = system._prefs // {
+                # Extend _prefs with info about the running system
+                name = system.name;
+                system = system.system;
+                flakePath = toString ./.;
+                inherit primaryColor secondaryColor;
+              };
+            };
+            modules = [
+              ./hosts/${system.name}
+              home-manager.nixosModules.home-manager
+              stylix.nixosModules.stylix
+              sops-nix.nixosModules.sops
+            ];
+          };
+        })
+        systems);
+    };
 }

@@ -1,6 +1,8 @@
-{ pkgs, config, lib, ... }: let
+{ pkgs, config, lib, ... }:
+let
   me = config.users.users.ptflp;
-in {
+in
+{
   # Install sops CLI tools system-wide
   environment.systemPackages = [ pkgs.sops ];
 
@@ -9,12 +11,12 @@ in {
 
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
 
-  sops.secrets.wakatime_api_key = {};
+  sops.secrets.wakatime_api_key = { };
   sops.templates.wakatime_api_key = {
     # Write wakatime configuration file at ~/.wakatime.cfg
     path = "${me.home}/.wakatime.cfg";
     owner = "${me.name}";
-    content = lib.generators.toINI {} {
+    content = lib.generators.toINI { } {
       settings = {
         api_key = config.sops.placeholder.wakatime_api_key;
       };

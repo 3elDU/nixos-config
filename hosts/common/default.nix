@@ -25,7 +25,11 @@
     isNormalUser = true;
     description = "Zakhar Voloshchuk";
     extraGroups = [
-      "networkmanager" "wheel" "video" "audio" "input"
+      "networkmanager"
+      "wheel"
+      "video"
+      "audio"
+      "input"
       "render"
     ];
     shell = pkgs.zsh;

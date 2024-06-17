@@ -1,8 +1,10 @@
-{ inputs, pkgs, ... }: let
+{ inputs, pkgs, ... }:
+let
   # monospace = pkgs.nerdfonts.override { fonts = ["CascadiaCode"]; };
   monospace = pkgs.cascadia-code;
   monospaceName = "Cascadia Code NF";
-in {
+in
+{
   stylix.enable = true;
 
   stylix.polarity = "dark";
@@ -36,19 +38,21 @@ in {
       </match>
     </fontconfig>
   '';
-  stylix.fonts = let
-    font = {
-      package = monospace;
-      name = monospaceName;
-    };
-  in {
-    serif = font;
-    sansSerif = font;
-    monospace = font;
+  stylix.fonts =
+    let
+      font = {
+        package = monospace;
+        name = monospaceName;
+      };
+    in
+    {
+      serif = font;
+      sansSerif = font;
+      monospace = font;
 
-    sizes = {
-      desktop = 12;
-      popups = 12;
+      sizes = {
+        desktop = 12;
+        popups = 12;
+      };
     };
-  };
 }

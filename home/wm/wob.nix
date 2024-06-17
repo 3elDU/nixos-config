@@ -1,7 +1,9 @@
-{ config, ... }: let
+{ config, ... }:
+let
   colorscheme = config.lib.stylix.colors.withHashtag;
   secondary = colorscheme.base07;
-in {
+in
+{
   services.wob = {
     enable = true;
     settings = {

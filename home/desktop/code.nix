@@ -1,6 +1,8 @@
-{ pkgs, inputs, _prefs, ... }: let
+{ pkgs, inputs, _prefs, ... }:
+let
   extensions = inputs.nix-vscode-extensions.extensions.${_prefs.system};
-in {
+in
+{
   programs.vscode = {
     enable = true;
     enableExtensionUpdateCheck = false;
@@ -17,7 +19,8 @@ in {
 
       # -- misc --
       yoavbls.pretty-ts-errors # Make TypeScript errors much better
-      dbaeumer.vscode-eslint esbenp.prettier-vscode # ESLint / Prettier for JavaScript
+      dbaeumer.vscode-eslint
+      esbenp.prettier-vscode # ESLint / Prettier for JavaScript
       wakatime.vscode-wakatime # Time tracking with wakatime
       eamodio.gitlens # Better git UI
 
@@ -55,7 +58,7 @@ in {
       "[dart]" = {
         "editor.formatOnSave" = true;
         "editor.formatOnType" = true;
-        "editor.rulers" = [80];
+        "editor.rulers" = [ 80 ];
         "editor.selectionHighlight" = false;
         "editor.suggestSelection" = "first";
         "editor.tabCompletion" = "onlySnippets";

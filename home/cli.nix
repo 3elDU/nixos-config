@@ -7,7 +7,8 @@
     nmap # Scan ports
     ripgrep # Search file contents
     # Process management
-    htop btop
+    htop
+    btop
     # Better cat(1)
     bat
     # For the 'notify-send' command
@@ -22,7 +23,8 @@
     dnsutils
 
     # archive tools
-    p7zip unrar
+    p7zip
+    unrar
 
     # image utilities
     imagemagick
@@ -30,7 +32,8 @@
     ffmpeg_7
 
     # Images and videos in the terminal!
-    timg swayimg
+    timg
+    swayimg
 
     # Make nix better!
     # https://github.com/viperML/nh

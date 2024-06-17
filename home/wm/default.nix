@@ -3,7 +3,8 @@
 
   # WM-related utilities
   home.packages = with pkgs; [
-    grim slurp
+    grim
+    slurp
     wf-recorder
     wl-clipboard
   ];

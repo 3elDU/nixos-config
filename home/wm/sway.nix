@@ -1,4 +1,5 @@
-{ _prefs, pkgs, config, lib, ... }: let
+{ _prefs, pkgs, config, lib, ... }:
+let
   left = "h";
   right = "l";
   up = "k";
@@ -7,18 +8,20 @@
   mod = "Mod4";
   menu = "${pkgs.wofi}/bin/wofi";
   term = "${pkgs.kitty}/bin/kitty";
-in {
-  home = if _prefs.enableSway then {
-    packages = [
-      # Different keyboard layout for each window
-      pkgs.swaykbdd 
-    ];
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1"; # https://nixos.wiki/wiki/Wayland
-      QT_QPA_PLATFORM = "wayland;xcb";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    };
-  } else {};
+in
+{
+  home =
+    if _prefs.enableSway then {
+      packages = [
+        # Different keyboard layout for each window
+        pkgs.swaykbdd
+      ];
+      sessionVariables = {
+        NIXOS_OZONE_WL = "1"; # https://nixos.wiki/wiki/Wayland
+        QT_QPA_PLATFORM = "wayland;xcb";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      };
+    } else { };
 
   wayland.windowManager.sway = {
     enable = _prefs.enableSway;
@@ -54,44 +57,46 @@ in {
       window.titlebar = false;
       floating.titlebar = false;
 
-      colors = let 
-        colorscheme = config.lib.stylix.colors.withHashtag;
-        primary = colorscheme.${_prefs.primaryColor};
-        secondary = colorscheme.${_prefs.secondaryColor};
-        bg = colorscheme.base01;
-        urgent = colorscheme.base08;
-        text = colorscheme.base05;
-        surface0 = colorscheme.base02;
-      in lib.mkForce {
-        focused = { 
-          border = primary;
-          background = primary;
-          text = bg;
-          indicator = secondary;
-          childBorder = primary;
+      colors =
+        let
+          colorscheme = config.lib.stylix.colors.withHashtag;
+          primary = colorscheme.${_prefs.primaryColor};
+          secondary = colorscheme.${_prefs.secondaryColor};
+          bg = colorscheme.base01;
+          urgent = colorscheme.base08;
+          text = colorscheme.base05;
+          surface0 = colorscheme.base02;
+        in
+        lib.mkForce {
+          focused = {
+            border = primary;
+            background = primary;
+            text = bg;
+            indicator = secondary;
+            childBorder = primary;
+          };
+          urgent = {
+            border = urgent;
+            background = urgent;
+            text = bg;
+            indicator = secondary;
+            childBorder = urgent;
+          };
+          focusedInactive = {
+            border = bg;
+            background = bg;
+            text = text;
+            indicator = secondary;
+            childBorder = surface0;
+          };
+          unfocused = {
+            border = bg;
+            background = bg;
+            text = text;
+            indicator = secondary;
+            childBorder = bg;
+          };
         };
-        urgent = {
-          border = urgent;
-          background = urgent;
-          text = bg;
-          indicator = secondary;
-          childBorder = urgent;
-        };
-        focusedInactive = {
-          border = bg;
-          background = bg;
-          text = text;
-          indicator = secondary;
-          childBorder = surface0;
-        };
-        unfocused = {
-          border = bg;
-          background = bg;
-          text = text;
-          indicator = secondary;
-          childBorder = bg;
-        };
-      };
 
       input = {
         "type:pointer" = {

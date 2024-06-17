@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common
       ./steam.nix
@@ -16,7 +17,7 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # For ntfsfix and other utilities
   environment.systemPackages = [ pkgs.ntfs3g ];
