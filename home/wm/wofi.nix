@@ -2,12 +2,12 @@
   colors = config.lib.stylix.colors.withHashtag;
 in {
   # Main wofi color is secondary, since wofi itself is an overlay window
-  xdg.configFile."wofi/colors".text = ''
-    ${colors.base07}
-    ${colors.base05}
-    ${colors.base01}
-    ${colors.base02}
-  '';
+  xdg.configFile."wofi/colors".text = builtins.concatStringsSep "\n" [
+    colors.${_prefs.secondaryColor}
+    colors.base05
+    colors.base01
+    colors.base02
+  ];
 
   programs.wofi = {
     enable = _prefs.enableSway;

@@ -48,6 +48,9 @@
       # Neovim unstable overlay was here, but since 0.10 is stable, now the list is empty
     ];
 
+    primaryColor = "base0E"; # Mauve in catppuccin
+    secondaryColor = "base07"; # Lavender in catppuccin
+
     systems = [
       {
         name = "slowpoke";
@@ -80,6 +83,7 @@
             name = system.name;
             system = system.system;
             flakePath = toString ./.;
+            inherit primaryColor secondaryColor;
           };
         };
         modules = [

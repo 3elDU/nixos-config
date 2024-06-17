@@ -56,8 +56,8 @@ in {
 
       colors = let 
         colorscheme = config.lib.stylix.colors.withHashtag;
-        primary = colorscheme.base0E;
-        secondary = colorscheme.base07;
+        primary = colorscheme.${_prefs.primaryColor};
+        secondary = colorscheme.${_prefs.secondaryColor};
         bg = colorscheme.base01;
         urgent = colorscheme.base08;
         text = colorscheme.base05;

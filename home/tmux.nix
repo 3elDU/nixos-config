@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }: {
+{ pkgs, inputs, config, _prefs, ... }: {
   programs.tmux = {
     enable = true;
 
@@ -9,16 +9,16 @@
     prefix = "C-Space";
 
     shell = "${pkgs.nushell}/bin/nu";
-    plugins = with pkgs.tmuxPlugins; [
+    plugins = [
       {
-        plugin = resurrect;
+        plugin = pkgs.tmuxPlugins.resurrect;
         extraConfig = ''
           set -g @resurrect-strategy-nvim 'session'
           set -g @resurrect-capture-pane-contents 'on'
         '';
       }
       {
-        plugin = continuum;
+        plugin = pkgs.tmuxPlugins.continuum;
         extraConfig = ''
           set -g @continuum-save-interval '1'
         '';
@@ -26,7 +26,7 @@
       {
         plugin = inputs.minimal-tmux-status.packages."${pkgs.system}".default;
         extraConfig = ''
-          set -g @minimal-tmux-bg "${config.lib.stylix.colors.withHashtag.base0E}"
+          set -g @minimal-tmux-bg "${config.lib.stylix.colors.withHashtag.${_prefs.primaryColor}}"
         '';
       }
     ];

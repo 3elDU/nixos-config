@@ -23,7 +23,7 @@ window#waybar {
 
 tooltip {
   background: @base01;
-  border: 3px solid @base07;
+  border: 3px solid @secondary;
 }
 
 #workspaces {
@@ -39,7 +39,7 @@ tooltip {
 }
 #workspaces button.focused {
   min-width: 48px;
-  background: @base0E;
+  background: @primary;
   color: @base00;
   font-weight: bold;
 }
@@ -58,7 +58,7 @@ tooltip {
 
 #scratchpad {
   padding: 0 16px;
-  background: @base07;
+  background: @secondary;
   color: @base00;
 }
 
@@ -85,13 +85,13 @@ tooltip {
 
 #tray menu {
   background: @base00;
-  border: 3px solid @base07;
+  border: 3px solid @secondary;
 }
 #tray menu > * {
   padding: 0 16px;
 }
 #tray menu > :hover {
-  background: @base07;
+  background: @secondary;
   color: @base00;
   font-weight: bold;
 }

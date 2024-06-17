@@ -6,11 +6,14 @@
   ];
 
   # Colors used in the markup
-  secondary = config.lib.stylix.colors.withHashtag.base07;
-  yellow = config.lib.stylix.colors.withHashtag.base0A;
-  peach = config.lib.stylix.colors.withHashtag.base09;
-  red = config.lib.stylix.colors.withHashtag.base08;
-  green = config.lib.stylix.colors.withHashtag.base0B;
+  colors = config.lib.stylix.colors.withHashtag;
+  secondary = colors.${_prefs.secondaryColor};
+  yellow = colors.base0A;
+  peach = colors.base09;
+  red = colors.base08;
+  green = colors.base0B;
+
+  defineColor = name: value: "@define-color ${name} ${value};";
 
   markup = color: text: "<span color=\"${color}\" style=\"oblique\">${text}</span>";
 in {
@@ -21,14 +24,21 @@ in {
   programs.waybar = {
     enable = _prefs.enableSway;
 
-    style =
-      # Convert the colorscheme attribute set to GTK color declarations
-      lib.strings.concatStrings(builtins.map (color: 
-        "@define-color ${color} ${config.lib.stylix.colors.withHashtag.${color}};\n"
-      ) colorNames)
+    style = lib.strings.concatStringsSep "\n" (
+        # Convert the colors attribute set to GTK color declarations
+        builtins.map (color: defineColor color colors.${color}) colorNames
+      )
       +
+      # Append primary and secondary colors
+      ''
+      ${defineColor "primary" colors.${_prefs.primaryColor}}
+      ${defineColor "secondary" colors.${_prefs.secondaryColor}}
+      ''
+      +
+      # Append the main CSS file
       (builtins.readFile ../../configs/waybar/style.css)
       +
+      # Use monospace font
       ''
       /* Font family injected by Nix */
       * {
