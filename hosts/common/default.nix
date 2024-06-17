@@ -1,9 +1,4 @@
-{
-  inputs, _prefs,
-  colorscheme, palette, flavour, 
-  pkgs, overlays,
-  ...
-}: {
+{ inputs, _prefs, pkgs, overlays, ... }: {
   imports = [
     ./nix.nix
     ./locale.nix
@@ -40,9 +35,9 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs _prefs colorscheme palette flavour;
+      inherit inputs overlays;
       # Per-host variables to disable specific features
-      inherit overlays;
+      inherit _prefs;
     };
     sharedModules = [ inputs.xremap.homeManagerModules.default ];
     users.ptflp = ../../home;

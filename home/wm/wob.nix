@@ -1,4 +1,7 @@
-{ colorscheme, ... }: {
+{ config, ... }: let
+  colorscheme = config.lib.stylix.colors.withHashtag;
+  secondary = colorscheme.base07;
+in {
   services.wob = {
     enable = true;
     settings = {
@@ -8,16 +11,16 @@
         border_size = 2;
         border_offset = 2;
 
-        border_color = colorscheme.secondary.hex;
-        background_color = colorscheme.crust.hex;
-        bar_color = colorscheme.secondary.hex;
+        border_color = secondary;
+        background_color = colorscheme.base01;
+        bar_color = secondary;
 
-        overflow_bar_color = colorscheme.red.hex;
-        overflow_border_color = colorscheme.red.hex;
+        overflow_bar_color = colorscheme.red;
+        overflow_border_color = colorscheme.red;
       };
       "style.brightness" = {
-        border_color = colorscheme.yellow.hex;
-        bar_color = colorscheme.yellow.hex;
+        border_color = colorscheme.yellow;
+        bar_color = colorscheme.yellow;
       };
     };
   };

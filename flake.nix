@@ -43,23 +43,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, sops-nix, stylix, xremap, nix-vscode-extensions, ... }@inputs: let
-    palette = builtins.fromJSON (builtins.readFile ./catppuccin/palette.json);
-    flavourName = "macchiato";
-
-    # Information about the current flavour
-    flavour = {
-      name = palette.${flavourName}.name;
-      dark = palette.${flavourName}.dark;
-    };
-    colorscheme = with palette.${flavourName}; 
-      colors // {
-        # Currently active window, buttons, active elements, etc.
-        primary = colors.mauve;
-        # Notifications, overlay windows, modals
-        secondary = colors.lavender;
-      };
-
+  outputs = { nixpkgs, home-manager, sops-nix, stylix, ... }@inputs: let
     overlays = [
       # Neovim unstable overlay was here, but since 0.10 is stable, now the list is empty
     ];
@@ -90,7 +74,7 @@
       value = nixpkgs.lib.nixosSystem {
         system = system.system;
         specialArgs = {
-          inherit inputs overlays palette flavour colorscheme;
+          inherit inputs overlays;
           _prefs = system._prefs // {
             # Extend _prefs with info about the running system
             name = system.name;
