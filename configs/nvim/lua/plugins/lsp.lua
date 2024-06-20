@@ -19,9 +19,21 @@ return {
     -- Rust support
     {
       "mrcjkb/rustaceanvim",
+      filetypes = "rust",
       version = '^4',
       lazy = false,
     },
+  },
+  opts = {
+    inlay_hints = {
+      enable = true
+    },
+    init_options = {
+      userLanguages = {
+        -- yew.rs support
+        rust = "html",
+      }
+    }
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -39,6 +51,10 @@ return {
         local function map(mode, key, action, description)
           vim.keymap.set(mode, key, action, { buffer = ev.buf, desc = description })
         end
+
+        vim.lsp.inlay_hint.enable(true, {
+          bufnr = ev.buf
+        })
 
         map('n', 'gD', vim.lsp.buf.declaration, "Go to declaration")
         map('n', 'gd', vim.lsp.buf.definition, "Go to definition")
