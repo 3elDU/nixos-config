@@ -16,6 +16,8 @@ let
     h = "htop";
     t = "touch";
 
+    s = "kitten ssh";
+
     tm = "tmux";
     tma = "tmux attach -t";
     tmn = "tmux new -t";
