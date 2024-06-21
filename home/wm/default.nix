@@ -3,8 +3,6 @@
 
   # WM-related utilities
   home.packages = with pkgs; [
-    grim
-    slurp
     wf-recorder
     wl-clipboard
   ];
@@ -17,5 +15,6 @@
     ./mako.nix
     ./wob.nix
     ./clipboard.nix
+    ./screenshots.nix
   ];
 }
