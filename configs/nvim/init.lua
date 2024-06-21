@@ -35,7 +35,7 @@ vim.opt.sidescrolloff = 10
 vim.opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode
 
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', {desc = "Disable search highlighting"})
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Disable search highlighting" })
 -- ignore case when searching
 vim.o.ignorecase = true
 
@@ -46,8 +46,11 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.shiftround = true
 
+-- https://www.reddit.com/r/neovim/comments/1dfmeuw/how_do_you_handle_very_long_tailwind_css/
+vim.o.breakindent = true
+
 -- save on Ctrl+S
-vim.keymap.set({'n', 'v', 'i'}, '<C-S>', function()
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-S>', function()
   vim.api.nvim_command(':update')
 end)
 
