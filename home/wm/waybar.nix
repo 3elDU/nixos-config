@@ -85,7 +85,7 @@ in
       };
       pulseaudio = {
         format = "{icon} {volume}% {format_source}";
-        format-bluetooth = "${markup secondary "vol bt"} {format_source}";
+        format-bluetooth = "${markup secondary "vol bt"} {volume}% {format_source}";
         format-bluetooth-muted = "${markup red "muted bt"} {format_source}";
         format-muted = "${markup red "muted"} {format_source}";
         format-source = "${markup secondary "mic"} {volume}%";
