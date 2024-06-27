@@ -31,6 +31,7 @@
       "audio"
       "input"
       "render"
+      "dialout"
     ];
     shell = pkgs.zsh;
   };
@@ -46,6 +47,9 @@
     sharedModules = [ inputs.xremap.homeManagerModules.default ];
     users.ptflp = ../../home;
   };
+
+  # Allow -o allow_other when running sshfs as a regular user
+  programs.fuse.userAllowOther = true;
 
   # Taken from home-configuration.nix(5) xdg.portal.enable
   environment.pathsToLink = [
