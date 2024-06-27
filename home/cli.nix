@@ -44,5 +44,8 @@
     nvd
     # Inspect nix system configuration
     nix-inspect
+
+    # Mount filesystems over SSH
+    sshfs
   ];
 }
