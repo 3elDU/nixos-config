@@ -17,6 +17,7 @@ let
     t = "touch";
 
     s = "kitten ssh";
+    sfs = "sshfs -o allow_other,max_conns=8,reconnect -C";
 
     tm = "tmux";
     tma = "tmux attach -t";
