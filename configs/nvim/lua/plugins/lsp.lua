@@ -117,7 +117,9 @@ return {
 
     lspconfig.clangd.setup { capabilities = capabilities }
     -- lspconfig.tailwindcss.setup { capabilities = capabilities }
-    lspconfig.tsserver.setup { capabilities = capabilities }
+
+    -- Disable typescript lsp for now, as volar (vue LSP) takes over TypeScript support
+    -- lspconfig.tsserver.setup { capabilities = capabilities }
 
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#volar
     local typescript_lsp = vim.fs.dirname(vim.system({ "which", "typescript-language-server" }):wait().stdout)
@@ -128,7 +130,8 @@ return {
     lspconfig.volar.setup {
       capabilities = capabilities,
       filetypes = {
-        'vue',
+        'typescript', 'javascript',
+        'vue', 'json',
       },
       init_options = {
         typescript = {
