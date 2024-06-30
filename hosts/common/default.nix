@@ -57,6 +57,10 @@
     "/share/applications"
   ];
 
+  # Enable memory compression via zram-swap
+  zramSwap.enable = true;
+  zramSwap.algorithm = "zstd";
+
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
 
