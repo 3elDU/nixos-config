@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +48,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, sops-nix, stylix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, sops-nix, stylix, disko, ... }@inputs:
     let
       overlays = [
         # Neovim unstable overlay was here, but since 0.10 is stable, now the list is empty
@@ -91,6 +96,7 @@
             };
             modules = [
               ./hosts/${system.name}
+              disko.nixosModules.disko
               home-manager.nixosModules.home-manager
               stylix.nixosModules.stylix
               sops-nix.nixosModules.sops
