@@ -39,6 +39,14 @@ in
   programs.waybar = {
     enable = _prefs.enableSway;
 
+    package = pkgs.waybar.override {
+      sndioSupport = false;
+      hyprlandSupport = false;
+      cavaSupport = false;
+      mprisSupport = false;
+      mpdSupport = false;
+    };
+
     style = lib.strings.concatStringsSep "\n"
       (
         # Convert the colors attribute set to GTK color declarations
