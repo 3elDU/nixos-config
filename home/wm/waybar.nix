@@ -65,7 +65,7 @@ in
     settings = [{
       modules-left = [ "sway/workspaces" "sway/mode" "sway/scratchpad" "sway/window" ];
       modules-center = [ ];
-      modules-right = [ "privacy" "pulseaudio" "network" "bluetooth" "cpu" "memory" "temperature" "sway/language" "battery" "clock" "tray" ];
+      modules-right = [ "privacy" "pulseaudio" "network" "bluetooth" "sway/language" "battery" "clock" "tray" ];
 
       "sway/mode" = {
         format = "mode {}";
@@ -121,37 +121,6 @@ in
           {device_enumerate}
         '';
         on-click = "${pkgs.blueman}/bin/blueman-manager";
-      };
-      cpu = {
-        format = "{icon} {usage}%";
-        format-icons = [
-          (markup secondary "cpu")
-        ];
-        interval = 1;
-      };
-      memory = {
-        format = "${markup secondary "mem"} {}%";
-        format-icons = [
-          (markup secondary "temp")
-          (markup secondary "temp")
-          (markup yellow "temp")
-          (markup peach "temp")
-          (markup red "temp")
-        ];
-        tooltip-format = "Used: {used}GiB\nSwap used: {swapUsed}GiB\n\nAvailable: {avail}GiB\nTotal: {total}GiB";
-        interval = 5;
-      };
-      temperature = {
-        critical-threshold = 80;
-        format = "{icon} {temperatureC}°C";
-        format-icons = [
-          (markup secondary "temp") # 0-16
-          (markup secondary "temp") # 16-32
-          (markup secondary "temp") # 32-48
-          (markup yellow "temp") # 48-64
-          (markup red "temp") # 64-80
-        ];
-        interval = 5;
       };
       "sway/language" = {
         format = "${markup secondary "kbd"} {short}";
