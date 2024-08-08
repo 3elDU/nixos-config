@@ -14,6 +14,12 @@ in
 
   stylix.base16Scheme = "${inputs.cattpuccin-base16}/base16/macchiato.yaml";
 
+  stylix.cursor = {
+    package = pkgs.apple-cursor;
+    name = "macOS-Monterey";
+    size = 24;
+  };
+
   fonts.packages = [
     monospace
   ];
