@@ -115,6 +115,11 @@ in
           xkb_options = "grp:caps_toggle";
         };
       };
+      seat = {
+        "*" = {
+          hide_cursor = "1000"; # Hide cursor after 1 second
+        };
+      };
       output = {
         "*" = {
           bg = lib.mkForce "${config.lib.stylix.colors.withHashtag.base02} solid_color";
