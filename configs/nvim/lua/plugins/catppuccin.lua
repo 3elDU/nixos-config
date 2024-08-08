@@ -63,7 +63,21 @@ return {
           NeoTreeIndentMarker = { fg = colors.surface0 },
 
           -- Barbar
-          BufferCurrentIndex = { fg = colors.text, bg = colors.surface1 }
+          BufferCurrentIndex = { fg = colors.overlay0, bg = colors.surface0 },
+          -- I do not like colored text in the tabbar
+          BufferCurrent = { fg = colors.text, bg = colors.surface0 },
+          BufferVisibleMod = { fg = colors.text },
+          BufferCurrentMod = { fg = colors.text, bg = colors.surface0 },
+          BufferInactiveMod = { fg = colors.text },
+          BufferVisibleADDED = { fg = colors.text },
+          BufferCurrentADDED = { fg = colors.text, bg = colors.surface0 },
+          BufferInactiveADDED = { fg = colors.text },
+          BufferVisibleCHANGED = { fg = colors.text },
+          BufferCurrentCHANGED = { fg = colors.text, bg = colors.surface0 },
+          BufferInactiveCHANGED = { fg = colors.text },
+          BufferVisibleDELETED = { fg = colors.text },
+          BufferCurrentDELETED = { fg = colors.text, bg = colors.surface0 },
+          BufferInactiveDELETED = { fg = colors.text },
         }
       end },
     }
