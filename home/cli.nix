@@ -15,6 +15,8 @@
     libnotify
     # killall, pstree, etc.
     psmisc
+    # show information about the file
+    file
 
     gnupg
     xdg-utils
