@@ -1,4 +1,4 @@
-{ inputs, _prefs, pkgs, overlays, ... }: {
+{ inputs, _prefs, pkgs, overlays, firefox-addons, ... }: {
   imports = [
     ./nix.nix
     ./locale.nix
@@ -40,7 +40,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs overlays;
+      inherit inputs overlays firefox-addons;
       # Per-host variables to disable specific features
       inherit _prefs;
     };

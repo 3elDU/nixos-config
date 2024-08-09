@@ -23,6 +23,10 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     xremap = {
       url = "github:xremap/nix-flake";
@@ -86,6 +90,7 @@
             system = system.system;
             specialArgs = {
               inherit inputs overlays;
+              firefox-addons = inputs.firefox-addons.packages.${system.system};
               _prefs = system._prefs // {
                 # Extend _prefs with info about the running system
                 name = system.name;
