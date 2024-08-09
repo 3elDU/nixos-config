@@ -43,7 +43,7 @@ return {
 
     cmp.setup({
       formatting = {
-        fields = {"abbr", "kind", "menu"},
+        fields = { "abbr", "kind", "menu" },
         expandable_indicator = true,
         format = function(_, vim_item)
           vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
@@ -56,7 +56,7 @@ return {
         end
       },
       completion = { completeopt = "menu,menuone,noinsert" },
-      sources = cmp.config.sources{
+      sources = cmp.config.sources {
         { name = 'nvim_lsp' },
         -- { name = 'nvim_lua' },
         { name = 'luasnip' },
@@ -70,10 +70,38 @@ return {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
-        ['<C-x>'] = cmp.mapping.complete{},
+        ['<C-x>'] = cmp.mapping.complete {},
         ["<C-e>"] = cmp.mapping.abort(),
 
-        ['<CR>'] = cmp.mapping.confirm{ select = true },
+        ['<Tab>'] = function(fallback)
+          if vim.trim(vim.api.nvim_get_current_line()) == "" then
+            fallback()
+          else
+            cmp.mapping.confirm({
+              select = true,
+              behavior = cmp.ConfirmBehavior.Insert
+            })
+          end
+        end,
+
+        -- Think of <c-l> as moving to the right of your snippet expansion.
+        --  So if you have a snippet that's like:
+        --  function $name($args)
+        --    $body
+        --  end
+        --
+        -- <c-l> will move you to the right of each of the expansion locations.
+        -- <c-h> is similar, except moving you backwards.
+        ['<C-l>'] = cmp.mapping(function()
+          if luasnip.expand_or_locally_jumpable() then
+            luasnip.expand_or_jump()
+          end
+        end, { 'i', 's' }),
+        ['<C-h>'] = cmp.mapping(function()
+          if luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          end
+        end, { 'i', 's' }),
       },
     })
 
@@ -101,13 +129,13 @@ return {
 --         end)(),
 --       },
 --       'saadparwaiz1/cmp_luasnip',
--- 
+--
 --       -- Adds other completion capabilities.
 --       --  nvim-cmp does not ship with all sources by default. They are split
 --       --  into multiple repos for maintenance purposes.
 --       'hrsh7th/cmp-nvim-lsp',
 --       'hrsh7th/cmp-path',
--- 
+--
 --       -- If you want to add a bunch of pre-configured snippets,
 --       --    you can use this plugin to help you. It even has snippets
 --       --    for various frameworks/libraries/etc. but you will have to
@@ -119,7 +147,7 @@ return {
 --       local cmp = require 'cmp'
 --       local luasnip = require 'luasnip'
 --       luasnip.config.setup {}
--- 
+--
 --       cmp.setup {
 --         snippet = {
 --           expand = function(args)
@@ -127,7 +155,7 @@ return {
 --           end,
 --         },
 --         completion = { completeopt = 'menu,menuone,noinsert' },
--- 
+--
 --         -- For an understanding of why these mappings were
 --         -- chosen, you will need to read `:help ins-completion`
 --         --
@@ -137,17 +165,17 @@ return {
 --           ['<C-n>'] = cmp.mapping.select_next_item(),
 --           -- Select the [p]revious item
 --           ['<C-p>'] = cmp.mapping.select_prev_item(),
--- 
+--
 --           -- Accept ([y]es) the completion.
 --           --  This will auto-import if your LSP supports it.
 --           --  This will expand snippets if the LSP sent a snippet.
 --           ['<C-y>'] = cmp.mapping.confirm { select = true },
--- 
+--
 --           -- Manually trigger a completion from nvim-cmp.
 --           --  Generally you don't need this, because nvim-cmp will display
 --           --  completions whenever it has completion options available.
 --           ['<C-Space>'] = cmp.mapping.complete {},
--- 
+--
 --           -- Think of <c-l> as moving to the right of your snippet expansion.
 --           --  So if you have a snippet that's like:
 --           --  function $name($args)

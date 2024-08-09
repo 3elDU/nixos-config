@@ -30,7 +30,7 @@ require "lazy".setup({
   { import = "plugins.lualine" },
   { import = "plugins.barbecue" },
   { import = "plugins.whichkey" },
-  { import = "plugins.markdown"},
+  { import = "plugins.markdown" },
   { import = "plugins.dap" },
   { import = "plugins.notify" },
   { import = "plugins.trouble" },

@@ -5,6 +5,10 @@ return {
   config = function()
     -- base16 colors
     local basesixteen = require "colors"
+    if basesixteen == nil then
+      -- return early if "colors.lua" file does not exist
+      return
+    end
 
     require "catppuccin".setup {
       flavour = "macchiato",
