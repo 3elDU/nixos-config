@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   # Desktop-related options
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     # Enable accelerated video playback
     extraPackages = with pkgs; [

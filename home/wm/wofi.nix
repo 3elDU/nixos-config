@@ -3,6 +3,8 @@ let
   colors = config.lib.stylix.colors.withHashtag;
 in
 {
+  stylix.targets.wofi.enable = false;
+
   # Main wofi color is secondary, since wofi itself is an overlay window
   xdg.configFile."wofi/colors".text = builtins.concatStringsSep "\n" [
     colors.${_prefs.secondaryColor}
@@ -15,6 +17,10 @@ in
     enable = _prefs.enableSway;
     settings = {
       color = config.xdg.configFile."wofi/colors".source;
+      # Width and height are messed up with fractional scaling
+      # see https://todo.sr.ht/~scoopta/wofi/224
+      width = "80%";
+      height = "60%";
       allow_images = true;
       allow_markup = true;
       exec_search = true;

@@ -19,9 +19,9 @@
       lua-language-server # Lua
       clang-tools # clangd, C/C++
       rust-analyzer # Rust
-      nodePackages.volar # Vuejs
+      vue-language-server # Vuejs
       nodePackages.intelephense # PHP
-      nodePackages.typescript-language-server # JavaScript / TypeScript
+      typescript-language-server # JavaScript / TypeScript
       tailwindcss-language-server # TailwindCSS
       gopls # Go
       vscode-langservers-extracted # HTML, JSON, CSS

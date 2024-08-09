@@ -26,10 +26,6 @@ let
     nr = "nh os switch";
     nrb = "nh os boot";
     nra = "nh oh switch --ask";
-    # Keep the nixpkgs revision for 'nix run'
-    # the same, as in the system itself.
-    # This also avoids constant repository downloads. 
-    nrun = "nix run --inputs-from ${../.}";
   };
   environment = {
     FLAKE = "/home/ptflp/dev/nixos";

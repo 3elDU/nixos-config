@@ -2,32 +2,28 @@
   home.packages =
     if _prefs.installGNOMEApps then with pkgs; [
       # This is required by (almost) all of gnome apps
-      gnome.adwaita-icon-theme
+      adwaita-icon-theme
 
       # Image viewer
-      gnome.eog
+      eog
       # File manager
-      gnome.nautilus
+      nautilus
       # Previewer for nautilus
-      gnome.sushi
+      sushi
       # Archive manager
-      gnome.file-roller
+      file-roller
       # Integrate compresssed files management with GNOME
-      gnome.gnome-autoar
+      gnome-autoar
       # System resource monitor
       gnome-usage
       # Taking photos and videos with webcam
-      gnome.cheese
-      # Weather app
-      gnome.gnome-weather
-      # Sound recorder
-      gnome.gnome-sound-recorder
+      cheese
       # Font viewer
-      gnome.gnome-font-viewer
+      gnome-font-viewer
       # Disk utility
-      gnome.gnome-disk-utility
+      gnome-disk-utility
       # Calculator
-      gnome.gnome-calculator
+      gnome-calculator
       # PDF viewer
       evince
     ] else [ ];

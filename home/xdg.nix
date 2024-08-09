@@ -2,6 +2,10 @@
   xdg = {
     portal = {
       enable = _prefs.enableSway;
+      config.common.default = [
+        "wlr"
+        "gtk"
+      ];
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk

@@ -133,7 +133,7 @@ in
         # Start terminal
         "${mod}+Return" = "exec ${term}";
         # Start file manager
-        "${mod}+Alt+e" = "exec ${pkgs.gnome.nautilus}/bin/nautilus";
+        "${mod}+Alt+e" = "exec ${pkgs.nautilus}/bin/nautilus";
         # Start launcher
         "${mod}+x" = "exec ${menu}";
 

@@ -27,7 +27,7 @@
   time.timeZone = "Europe/Kyiv";
 
   # Taken from https://nixos.wiki/wiki/Accelerated_Video_Playback
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
