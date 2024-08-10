@@ -8,6 +8,15 @@ local function find_vue_typescript_plugin_path()
   return vim.fs.joinpath(store_path, "/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin/")
 end
 
+local function find_typescript_lib_path()
+  local success, sysinfo = pcall(require, "sysinfo")
+  if success then
+    return sysinfo.typescriptLibPath
+  else
+    return nil
+  end
+end
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -15,7 +24,15 @@ return {
     {
       "folke/lazydev.nvim",
       ft = "lua",
-      opts = {}
+      opts = {
+        library = {
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "luvit-meta/library", words = { "vim%.uv" } },
+        }
+      },
+      dependencies = {
+        { "Bilal2453/luvit-meta", lazy = true }
+      }
     },
     -- status updates for lsp
     { "j-hui/fidget.nvim", opts = {} },
@@ -80,29 +97,17 @@ return {
     })
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    local function setup_server(name, ...)
-      lspconfig[name].setup {
-        capabilities = capabilities,
-        ...
-      }
+    local function setup_server(name, opts)
+      opts = opts or {}
+      opts.capabilities = capabilities
+
+      lspconfig[name].setup(opts)
     end
     local function setup_servers(names)
       for _, name in pairs(names) do
         setup_server(name)
       end
     end
-
-    setup_servers({
-      "clangd",
-      "gopls",
-      "jsonls",
-      "cssls",
-      "html",
-      "eslint",
-      "intelephense",
-      "tailwindcss",
-      "volar"
-    })
 
     setup_server("lua_ls", {
       settings = {
@@ -120,8 +125,7 @@ return {
     if sysinfo_present then
       local flake_expr = "(builtins.getflake \"" .. sysinfo.flakePath .. "\")"
 
-      lspconfig.nixd.setup {
-        capabilities = capabilities,
+      setup_server("nixd", {
         settings = {
           nixd = {
             nixpkgs = {
@@ -140,13 +144,12 @@ return {
             },
           }
         }
-      }
+      })
     else
       setup_server("nixd")
     end
 
-    lspconfig.tsserver.setup {
-      capabilities = capabilities,
+    setup_server("tsserver", {
       init_options = {
         plugins = {
           {
@@ -161,7 +164,26 @@ return {
         "typescript",
         "vue",
       }
-    }
+    })
+
+    setup_server("volar", {
+      init_options = {
+        typescript = {
+          tsdk = find_typescript_lib_path(),
+        }
+      }
+    })
+
+    setup_servers({
+      "clangd",
+      "gopls",
+      "jsonls",
+      "cssls",
+      "html",
+      "eslint",
+      "intelephense",
+      "tailwindcss",
+    })
 
     -- LSP ui configuration
     local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
@@ -197,6 +219,6 @@ return {
     end
 
     -- Turn off logging because nixd writes WAY too much logs
-    vim.lsp.set_log_level("OFF")
+    -- vim.lsp.set_log_level("OFF")
   end
 }

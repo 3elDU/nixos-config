@@ -21,6 +21,7 @@
       rust-analyzer # Rust
       vue-language-server # Vuejs
       nodePackages.intelephense # PHP
+      typescript
       typescript-language-server # JavaScript / TypeScript
       tailwindcss-language-server # TailwindCSS
       gopls # Go
@@ -42,7 +43,13 @@
   # Write info about the current system
   # This is used to set up the Nix LSP
   xdg.configFile."nvim/lua/sysinfo.lua" = {
-    text = "return " + lib.generators.toLua { } _prefs;
+    text = "return " + lib.generators.toLua { } (
+      _prefs // {
+        # Provide path to typescript lib location
+        # Used in vue language server setup
+        typescriptLibPath = "${pkgs.typescript}/lib/node_modules/typescript/lib";
+      }
+    );
   };
 
   xdg.configFile."nvim/lua/colors.lua" = {

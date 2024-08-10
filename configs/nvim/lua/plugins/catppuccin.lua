@@ -4,8 +4,8 @@ return {
   priority = 1000,
   config = function()
     -- base16 colors
-    local basesixteen = require "colors"
-    if basesixteen == nil then
+    local success, basesixteen = pcall(require, "colors")
+    if not success then
       -- return early if "colors.lua" file does not exist
       return
     end

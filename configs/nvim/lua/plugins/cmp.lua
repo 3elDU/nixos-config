@@ -4,50 +4,50 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "L3MON4D3/LuaSnip",
+    "hrsh7th/cmp-path",
+    "onsails/lspkind.nvim",
   },
   version = false, -- last release is way too old
   event = { "InsertEnter", "CmdlineEnter" },
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local colorizer = require("nvim-highlight-colors")
+    local lspkind = require("lspkind")
     luasnip.config.setup {}
 
-    -- VSCode icons
-    local cmp_kinds = {
-      Text = '  ',
-      Method = '  ',
-      Function = '  ',
-      Constructor = '  ',
-      Field = '  ',
-      Variable = '  ',
-      Class = '  ',
-      Interface = '  ',
-      Module = '  ',
-      Property = '  ',
-      Unit = '  ',
-      Value = '  ',
-      Enum = '  ',
-      Keyword = '  ',
-      Snippet = '  ',
-      Color = '  ',
-      File = '  ',
-      Reference = '  ',
-      Folder = '  ',
-      EnumMember = '  ',
-      Constant = '  ',
-      Struct = '  ',
-      Event = '  ',
-      Operator = '  ',
-      TypeParameter = '  ',
-    }
-
     cmp.setup({
+      performance = {
+        debounce = 120,
+        throttle = 30,
+        fetching_timeout = 500,
+        confirm_resolve_timeout = 80,
+        async_budget = 1,
+        max_view_entries = 20,
+      },
       formatting = {
         fields = { "abbr", "kind", "menu" },
         expandable_indicator = true,
-        format = function(_, vim_item)
-          vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-          return vim_item
+        format = function(entry, item)
+          local color_item = colorizer.format(entry, { kind = item.kind })
+
+          item = lspkind.cmp_format({
+            mode = 'symbol_text',
+            maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+            before = function(_, vim_item)
+              return vim_item
+            end,
+            symbol_map = { Codeium = '' }
+          })(entry, item)
+
+          if color_item.abbr_hl_group then
+            item.kind_hl_group = color_item.abbr_hl_group
+            item.kind = color_item.abbr
+          end
+
+          return item
         end,
       },
       snippet = {
@@ -58,8 +58,9 @@ return {
       completion = { completeopt = "menu,menuone,noinsert" },
       sources = cmp.config.sources {
         { name = 'nvim_lsp' },
-        -- { name = 'nvim_lua' },
         { name = 'luasnip' },
+        { name = 'codeium' },
+        { name = 'path' },
         { name = 'buffer' },
       },
       mapping = {
@@ -69,20 +70,21 @@ return {
         -- Scroll documentation
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-p>"] = cmp.mapping.open_docs(),
 
-        ['<C-x>'] = cmp.mapping.complete {},
+        ["<C-x>"] = cmp.mapping.complete {},
         ["<C-e>"] = cmp.mapping.abort(),
 
-        ['<Tab>'] = function(fallback)
-          if vim.trim(vim.api.nvim_get_current_line()) == "" then
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if vim.trim(vim.api.nvim_get_current_line()) == "" or not cmp.visible() then
             fallback()
           else
-            cmp.mapping.confirm({
+            cmp.confirm({
               select = true,
               behavior = cmp.ConfirmBehavior.Insert
             })
           end
-        end,
+        end, { 'i' }),
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
