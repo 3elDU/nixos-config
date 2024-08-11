@@ -23,6 +23,11 @@ in
       };
     } else { };
 
+  stylix.targets = {
+    hyprland.enable = false;
+    hyprpaper.enable = false;
+  };
+
   wayland.windowManager.sway = {
     enable = _prefs.enableSway;
     package = pkgs.swayfx;
