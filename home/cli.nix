@@ -46,6 +46,8 @@
     nvd
     # Inspect nix system configuration
     nix-inspect
+    # Browse dependencies of nix derivations
+    nix-tree
 
     # Mount filesystems over SSH
     sshfs

@@ -8,7 +8,6 @@
   ];
 
   imports = [
-    ./avizo.nix
     ./sway.nix
     ./wofi.nix
     ./waybar.nix

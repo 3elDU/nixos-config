@@ -1,11 +1,12 @@
 { config, ... }:
 let
-  colorscheme = config.lib.stylix.colors.withHashtag;
+  colorscheme = config.lib.stylix.colors;
   secondary = colorscheme.base07;
 in
 {
   services.wob = {
     enable = true;
+
     settings = {
       "" = {
         timeout = 3000;
@@ -23,6 +24,10 @@ in
       "style.brightness" = {
         border_color = colorscheme.yellow;
         bar_color = colorscheme.yellow;
+      };
+      "style.muted" = {
+        border_color = colorscheme.red;
+        bar_color = colorscheme.red;
       };
     };
   };

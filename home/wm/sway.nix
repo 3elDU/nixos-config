@@ -8,13 +8,19 @@ let
   mod = "Mod4";
   menu = "${pkgs.wofi}/bin/wofi";
   term = "${pkgs.kitty}/bin/kitty";
+
+  # Script that handles function keys,
+  # and shows volume/brightness progress using wob
+  keyHandler = pkgs.writeScript "keyHandler" (builtins.readFile ../../scripts/keyhandler.nu);
 in
 {
   home =
     if _prefs.enableSway then {
-      packages = [
+      packages = with pkgs; [
         # Different keyboard layout for each window
-        pkgs.swaykbdd
+        swaykbdd
+        # Manage brighthness (required by keyHandler.nu script)
+        brightnessctl
       ];
       sessionVariables = {
         NIXOS_OZONE_WL = "1"; # https://nixos.wiki/wiki/Wayland
@@ -153,17 +159,17 @@ in
         "${mod}+Shift+s" = "exec ${../../scripts/screenshot} --select-area --edit";
 
         # Volume control
-        "XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -u up";
-        "XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -u down";
+        "XF86AudioRaiseVolume" = "exec ${keyHandler} volume inc 5";
+        "XF86AudioLowerVolume" = "exec ${keyHandler} volume dec 5";
         # Volume control for microphone
-        "Shift+XF86AudioRaiseVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -m -u up";
-        "Shift+XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -d -m -u down";
-        "XF86AudioMute" = "exec ${pkgs.avizo}/bin/volumectl -d toggle-mute";
-        "XF86AudioMicMute" = "exec ${pkgs.avizo}/bin/volumectl -d -m toggle-mute";
+        "Shift+XF86AudioRaiseVolume" = "exec ${keyHandler} mic inc 5";
+        "Shift+XF86AudioLowerVolume" = "exec ${keyHandler} mic dec 5";
+        "XF86AudioMute" = "exec ${keyHandler} volume mute";
+        "XF86AudioMicMute" = "exec ${keyHandler} mic mute";
 
         # Brightness control
-        "XF86MonBrightnessUp" = "exec ${pkgs.avizo}/bin/lightctl -d up";
-        "XF86MonBrightnessDown" = "exec ${pkgs.avizo}/bin/lightctl -d down";
+        "XF86MonBrightnessUp" = "exec ${keyHandler} brightness inc 5";
+        "XF86MonBrightnessDown" = "exec ${keyHandler} brightness dec 5";
 
         # Reload sway configuration file
         "${mod}+Shift+c" = "reload";
