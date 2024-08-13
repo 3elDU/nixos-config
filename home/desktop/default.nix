@@ -3,8 +3,7 @@
     ./keyring.nix
     ./browsers.nix
     ./fonts.nix
-    ./foot.nix
-    ./kitty.nix
+    ./terminal.nix
     ./messaging.nix
     ./media.nix
     ./gnome-apps.nix
