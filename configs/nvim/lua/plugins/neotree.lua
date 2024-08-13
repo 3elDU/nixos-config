@@ -40,7 +40,7 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<space>e', "<cmd>Neotree reveal<cr>", { desc = "Reveal neotree" })
+    vim.keymap.set('n', '<space>e', "<cmd>Neotree reveal toggle=true<cr>", { desc = "Toggle neotree visibility" })
     vim.keymap.set('n', '<space>E', "<cmd>Neotree close<cr>", { desc = "Hide neotree" })
   end
 }
