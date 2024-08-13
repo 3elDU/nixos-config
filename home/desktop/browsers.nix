@@ -58,8 +58,22 @@ in
       };
 
       userChrome = builtins.replaceStrings
-        [ "__PRIMARY_COLOR__" "__SECONDARY_COLOR__" ]
-        [ colors.${_prefs.primaryColor} colors.${_prefs.secondaryColor} ]
+        [
+          "__PRIMARY_COLOR__"
+          "__SECONDARY_COLOR__"
+          "__BACKGROUND_COLOR__"
+          "__BACKGROUND2_COLOR__"
+          "__SURFACE_COLOR__"
+          "__SURFACE1_COLOR__"
+        ]
+        [
+          colors.${_prefs.primaryColor}
+          colors.${_prefs.secondaryColor}
+          colors.base01
+          colors.base00
+          colors.base02
+          colors.base03
+        ]
         (builtins.readFile ./firefox/userChrome.css);
 
       settings = {
@@ -120,9 +134,6 @@ in
         "browser.safebrowsing.downloads.remote.block_potentially_unwanted" = false;
         "browser.safebrowsing.downloads.remote.block_uncommon" = false;
         "browser.safebrowsing.allowOverride" = false;
-
-        # Remove special permissions for certain mozilla domains
-        "permissions.manager.defaultsUrl" = "";
 
         # Show punycode in URLs
         "network.IDN_show_punycode" = true;

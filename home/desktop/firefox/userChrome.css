@@ -8,18 +8,75 @@
   /* Those are injected by Nix */
   --primary-color: __PRIMARY_COLOR__;
   --secondary-color: __SECONDARY_COLOR__;
+  --background-color: __BACKGROUND_COLOR__;
+  --background-color-2: __BACKGROUND2_COLOR__;
+  --surface-color: __SURFACE_COLOR__;
+  --surface-color-1: __SURFACE1_COLOR__;
+}
+
+#main-window {
+  background-color: var(--background-color) !important;
+}
+
+/* Hidden items */
+#firefox-view-button,
+#tracking-protection-icon-container,
+#alltabs-button,
+#tabs-newtab-button,
+#page-action-buttons,
+#fxa-toolbar-menu-button,
+.titlebar-buttonbox-container,
+#back-button,
+#forward-button,
+#reload-button,
+#customizableui-special-spring1,
+#customizableui-special-spring2 {
+  display: none !important;
 }
 
 /* Tab bar */
 
+#titlebar {
+  background-color: var(--background-color-2) !important;
+  color: var(--text-color) !important;
+}
+
 #titlebar,
 #TabsToolbar,
-#TabsToolbar-customization-target {
+#TabsToolbar-customization-target,
+.tabbrowser-tab,
+.tab-label-container {
   height: 32px !important;
+}
+
+#tabbrowser-tabs {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
 }
 
 .tabbrowser-tab {
   padding: 0 !important;
+
+  & .tab-secondary-label {
+    color: var(--surface-color-1) !important;
+  }
+}
+
+.tabbrowser-tab[selected=true] {
+  color: var(--background-color) !important;
+
+  & .tab-background {
+    background-color: var(--primary-color) !important;
+  }
+
+  & .tab-secondary-label {
+    color: var(--background-color-2) !important;
+  }
+}
+
+.tab-text {
+  line-height: unset !important;
 }
 
 .tab-content {
@@ -32,23 +89,53 @@
   min-height: 32px !important;
 }
 
+.tab-close-button {
+  display: none !important;
+}
+
 /* Nav bar */
+
 #nav-bar {
   height: 32px !important;
-  background-color: transparent !important;
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
   border: none !important;
 }
 
 #urlbar-container {
   --urlbar-container-height: 32.00px !important;
+  margin: 0 !important;
 }
 
 #urlbar-input-container {
   padding: 0 !important;
 }
 
+#urlbar-input-box {
+  color: inherit !important;
+}
+
 #urlbar-background {
   border-radius: 0 !important;
+  background: inherit !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Focused urlbar */
+#urlbar-container:has(#urlbar[breakout-extend=true]) {
+  background-color: var(--secondary-color) !important;
+  color: var(--background-color) !important;
+
+  & #urlbar {
+    background-color: var(--secondary-color) !important;
+    color: var(--background-color) !important;
+  }
+
+  & .urlbarView {
+    background-color: var(--secondary-color) !important;
+    color: var(--background-color) !important;
+  }
 }
 
 /* Sidebery window */
@@ -62,6 +149,5 @@
   width: 2px !important;
   background: var(--secondary-color) !important;
   border: none !important;
-  border-left: 1px solid transparent !important;
-  border-right: 1px solid transparent !important;
+  padding: 4px !important;
 }
