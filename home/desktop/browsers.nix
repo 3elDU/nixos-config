@@ -1,10 +1,12 @@
-{ firefox-addons, _prefs, config, ... }:
+{ firefox-addons, _prefs, config, pkgs, ... }:
 let
   colors = config.lib.stylix.colors.withHashtag;
 in
 {
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox-bin;
+
     profiles.default = {
       containersForce = true;
       containers = {
@@ -28,15 +30,17 @@ in
         };
       };
 
-      extensions = with firefox-addons; [
-        sidebery
-        bitwarden
-        ublock-origin
-        privacy-badger
-        sponsorblock
-        dearrow
-        multi-account-containers
-      ];
+      # After a couple rebuilds, it seems that Nix corrupts the firefox profile,
+      # so disable extensions via Nix for now. They can be installed manually, anyway.
+      # extensions = with firefox-addons; [
+      #   sidebery
+      #   bitwarden
+      #   ublock-origin
+      #   privacy-badger
+      #   sponsorblock
+      #   dearrow
+      #   multi-account-containers
+      # ];
 
       search = {
         force = true;
