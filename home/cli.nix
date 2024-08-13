@@ -26,7 +26,8 @@
 
     # archive tools
     p7zip
-    unrar
+    unrar-free
+    libarchive
 
     # image utilities
     imagemagick
