@@ -5,7 +5,11 @@ in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-bin;
+    package = pkgs.firefox-bin.override {
+      nativeMessagingHosts = [
+        pkgs.tridactyl-native
+      ];
+    };
 
     profiles.default = {
       containersForce = true;
@@ -30,17 +34,16 @@ in
         };
       };
 
-      # After a couple rebuilds, it seems that Nix corrupts the firefox profile,
-      # so disable extensions via Nix for now. They can be installed manually, anyway.
-      # extensions = with firefox-addons; [
-      #   sidebery
-      #   bitwarden
-      #   ublock-origin
-      #   privacy-badger
-      #   sponsorblock
-      #   dearrow
-      #   multi-account-containers
-      # ];
+      extensions = with firefox-addons; [
+        sidebery
+        bitwarden
+        ublock-origin
+        privacy-badger
+        sponsorblock
+        dearrow
+        multi-account-containers
+        tridactyl
+      ];
 
       search = {
         force = true;
@@ -158,6 +161,13 @@ in
         "browser.urlbar.quicksuggest.enabled" = false;
         "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
         "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+
+        # Do not save history, but save cookies
+        "places.history.enabled" = false;
+        "privacy.history.custom" = true;
+        "privacy.clearOnShutdown_v2.cache" = false;
+        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+        "privacy.sanitize.sanitizeOnShutdown" = true;
 
         # Do not save passwords
         "signon.rememberSignons" = false;
