@@ -17,6 +17,10 @@
     psmisc
     # show information about the file
     file
+    # lsusb
+    usbutils
+    # serial console I/O
+    minicom
 
     gnupg
     xdg-utils
