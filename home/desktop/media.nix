@@ -4,5 +4,6 @@
     spotify
     pavucontrol
     helvum
+    easyeffects
   ];
 }
