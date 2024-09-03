@@ -16,13 +16,26 @@ in
       golang.go # Go
       rust-lang.rust-analyzer # Rust
       bradlc.vscode-tailwindcss # TailwindCSS
+      ms-vscode.cpptools-extension-pack # C/C++
 
       # -- misc --
       yoavbls.pretty-ts-errors # Make TypeScript errors much better
       dbaeumer.vscode-eslint
       esbenp.prettier-vscode # ESLint / Prettier for JavaScript
       wakatime.vscode-wakatime # Time tracking with wakatime
-      eamodio.gitlens # Better git UI
+      # eamodio.gitlens # Better git UI
+      ms-vscode.cmake-tools # Cmake
+      twxs.cmake # Cmake snippets
+      # ARM embedded development
+      marus25.cortex-debug
+      ms-vscode.vscode-serial-monitor
+      mcu-debug.debug-tracker-vscode
+      mcu-debug.memory-view
+      mcu-debug.rtos-views
+      mcu-debug.peripheral-viewer
+
+      # raspberry pi pico embedded development
+      raspberry-pi.raspberry-pi-pico
 
       # Vim emulation
       vscodevim.vim
@@ -64,6 +77,9 @@ in
         "editor.tabCompletion" = "onlySnippets";
         "editor.wordBasedSuggestions" = "off";
       };
+      "cmake.showOptionsMovedNotification" = false;
+      "cmake.configureOnEdit" = false; # Do not reconfigure on save
+      "cmake.configureOnOpen" = false; # Do not confiure the project upon opening
     };
   };
 
