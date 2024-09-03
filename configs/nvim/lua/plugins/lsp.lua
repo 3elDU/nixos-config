@@ -96,7 +96,9 @@ return {
       end
     })
 
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(
+      vim.lsp.protocol.make_client_capabilities()
+    )
     local function setup_server(name, opts)
       opts = opts or {}
       opts.capabilities = capabilities
