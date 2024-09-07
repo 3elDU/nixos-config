@@ -15,6 +15,7 @@
     ./gpg.nix
     ./shell.nix
     ./syncthing.nix
+    ./stylix.nix
     ./neovim.nix
     ./cli.nix
     ./xdg.nix

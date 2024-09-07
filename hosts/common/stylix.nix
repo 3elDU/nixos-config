@@ -5,7 +5,16 @@ let
   monospaceName = "Cascadia Code NF";
 in
 {
+  imports = [
+    ./stylix_targets.nix
+  ];
+
   stylix.enable = true;
+  stylix.autoEnable = false;
+  stylix.homeManagerIntegration = {
+    autoImport = true;
+    followSystem = true;
+  };
 
   stylix.polarity = "dark";
   # This isn't used as we specify the base16 colorscheme manually
