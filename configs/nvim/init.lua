@@ -54,4 +54,7 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<C-S>', function()
   vim.api.nvim_command(':update')
 end)
 
+-- enable project-local config
+vim.opt.exrc = true
+
 require("plugins")
