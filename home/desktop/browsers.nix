@@ -162,7 +162,12 @@ in
         "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
         "browser.urlbar.suggest.quicksuggest.sponsored" = false;
 
-        # Do not save history, but save cookies
+        # Saving history, along with configuring firefox using home manager
+        # borks it after some time using firefox.
+        # This makes devtools unusable, along with creating more problems.
+        # The simple solution would be to disable history altogether,
+        # but another way is to clear the history when something broke,
+        # but otherwise save it as usual
         "places.history.enabled" = false;
         "privacy.history.custom" = true;
         "privacy.clearOnShutdown_v2.cache" = false;
@@ -182,9 +187,6 @@ in
 
         # Enable containers and show the UI settings
         "privacy.userContext.enabled" = true;
-
-        # Resist fingerprinting
-        "privacy.resistFingerprinting" = true;
 
         # Do not save search engines to the config
         "browser.search.update" = false;
