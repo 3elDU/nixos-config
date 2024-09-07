@@ -22,4 +22,15 @@
       };
     };
   };
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      shell = {
+        program = "${pkgs.nushell}/bin/nu";
+        args = [ "-l" "-i" ];
+      };
+      bell.duration = 150;
+      mouse.hide_when_typing = true;
+    };
+  };
 }
