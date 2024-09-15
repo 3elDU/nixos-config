@@ -77,6 +77,9 @@ in
         "editor.tabCompletion" = "onlySnippets";
         "editor.wordBasedSuggestions" = "off";
       };
+      "[c]" = {
+        "editor.foldingImportsByDefault" = false;
+      };
       "cmake.showOptionsMovedNotification" = false;
       "cmake.configureOnEdit" = false; # Do not reconfigure on save
       "cmake.configureOnOpen" = false; # Do not confiure the project upon opening
