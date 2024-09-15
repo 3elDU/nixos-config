@@ -7,7 +7,7 @@ let
 
   mod = "Mod4";
   menu = "${pkgs.wofi}/bin/wofi";
-  term = "${pkgs.alacritty}/bin/alacritty";
+  term = "${pkgs.kitty}/bin/kitty";
 
   # Script that handles function keys,
   # and shows volume/brightness progress using wob
