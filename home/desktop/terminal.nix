@@ -1,10 +1,9 @@
-{ pkgs, ... }: {
+{ ... }: {
+  # Unused
   programs.kitty = {
-    enable = true;
+    enable = false;
 
     settings = {
-      shell = "${pkgs.nushell}/bin/nu -l -i";
-
       paste_actions = "confirm";
 
       tab_bar_style = "powerline";
@@ -13,22 +12,21 @@
       enable_audio_bell = false;
     };
   };
+
+  # Primary terminal
   programs.foot = {
     enable = true;
     settings = {
       main = {
-        shell = "nu";
         pad = "8x4";
       };
     };
   };
+
+  # Unused
   programs.alacritty = {
-    enable = true;
+    enable = false;
     settings = {
-      shell = {
-        program = "${pkgs.nushell}/bin/nu";
-        args = [ "-l" "-i" ];
-      };
       bell.duration = 150;
       mouse.hide_when_typing = true;
     };

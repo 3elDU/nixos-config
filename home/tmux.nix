@@ -8,7 +8,6 @@
     mouse = true;
     prefix = "C-Space";
 
-    shell = "${pkgs.nushell}/bin/nu";
     plugins = [
       {
         plugin = pkgs.tmuxPlugins.resurrect;

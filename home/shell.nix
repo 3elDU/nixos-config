@@ -34,6 +34,7 @@ let
   };
 in
 {
+  # Unused for now. Decided to stick with ZSH
   programs.nushell = {
     enable = true;
 
@@ -80,6 +81,6 @@ in
 
   # External command completions used in nushell
   programs.carapace = {
-    enable = true;
+    enable = false;
   };
 }
