@@ -24,7 +24,7 @@
   services.fstrim.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Kyiv";
+  time.timeZone = "Europe/Madrid";
 
   # Taken from https://nixos.wiki/wiki/Accelerated_Video_Playback
   hardware.graphics = {
