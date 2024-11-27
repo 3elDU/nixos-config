@@ -1,6 +1,5 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 let
-  # monospace = pkgs.nerdfonts.override { fonts = ["CascadiaCode"]; };
   monospace = pkgs.cascadia-code;
   monospaceName = "Cascadia Code NF";
 in
@@ -16,7 +15,7 @@ in
   # The background in sway is also overriden to be a solid color instead
   stylix.image = ../../wallpapers/anders-jilden-cYrMQA7a3Wc-unsplash.jpg;
 
-  stylix.base16Scheme = "${inputs.cattpuccin-base16}/base16/macchiato.yaml";
+  stylix.base16Scheme = ../../colors/standardized.yaml;
 
   stylix.cursor = {
     package = pkgs.apple-cursor;
