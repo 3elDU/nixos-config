@@ -10,6 +10,8 @@ let
     gd = "git diff";
     gc = "git commit";
     gp = "git push";
+    # specifically for working with my nixos config
+    gpn = "git push github; git push origin";
     gl = "git log";
 
     n = "nvim";
