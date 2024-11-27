@@ -14,7 +14,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require "lazy".setup({
-  -- { import = "plugins.gruvbox" },
   { import = "plugins.catppuccin" },
   { import = "plugins.mini" },
   { import = "plugins.autopairs" },

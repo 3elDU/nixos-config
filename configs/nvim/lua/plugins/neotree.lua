@@ -5,15 +5,9 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-    "3rd/image.nvim",
   },
   config = function()
     require "neo-tree".setup({
-      window = {
-        mappings = {
-          ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
-        }
-      },
       filesystem = {
         hijack_netrw_bahavior = "open_default" -- use neotree instead of netrw
       },
