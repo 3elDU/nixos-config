@@ -4,6 +4,8 @@ let
   secondary = colorscheme.base07;
 in
 {
+  stylix.targets.wob.enable = false;
+
   services.wob = {
     enable = true;
 
