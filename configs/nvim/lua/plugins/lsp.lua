@@ -134,14 +134,14 @@ return {
               expr = "import" .. flake_expr .. ".inputs.nixpkgs {}"
             },
             formatting = {
-              command = { "nixpkgs-fmt" }
+              command = { "alejandra" }
             },
             options = {
               nixos = {
-                expr = flake_expr .. ".nixosconfigurations." .. sysinfo.name .. ".options"
+                expr = flake_expr .. ".nixosConfigurations." .. sysinfo.name .. ".options"
               },
               home_manager = {
-                expr = flake_expr .. ".nixosconfigurations." .. sysinfo.name .. ".options.home-manager.users.value.ptflp"
+                expr = flake_expr .. ".nixosConfigurations." .. sysinfo.name .. ".options.home-manager.users.ptflp"
               },
             },
           }

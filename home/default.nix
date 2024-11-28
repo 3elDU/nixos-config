@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   home.username = "ptflp";
   home.homeDirectory = "/home/ptflp";
 
@@ -15,6 +15,7 @@
     ./gpg.nix
     ./shell.nix
     ./syncthing.nix
+    ./sops.nix
     ./neovim.nix
     ./cli.nix
     ./xdg.nix

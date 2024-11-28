@@ -1,5 +1,13 @@
-{ inputs, _prefs, pkgs, overlays, firefox-addons, ... }: {
+{
+  inputs,
+  _prefs,
+  pkgs,
+  overlays,
+  firefox-addons,
+  ...
+}: {
   imports = [
+    ./dns.nix
     ./nix.nix
     ./locale.nix
     ./services.nix
@@ -17,7 +25,12 @@
 
   security.pam.loginLimits = [
     # Taken from https://nixos.wiki/wiki/Sway
-    { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
+    {
+      domain = "@users";
+      item = "rtprio";
+      type = "-";
+      value = 1;
+    }
   ];
 
   programs.zsh.enable = true;
@@ -44,7 +57,10 @@
       # Per-host variables to disable specific features
       inherit _prefs;
     };
-    sharedModules = [ inputs.xremap.homeManagerModules.default ];
+    sharedModules = [
+      inputs.xremap.homeManagerModules.default
+      inputs.sops-nix.homeManagerModules.sops
+    ];
     users.ptflp = ../../home;
   };
 
