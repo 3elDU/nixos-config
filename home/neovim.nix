@@ -21,7 +21,7 @@
 
       # --- Language servers ----
       nixd
-      alejandra # nix formatter
+      nixpkgs-fmt # nix formatter
       lua-language-server # Lua
       clang-tools # clangd, C/C++
       rust-analyzer # Rust

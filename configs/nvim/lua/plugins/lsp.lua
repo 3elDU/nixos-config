@@ -134,7 +134,7 @@ return {
               expr = "import" .. flake_expr .. ".inputs.nixpkgs {}"
             },
             formatting = {
-              command = { "alejandra" }
+              command = { "nixpkgs-fmt" }
             },
             options = {
               nixos = {
