@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   home.username = "ptflp";
   home.homeDirectory = "/home/ptflp";
 
@@ -10,6 +10,7 @@
 
   imports = [
     ./wm
+    ./scripts
     ./desktop
     ./git.nix
     ./gpg.nix
