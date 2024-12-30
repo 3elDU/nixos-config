@@ -31,7 +31,8 @@ require "lazy".setup({
   { import = "plugins.lualine" },
   { import = "plugins.barbecue" },
   { import = "plugins.whichkey" },
-  { import = "plugins.markdown" },
+  -- Broken, disabled for now. Besides, I use obsidian for note taking
+  -- { import = "plugins.markdown" },
   { import = "plugins.dap" },
   { import = "plugins.notify" },
   { import = "plugins.trouble" },

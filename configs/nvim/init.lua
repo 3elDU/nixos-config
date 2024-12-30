@@ -23,7 +23,7 @@ vim.opt.undofile = true
 vim.opt.swapfile = false
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '   ', trail = '·', nbsp = '␣' }
 
 -- preview substitutions
 vim.opt.inccommand = 'split'
@@ -45,6 +45,9 @@ vim.o.completeopt = "menu,menuone,noselect"
 vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.shiftround = true
+-- display tabs as four spaces
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
 
 -- https://www.reddit.com/r/neovim/comments/1dfmeuw/how_do_you_handle_very_long_tailwind_css/
 vim.o.breakindent = true

@@ -19,20 +19,9 @@
       # Required for treesitter
       gcc
 
-      # --- Language servers ----
-      nixd
-      nixpkgs-fmt # nix formatter
-      lua-language-server # Lua
-      clang-tools # clangd, C/C++
-      rust-analyzer # Rust
-      vue-language-server # Vuejs
-      nodePackages.intelephense # PHP
-      typescript
-      typescript-language-server # JavaScript / TypeScript
-      tailwindcss-language-server # TailwindCSS
-      gopls # Go
-      vscode-langservers-extracted # HTML, JSON, CSS
-      texlab # LaTeX
+      # language servers are managed by mason.nvim.
+      # the only dependency is unzip
+      unzip
 
       # --- Debug tools ---
       gdb # C/C++/Rust
