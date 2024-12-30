@@ -13,6 +13,7 @@
     ./services.nix
     ./stylix.nix
     ./sops.nix
+    ./users.nix
   ];
 
   nixpkgs.overlays = overlays;
@@ -33,21 +34,7 @@
     }
   ];
 
-  programs.zsh.enable = true;
-  users.users.ptflp = {
-    isNormalUser = true;
-    description = "Zakhar Voloshchuk";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "audio"
-      "input"
-      "render"
-      "dialout"
-    ];
-    shell = pkgs.zsh;
-  };
+  # Required for home-manager
   security.polkit.enable = true;
   home-manager = {
     useGlobalPkgs = true;
