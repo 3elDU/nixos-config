@@ -26,6 +26,7 @@ let
     tmn = "tmux new -t";
 
     nr = "nh os switch";
+    nt = "nh os test";
     nrb = "nh os boot";
     nra = "nh oh switch --ask";
   };
