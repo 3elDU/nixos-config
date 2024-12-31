@@ -4,6 +4,7 @@
       ./hardware-configuration.nix
       ./disko.nix
       ../common
+      ./android.nix
       ./bluetooth.nix
       ./desktop.nix
     ];

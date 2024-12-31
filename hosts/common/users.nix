@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs.zsh.enable = true;
-  
+
   users.users = {
     root.hashedPassword = "$y$j9T$GWM20wfcCL4N5ZEdK8mAi.$U4ImRzRW5RNL6tJWddScLlUsDJ.VjP6bgF30GamDF/2";
 

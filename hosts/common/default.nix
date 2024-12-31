@@ -24,8 +24,8 @@
   # Do not ask for password in sudo
   security.sudo.wheelNeedsPassword = false;
 
+  # Taken from https://nixos.wiki/wiki/Sway
   security.pam.loginLimits = [
-    # Taken from https://nixos.wiki/wiki/Sway
     {
       domain = "@users";
       item = "rtprio";
