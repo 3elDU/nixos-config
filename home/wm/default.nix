@@ -8,6 +8,7 @@
   ];
 
   imports = [
+    ./bemenu.nix
     ./sway.nix
     ./wofi.nix
     ./waybar.nix

@@ -6,7 +6,7 @@ let
   down = "j";
 
   mod = "Mod4";
-  menu = "${pkgs.wofi}/bin/wofi";
+  menu = "${pkgs.bemenu}/bin/bemenu-run";
   term = "${pkgs.foot}/bin/foot";
 
   # Script that handles function keys,
@@ -143,7 +143,7 @@ in
         # Start launcher
         "${mod}+x" = "exec ${menu}";
 
-        "${mod}+Shift+v" = "exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
+        "${mod}+Shift+v" = "exec cliphist list | bemenu | cliphist decode | wl-copy";
 
         # Switch to US / UA / RU keyboard layout
         "Alt+1" = "exec swaymsg input \"type:keyboard\" xkb_switch_layout 0";
