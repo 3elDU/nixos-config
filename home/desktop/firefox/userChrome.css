@@ -145,9 +145,11 @@
   padding: 3px !important;
 }
 
+
+/* Pane separator */
 #sidebar-splitter {
+  background: var(--primary-color) !important;
   width: 2px !important;
-  background: var(--secondary-color) !important;
   border: none !important;
-  padding: 4px !important;
+  margin: 2px;
 }
