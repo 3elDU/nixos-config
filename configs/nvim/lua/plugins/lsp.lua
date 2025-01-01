@@ -8,6 +8,11 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
+    -- download LSP / DAP servers automagically
+    {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
     {
       "folke/lazydev.nvim",
       ft = "lua",
@@ -23,6 +28,9 @@ return {
     },
     -- status updates for lsp
     { "j-hui/fidget.nvim", opts = {} },
+
+    -- ** per-language stuff **
+
     -- Rust support
     {
       "mrcjkb/rustaceanvim",
@@ -30,10 +38,18 @@ return {
       version = '^4',
       lazy = false,
     },
-    -- download LSP / DAP servers automagically
+    -- Dart/Flutter support
     {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      'nvim-flutter/flutter-tools.nvim',
+      filetypes = "flutter",
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      },
+      config = {
+        ui = {
+          border = "none"
+        },
+      },
     }
   },
   opts = {
