@@ -7,6 +7,7 @@
       ./android.nix
       ./bluetooth.nix
       ./desktop.nix
+      ./power.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
