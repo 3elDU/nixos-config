@@ -8,4 +8,9 @@
     go
     python3
   ];
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 }
