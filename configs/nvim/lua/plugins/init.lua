@@ -21,6 +21,8 @@ require "lazy".setup({
   { import = "plugins.colorizer" },
   { import = "plugins.cmp" },
   { import = "plugins.codeium" },
+  { import = "plugins.dressing" },
+  { import = "plugins.noice" },
   { import = "plugins.treesitter" },
   { import = "plugins.sleuth" },
   { import = "plugins.comment" },
@@ -36,7 +38,6 @@ require "lazy".setup({
   { import = "plugins.dap" },
   { import = "plugins.notify" },
   { import = "plugins.trouble" },
-  { import = "plugins.noice" },
   { import = "plugins.wakatime" },
   { import = "plugins.highlight" },
 }, {

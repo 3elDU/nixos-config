@@ -1,4 +1,5 @@
 return {
+  -- VSCode-like breadcrumbs
   "utilyre/barbecue.nvim",
   dependencies = {
     {
@@ -11,6 +12,5 @@ return {
     },
     "nvim-tree/nvim-web-devicons",
   },
-  opts = {
-  }
+  opts = {}
 }

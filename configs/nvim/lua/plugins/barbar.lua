@@ -10,7 +10,6 @@ return {
       animation = false,
       -- Do not show tabpages indicator in the top-right corner
       tabpages = false,
-      clickable = true,
       focus_on_close = 'previous',
       icons = {
         buffer_index = true,
@@ -25,8 +24,6 @@ return {
         },
         -- Do not show separator at the end of the tabline
         separator_at_end = false,
-        -- No special styles for the modified buffers
-        modified = { button = false },
         -- No special styles for the inactive buffers
         inactive = {
           separator = {
@@ -37,6 +34,10 @@ return {
         gitsigns = {
           enabled = false,
         }
+      },
+      sidebar_filetypes = {
+        -- add an offset to the tabbar, when neotree is open
+        ['neo-tree'] = true
       },
     }
 

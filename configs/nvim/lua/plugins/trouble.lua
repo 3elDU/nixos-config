@@ -2,12 +2,18 @@ return {
   "folke/trouble.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    require("trouble").setup {
+    local trouble = require("trouble")
+
+    trouble.setup {
       auto_preview = false,
       use_diagnostic_signs = true,
+      focus = true,
+      win = {
+        wrap = true,
+      },
     }
     vim.keymap.set('n', '<leader>wd', function()
-        require("trouble").toggle("diagnostics")
+        trouble.toggle("diagnostics")
       end,
       { desc = "Toggle workspace diagnostics menu" }
     )

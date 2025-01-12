@@ -35,20 +35,21 @@
     recursive = true;
   };
 
+  # ~~ This is commented out, as the Nix LSP is currently turned off
   # Write info about the current system
   # This is used to set up the Nix LSP
-  xdg.configFile."nvim/lua/sysinfo.lua" = {
-    text =
-      "return "
-      + lib.generators.toLua {} (
-        _prefs
-        // {
-          # Provide path to typescript lib location
-          # Used in vue language server setup
-          typescriptLibPath = "${pkgs.typescript}/lib/node_modules/typescript/lib";
-        }
-      );
-  };
+  # xdg.configFile."nvim/lua/sysinfo.lua" = {
+  #   text =
+  #     "return "
+  #     + lib.generators.toLua {} (
+  #       _prefs
+  #       // {
+  #         # Provide path to typescript lib location
+  #         # Used in vue language server setup
+  #         typescriptLibPath = "${pkgs.typescript}/lib/node_modules/typescript/lib";
+  #       }
+  #     );
+  # };
 
   xdg.configFile."nvim/lua/colors.lua" = {
     text = "return " + lib.generators.toLua {} (lib.attrsets.filterAttrs (n: v: lib.strings.hasPrefix "base" n) config.lib.stylix.colors.withHashtag);

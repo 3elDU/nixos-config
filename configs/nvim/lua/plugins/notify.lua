@@ -9,14 +9,13 @@ return {
         TRACE = "󰏫",
         WARN = "󰀦"
       },
+      merge_duplicates = true,
       background_colour = "NotifyBackground",
-      fps = 20,
       level = 2,
       minimum_width = 16,
       max_width = 64,
       max_height = 50,
       render = "minimal",
-      stages = "fade_in_slide_out",
       time_formats = {
         notification = "%T",
         notification_history = "%FT%T"

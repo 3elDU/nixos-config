@@ -41,13 +41,11 @@ vim.o.ignorecase = true
 
 vim.o.completeopt = "menu,menuone,noselect"
 
--- use spaces instead of tabs
-vim.o.expandtab = true
+-- tab configuration
+-- vim-sleuth is used to detect identation configuration on per-project basis
 vim.o.autoindent = true
 vim.o.shiftround = true
--- display tabs as four spaces
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 4
 
 -- https://www.reddit.com/r/neovim/comments/1dfmeuw/how_do_you_handle_very_long_tailwind_css/
 vim.o.breakindent = true

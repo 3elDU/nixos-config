@@ -8,8 +8,12 @@ return {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-          -- Do not show statusline for neotree
-          statusline = { 'neo-tree', 'Trouble', 'qf' }
+          -- Do not show statusline for plugin windows
+          statusline = {
+            'neo-tree', 'trouble', 'qf', 'noice',
+            'dapui_watches', 'dapui_stacks', 'dapui_breakpoints', 'dapui_scopes',
+            'dap-repl', 'dapui_console'
+          }
         }
       },
       sections = {
